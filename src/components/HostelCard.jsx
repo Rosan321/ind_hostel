@@ -1,14 +1,15 @@
+import { ArrowRight, Star } from "lucide-react";
 import Image from "next/image";
 
-export default function HostelCard({ title, location, rating, price }) {
+export default function HostelCard({ title, location, rating, price, imgs }) {
   return (
     <div className="relative bg-white shadow rounded-xl overflow-hidden flex flex-col hover:shadow-lg transition w-full max-w-sm mx-auto sm:max-w-md lg:max-w-lg">
       {/* Badge and Price Container */}
-      <div className="absolute top-3 sm:top-5 left-0 right-0 flex justify-between items-center z-10 px-0">
+      <div className="absolute top-3 left-0 right-0 flex justify-between items-center z-10 px-0">
         {/* New Badge - Same size as price button */}
         <div className="relative">
           <svg 
-            width="180" 
+            width="190" 
             height="60" 
             viewBox="0 0 320 100" 
             className="drop-shadow-lg h-7 w-auto sm:h-8"
@@ -17,13 +18,6 @@ export default function HostelCard({ title, location, rating, price }) {
             <path
               d="M 10 0 L 280 0 Q 250 25 250 50 Q 250 75 280 100 L 10 100 Q 0 100 0 90 L 0 10 Q 0 0 10 0 Z"
               fill="#00BFA6"
-            />
-            
-            {/* Corner fold triangle */}
-            <path
-              d="M 280 0 L 310 0 L 280 30 Z"
-              fill="#fef3c7"
-              opacity="0.9"
             />
           </svg>
           
@@ -63,7 +57,7 @@ export default function HostelCard({ title, location, rating, price }) {
 
       {/* Image - Responsive height */}
       <Image
-        src="/images/hostel-room.jpg"
+        src={imgs}
         alt={title}
         width={400}
         height={250}
@@ -74,18 +68,22 @@ export default function HostelCard({ title, location, rating, price }) {
       <div className="p-3 sm:p-4 flex flex-col justify-between flex-1">
         <div>
           <h3 className="font-semibold text-gray-800 text-base sm:text-lg">{title}</h3>
-          <p className="text-xs sm:text-sm text-gray-500">{location}</p>
+          <p className="text-xs sm:text-sm text-[#00BFA6] py-2">{location}</p>
           <p className="text-xs sm:text-sm text-gray-600 mt-1">
             Free Wi-Fi • Meals • 24/7 Security
           </p>
         </div>
 
         <div className="mt-2 sm:mt-3 flex justify-between items-center">
-          <span className="text-yellow-500 font-medium text-xs sm:text-sm">
-            ⭐ {rating} (128 reviews)
+          <span className="text-[#1A1A1A]font-medium text-xs sm:text-sm flex items-center gap-2">
+            <Star size={15} className="fill-[#F1FF51] stroke-[#F1FF51]" /> {rating} (128 reviews)
           </span>
         </div>
       </div>
+      <button className="bg-[#F1FF51] text-[#1A1A1A] text-base font-semibold rounded-full px-6 py-3 mx-auto flex items-center gap-2 mb-6 cursor-pointer">
+        Book Now
+        <ArrowRight size={18} />
+      </button>
     </div>
   );
 }

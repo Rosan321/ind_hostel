@@ -40,7 +40,7 @@ const Header = () => {
               <Link href="/">Home</Link>
             </li>
             <li className="border-b-2 border-transparent hover:border-[#C7D800] transition-colors duration-300">
-              <Link href="/data">About Us</Link>
+              <Link href="/checkout">About Us</Link>
             </li>
             <li className="border-b-2 border-transparent hover:border-[#C7D800] transition-colors duration-300">
               <Link href={`/stay/1`}>Contact</Link>

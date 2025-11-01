@@ -2,6 +2,7 @@ import BookingSummary from "@/components/BookingSummary";
 import ImageThumbnail from "@/components/ImageThumbnail";
 import Location from "@/components/Location";
 import { ReviewCard } from "@/components/ReviewCard";
+import SimilarLike from "@/components/SimilarLike";
 import {
   AirVent,
   Bed,
@@ -47,35 +48,35 @@ const pgList = [
 const amenities = [
   {
     icon: <Bed />,
-    ame: "Comfortable Beds"
+    ame: "Comfortable Beds",
   },
   {
     icon: <Wifi />,
-    ame: "Free WiFi"
+    ame: "Free WiFi",
   },
   {
     icon: <Bed />,
-    ame: "Comfortable Beds"
+    ame: "Comfortable Beds",
   },
   {
     icon: <WashingMachine />,
-    ame: "Laundry Service"
+    ame: "Laundry Service",
   },
   {
     icon: <CircleParking />,
-    ame: "Parking"
+    ame: "Parking",
   },
   {
     icon: <AirVent />,
-    ame: "Air Conditioning"
+    ame: "Air Conditioning",
   },
   {
     icon: <ShieldCheck />,
-    ame: "24x7 Security"
+    ame: "24x7 Security",
   },
   {
     icon: <ShowerHead />,
-    ame: "Attached Bathroom"
+    ame: "Attached Bathroom",
   },
 ];
 
@@ -121,10 +122,10 @@ export default function Page({ searchParams }) {
       </div>
 
       {/* ---------- Main Content ---------- */}
-      <div className="w-full mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="w-full mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="md:col-span-2 space-y-4">
           {/* Title & Tags */}
-          <div className="bg-white rounded-xl p-4 md:p-6 shadow">
+          <div className="bg-white rounded-3xl p-4 md:p-6 shadow">
             <h2 className="text-lg md:text-xl font-semibold mb-1">
               {data.title}
             </h2>
@@ -230,7 +231,7 @@ export default function Page({ searchParams }) {
           </div>
 
           {/* Amenities */}
-          <div className="mt-4 bg-white rounded-xl p-4 md:p-6 shadow">
+          <div className="mt-4 bg-white rounded-3xl p-4 md:p-6 shadow">
             <h3 className="text-sm md:text-base font-semibold mb-4">
               Amenities & Facilities
             </h3>
@@ -243,7 +244,9 @@ export default function Page({ searchParams }) {
                   <div className="w-6 h-6 md:w-8 md:h-8 text-emerald-600 rounded-full bg-gray-100 grid place-items-center text-xs md:text-sm">
                     {it.icon}
                   </div>
-                  <div className="text-sm md:text-base text-gray-700">{it.ame}</div>
+                  <div className="text-sm md:text-base text-gray-700">
+                    {it.ame}
+                  </div>
                 </div>
               ))}
             </div>
@@ -257,8 +260,13 @@ export default function Page({ searchParams }) {
         <div className="md:col-span-2 space-y-4">
           <ReviewCard />
         </div>
-      <Location />
       </div>
+        <div className="space-y-4">
+          <Location />
+        </div>
+        <div className="space-y-4">
+          <SimilarLike />
+        </div>
     </main>
   );
 }
