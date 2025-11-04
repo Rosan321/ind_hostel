@@ -1,7 +1,9 @@
 'use client';
 
+import SwiperButton from '@/lib/utils/swiperButton';
 import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState } from 'react';
 
 const FeaturedProperties = () => {
@@ -55,12 +57,12 @@ const FeaturedProperties = () => {
     : properties.filter(property => property.category === activeFilter);
 
   return (
-    <section className="py-24 px-4 lg:px-20">
+    <section className="bg-gray-100 py-12 px-4 lg:px-20">
       {/* Header Section */}
       <div className="text-center mb-12">
         <h2 className="text-4xl font-bold text-gray-800 mb-4">Featured Properties</h2>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          Hand-picked Hostels, PGs, and OYOs verified for comfort and safety
+          Hand-picked Hostels, PGs, and Hotels verified for comfort and safety
         </p>
       </div>
 
@@ -119,12 +121,18 @@ const FeaturedProperties = () => {
               <h4 className="text-lg font-semibold text-[#1A1A1A]">{property.price}</h4>
               
               {/* Price and Button */}
-              <div className="mt-8 flex justify-center items-center btn-wiper-bg">
-                <button className="btn-wiper-bg-content flex gap-2 px-6 py-2">
+              {/* <div className="mt-8 flex justify-center items-center btn-wiper-bg">
+                <Link href={`/stay/${property.id}`} className="btn-wiper-bg-content flex gap-2 px-6 py-2">
                   View Details
                   <ArrowRight />
-                </button>
-              </div>
+                </Link>
+              </div> */}
+              <SwiperButton 
+                id={property.id}
+                title="View Details"
+                className="w-60 h-14 text-sm sm:text-base mt-8 mx-auto mb-4 flex items-center justify-center"
+                showIcon
+              />
             </div>
           </div>
         ))}

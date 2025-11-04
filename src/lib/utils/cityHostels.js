@@ -16,6 +16,7 @@ export const cityHostels = {
       amenities: ["Meals", "Study Lounge"],
       rating: 4.3,
       distance: "1.8 km from city center",
+      image: "/images/mum.png",
     },
     {
       id: 3,
@@ -24,14 +25,16 @@ export const cityHostels = {
       amenities: ["Sea View", "WiFi"],
       rating: 4.7,
       distance: "3.2 km from beach",
+      image: "/images/mum.png",
     },
     {
-      id: 3,
+      id: 4,
       name: "Seaside Stay",
       price: "₹14,500/month",
       amenities: ["Sea View", "WiFi"],
       rating: 4.7,
       distance: "3.2 km from beach",
+      image: "/images/mum.png",
     },
   ],
   Hyderabad: [
@@ -42,6 +45,7 @@ export const cityHostels = {
       amenities: ["WiFi", "AC", "Gym"],
       rating: 4.4,
       distance: "1.2 km from IT Park",
+      image: "/images/mum.png",
     },
     {
       id: 2,
@@ -50,6 +54,7 @@ export const cityHostels = {
       amenities: ["WiFi", "Meals", "Laundry"],
       rating: 4.2,
       distance: "0.5 km from city center",
+      image: "/images/mum.png",
     },
   ],
   Pune: [
@@ -60,6 +65,7 @@ export const cityHostels = {
       amenities: ["WiFi", "Study Room"],
       rating: 4.1,
       distance: "1.0 km from university",
+      image: "/images/mum.png",
     },
   ],
   Goa: [
@@ -70,6 +76,7 @@ export const cityHostels = {
       amenities: ["WiFi", "Pool", "Beach View"],
       rating: 4.8,
       distance: "0.2 km from beach",
+      image: "/images/mum.png",
     },
   ],
   Jaipur: [
@@ -80,6 +87,7 @@ export const cityHostels = {
       amenities: ["WiFi", "AC", "Traditional"],
       rating: 4.3,
       distance: "1.5 km from city palace",
+      image: "/images/mum.png",
     },
   ],
   Delhi: [
@@ -90,6 +98,7 @@ export const cityHostels = {
       amenities: ["WiFi", "AC", "Metro Access"],
       rating: 4.0,
       distance: "0.3 km from metro station",
+      image: "/images/mum.png",
     },
   ],
 };

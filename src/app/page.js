@@ -71,8 +71,8 @@ export default function Home() {
     <>
       <Header />
       <HeroSection />
-      <FeaturedProperties />
       <LocationExplorer />
+      <FeaturedProperties />
       <AboutUs />
       <WhyChooseUs />
       <Footer />

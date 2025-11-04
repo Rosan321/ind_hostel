@@ -1,0 +1,120 @@
+"use client";
+
+import { useRef, useState } from "react";
+import { StayFilters } from "./StayFilters";
+
+export function Tabs({
+  tabs,
+  activeTab,
+  setActiveTab,
+  priceFilter,
+  setPriceFilter,
+  stayType,
+  setStayType,
+}) {
+  const scrollRef = useRef(null);
+  const [isDown, setIsDown] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+
+  // ---- Mouse Drag Handlers ----
+  const handleMouseDown = (e) => {
+    setIsDown(true);
+    scrollRef.current?.classList.add("cursor-grabbing");
+    setStartX(e.pageX - (scrollRef.current?.offsetLeft || 0));
+    setScrollLeft(scrollRef.current?.scrollLeft || 0);
+  };
+
+  const handleMouseLeave = () => {
+    setIsDown(false);
+    scrollRef.current?.classList.remove("cursor-grabbing");
+  };
+
+  const handleMouseUp = () => {
+    setIsDown(false);
+    scrollRef.current?.classList.remove("cursor-grabbing");
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDown || !scrollRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - scrollRef.current.offsetLeft;
+    const walk = (x - startX) * 1.2; // drag sensitivity
+    scrollRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  // ---- Touch Handlers for Mobile ----
+  const handleTouchStart = (e) => {
+    setIsDown(true);
+    setStartX(e.touches[0].pageX - (scrollRef.current?.offsetLeft || 0));
+    setScrollLeft(scrollRef.current?.scrollLeft || 0);
+  };
+
+  const handleTouchMove = (e) => {
+    if (!isDown || !scrollRef.current) return;
+    const x = e.touches[0].pageX - scrollRef.current.offsetLeft;
+    const walk = (x - startX) * 1.2;
+    scrollRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  const handleTouchEnd = () => {
+    setIsDown(false);
+  };
+
+  return (
+    <>
+      <section className="w-full mt-8 md:mt-10">
+        {/* ---- Tabs Row ---- */}
+        <div className="relative w-full">
+          <div
+            ref={scrollRef}
+            onMouseDown={handleMouseDown}
+            onMouseLeave={handleMouseLeave}
+            onMouseUp={handleMouseUp}
+            onMouseMove={handleMouseMove}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+            className="
+              flex gap-3 overflow-x-auto no-scrollbar py-2 cursor-grab select-none
+              scrollbar-hide scroll-smooth
+            "
+          >
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`
+                  flex-shrink-0 px-5 py-2.5 rounded-full border text-sm font-medium transition-all
+                  ${
+                    activeTab === tab.id
+                      ? "bg-[#00BFA6] text-white border-[#00BFA6]"
+                      : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
+                  }
+                `}
+              >
+                {tab.label}{" "}
+                <span className="hidden sm:inline">({tab.count})</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* ---- Subtitle ---- */}
+        <p className="text-[#666666] text-xs sm:text-sm mt-4 text-center sm:text-left">
+          Tap or swipe a neighborhood, or use filters to find the best matches
+        </p>
+      </section>
+
+      {/* ---- Filters ---- */}
+      <div>
+        <StayFilters
+          priceFilter={priceFilter}
+          setPriceFilter={setPriceFilter}
+          stayType={stayType}
+          setStayType={setStayType}
+        />
+      </div>
+    </>
+  );
+}

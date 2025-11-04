@@ -369,7 +369,7 @@ export default function BookingConfirmation({ basePrice = 2999, pgName = "UrbanN
                     name="roomType"
                     value={formData.roomType}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00BFA6] focus:border-transparent text-gray-900"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900"
                   >
                     <option value="">Select room type</option>
                     <option value="single">Single Room</option>

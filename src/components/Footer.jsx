@@ -284,21 +284,21 @@ export default function Footer() {
               // variants={itemVariants}
             >
               {locationIcon}
-              <span>Manikonda, Hyderabad, Telangana, India - 500089</span>
+              <span>IndHostels, New Delhi, India - 500089</span>
             </li>
             <li
               className="flex items-start gap-3"
               // variants={itemVariants}
             >
               {emailIcon}
-              <span>hello@fitiq.com</span>
+              <span>support@indhostel.com</span>
             </li>
             <li
               className="flex items-start gap-3"
               // variants={itemVariants}
             >
               {phoneIcon}
-              <span>+91 9888 488854, 9888 488864</span>
+              <span>+91-9876543210</span>
             </li>
           </ul>
         </div>

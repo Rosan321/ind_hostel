@@ -1,11 +1,12 @@
-import { ArrowRight, Star } from "lucide-react";
+import SwiperButton from "@/lib/utils/swiperButton";
+import { Star } from "lucide-react";
 import Image from "next/image";
 
-export default function HostelCard({ title, location, rating, price, imgs }) {
+export default function HostelCard({ id, title, location, rating, price, imgs }) {
   return (
-    <div className="relative bg-white shadow rounded-xl overflow-hidden flex flex-col hover:shadow-lg transition w-full max-w-sm mx-auto sm:max-w-md lg:max-w-lg">
+    <div className="relative bg-white shadow rounded-2xl overflow-hidden flex flex-col hover:shadow-lg transition w-full max-w-sm mx-auto sm:max-w-md lg:max-w-lg">
       {/* Badge and Price Container */}
-      <div className="absolute top-3 left-0 right-0 flex justify-between items-center z-10 px-0">
+      <div className="absolute top-3 left-0 right-0 flex justify-between items-center z-10">
         {/* New Badge - Same size as price button */}
         <div className="relative">
           <svg 
@@ -80,10 +81,17 @@ export default function HostelCard({ title, location, rating, price, imgs }) {
           </span>
         </div>
       </div>
-      <button className="bg-[#F1FF51] text-[#1A1A1A] text-base font-semibold rounded-full px-6 py-3 mx-auto flex items-center gap-2 mb-6 cursor-pointer">
+      <SwiperButton 
+        id={id}
+        title="Book Now"
+        className="w-44 h-11 text-sm sm:text-base mx-auto mb-4"
+        showIcon
+      />
+
+      {/* <Link href={`/stay/${id}`} className="bg-[#F1FF51] text-[#1A1A1A] text-base font-semibold rounded-full px-6 py-3 mx-auto flex items-center gap-2 mb-6 cursor-pointer">
         Book Now
         <ArrowRight size={18} />
-      </button>
+      </Link> */}
     </div>
   );
 }

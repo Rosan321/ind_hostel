@@ -2,6 +2,7 @@
 
 import { cityHostels } from '@/lib/utils/cityHostels';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState } from 'react';
 
 const LocationExplorer = () => {
@@ -19,7 +20,7 @@ const LocationExplorer = () => {
   const currentHostels = cityHostels[selectedCity] || [];
 
   return (
-    <section className="py-12 px-4 lg:px-20">
+    <section className="bg-gray-100 py-12 px-4 lg:px-20">
       {/* Header Section */}
       <div className="text-center mb-12">
         <h2 className="text-4xl font-bold text-gray-800 mb-4">Explore Our Locations</h2>
@@ -46,7 +47,7 @@ const LocationExplorer = () => {
       {/* Main Content - Image Left, Hotels Right */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mx-auto">
         {/* Left Side - City Image */}
-        <div className="bg-white rounded-2xl overflow-hidden">
+        <div className="rounded-2xl overflow-hidden">
           <Image
             src="/images/mum.png"
             alt='new'
@@ -57,7 +58,7 @@ const LocationExplorer = () => {
         </div>
 
         {/* Right Side - Top Hostels */}
-        <div className="bg-white rounded-2xl">
+        <div className="rounded-2xl">
           <h3 className="text-4xl font-bold text-gray-800 mb-6">Top Hostels in {selectedCity}</h3>
 
           {/* Hostels List */}
@@ -73,15 +74,15 @@ const LocationExplorer = () => {
                     className='w-20 h-20'
                   />
                   <div>
-                    <h4 className="text-lg font-semibold text-gray-800">{hostel.name}</h4>
-                    <p className="text-xl font-bold text-[#C7D800]">{hostel.price}</p>
+                    <h4 className="text-base font-semibold text-gray-800">{hostel.name}</h4>
+                    <p className="text-sm font-bold text-[#C7D800] my-2">{hostel.price}</p>
                 
                     {/* Amenities */}
                     <div className="flex flex-wrap gap-2 mb-4">
                       {hostel.amenities.map((amenity, index) => (
                         <span 
                           key={index}
-                          className="bg-gray-200 text-[#00BFA6] px-5 py-2 rounded-full text-sm font-medium"
+                          className="bg-gray-200 text-[#00BFA6] px-5 py-2 rounded-full text-xs font-medium"
                         >
                           {amenity}
                         </span>
@@ -95,9 +96,9 @@ const LocationExplorer = () => {
 
           {/* View All Button */}
           {currentHostels.length > 0 && (
-            <button className="bg-[#00BFA6] hover:bg-[#11a793] text-white px-5 py-3 rounded-full font-semibold transition-colors duration-300 cursor-pointer">
+            <Link href="/data" className="bg-[#00BFA6] hover:bg-[#11a793] text-white px-5 py-3 rounded-full font-semibold transition-colors duration-300 cursor-pointer">
               View All
-            </button>
+            </Link>
           )}
         </div>
       </div>

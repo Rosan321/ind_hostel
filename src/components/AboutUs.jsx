@@ -6,7 +6,8 @@ import Image from "next/image";
 
 const AboutUs = () => {
   return (
-    <section className="py-16 px-4 lg:px-20 mb-16 bg-white relative">
+    <div className="py-12 px-4 lg:px-20 bg-gray-100">
+      <section className="pb-16 relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center justify-center mx-auto">
           {/* Left Side - Content */}
           <div className="space-y-6">
@@ -69,7 +70,8 @@ const AboutUs = () => {
             </div>
           </div>
         </div>
-    </section>
+      </section>
+    </div>
   );
 };
 
