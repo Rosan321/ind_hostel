@@ -4,8 +4,8 @@ import { Calendar, Headphones, Search, ShieldCheck } from "lucide-react";
 
 export default function HowItWorks() {
   return (
-    <section className="w-full bg-white py-24">
-      <div className="px-4 lg:px-20 mx-auto px-6">
+    <section className="w-full bg-white py-12">
+      <div className="px-4 sm:px-8 lg:px-20 mx-auto">
         {/* Heading Center */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-4xl md:text-5xl font-semibold text-black mb-3">

@@ -15,16 +15,16 @@ const WhyChooseUs = () => {
 
   return (
     <div className="py-12 bg-gray-100">
-      <section className="py-16 px-4 lg:px-20 bg-[#1A1A1A] relative">
+      <section className="py-16 px-4 sm:px-8 lg:px-20 bg-[#1A1A1A] relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center justify-items-end mx-auto">
           {/* Left Side - Image/Stats */}
           <div className="space-y-6">
             <div className="space-y-4">
-              <h2 className="text-lg font-medium text-[#00bfa6]">
+              <h2 className="text-base lg:text-lg font-semibold text-[#00bfa6]">
                 WHY CHOOSE US?
               </h2>
 
-              <h3 className="text-2xl lg:text-4xl font-bold text-white mb-6">
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-6">
                 Why We're the Best Choice for Your Stay
               </h3>
 
@@ -37,11 +37,11 @@ const WhyChooseUs = () => {
             </div>
 
             {/* Features List */}
-            <div className="grid grid-cols-2 items-center gap-3 space-y-3">
+            <div className="grid md:grid-cols-2 items-center gap-3 md:space-y-3">
               {features.map((feature, index) => (
                 <div key={index} className="flex items-center gap-3">
-                  <ChevronsRight className="text-white" />
-                  <span className="text-lg text-white font-medium">
+                  <ChevronsRight className="text-white" size={24} />
+                  <span className="text-base text-white font-bold">
                     {feature}
                   </span>
                 </div>
@@ -52,9 +52,9 @@ const WhyChooseUs = () => {
 
             {/* Note Box */}
             {/* <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-4"> */}
-            <p className="text-sm flex items-center gap-2 font-base text-white">
-              <CircleCheck className="w-4 h-4 text-white" /> These features ensure
-              comfort, safety, and convenience
+            <p className="text-xs md:text-sm flex items-center gap-2 font-base text-white">
+              <CircleCheck className="w-4 h-4 text-white" /> These features
+              ensure comfort, safety, and convenience
             </p>
             {/* </div> */}
 
@@ -64,10 +64,9 @@ const WhyChooseUs = () => {
             </button> */}
             <SwiperButton
               title="Explore Now"
-              className="w-44 h-13 flex items-center justify-center font-semibold text-lg text-[#1A1A1A]"
+              className="w-44 h-13 flex items-center justify-center font-semibold md:text-lg text-[#1A1A1A]"
               rt={"/about"}
             />
-
           </div>
           <div>
             <div className="flex justify-between gap-20 relative">
@@ -80,40 +79,40 @@ const WhyChooseUs = () => {
                 className="w-3/5 h-4/5"
               />
             </div>
-            <div className="absolute bottom-10 xl:right-4/12 flex flex-col text-center gap-4 bg-[#F1FF51] w-56 p-6">
-                <section className="flex flex-col items-start gap-3">
+            <div className="absolute bottom-16 xl:right-4/12 flex flex-col text-center gap-4 bg-[#F1FF51] w-32 md:w-56 p-4 md:p-6">
+              <section className="flex flex-col items-start gap-3">
                 {/* <CircleCheck className="text-white w-5 h-5" /> */}
-                <h6 className="text-xs lg:text-base font-semibold h-20">
-                    50<span className="text-xl">K+</span>
+                <h6 className="text-xs lg:text-base font-semibold md:h-20">
+                  50<span className="text-xl">K+</span>
                 </h6>
-                <section className="flex mb-4">
-                    <Image
+                <section className="flex md:mb-4">
+                  <Image
                     src="/images/pp.png"
                     alt="abt"
-                    width={200}
-                    height={200}
+                    width={100}
+                    height={100}
                     className="w-full h-full"
-                    />
-                    <Image
+                  />
+                  <Image
                     src="/images/pp1.png"
                     alt="abt"
-                    width={200}
-                    height={200}
+                    width={100}
+                    height={100}
                     className="ml-[-18] w-full h-full"
-                    />
-                    <Image
+                  />
+                  <Image
                     src="/images/pp2.png"
                     alt="abt"
-                    width={200}
-                    height={200}
+                    width={100}
+                    height={100}
                     className="ml-[-18] w-full h-full"
-                    />
+                  />
                 </section>
                 {/* <ShieldCheck className="text-white w-5 h-5" /> */}
                 <h6 className="text-xs text-start font-semibold">
-                    Happy Customers booked through us
+                  Happy Customers booked through us
                 </h6>
-                </section>
+              </section>
             </div>
           </div>
         </div>

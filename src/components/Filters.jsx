@@ -11,7 +11,7 @@ export default function Filters() {
   const percentage = ((budget - min) / (max - min)) * 100;
 
   return (
-    <aside className="w-full md:w-1/4 lg:w-1/5 bg-white rounded-xl shadow p-5 space-y-6">
+    <aside className="hidden lg:block w-full md:w-1/4 lg:w-1/5 bg-white rounded-xl shadow p-5 space-y-6">
       {/* Header */}
       <section className="flex items-center gap-4 text-[#1A1A1A]">
         <Funnel />

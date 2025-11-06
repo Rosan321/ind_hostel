@@ -62,8 +62,8 @@ export function Tabs({
   };
 
   return (
-    <>
-      <section className="w-full mt-8 md:mt-10">
+    <div className="flex flex-col-reverse lg:flex-row w-full mt-8 md:mt-10 gap-4">
+    <section className="w-full lg:flex-1">
         {/* ---- Tabs Row ---- */}
         <div className="relative w-full">
           <div
@@ -107,7 +107,7 @@ export function Tabs({
       </section>
 
       {/* ---- Filters ---- */}
-      <div>
+      <div className="w-full lg:w-[280px]">
         <StayFilters
           priceFilter={priceFilter}
           setPriceFilter={setPriceFilter}
@@ -115,6 +115,6 @@ export function Tabs({
           setStayType={setStayType}
         />
       </div>
-    </>
+    </div>
   );
 }

@@ -1,8 +1,18 @@
-import React from 'react'
+import GuestsSay from '@/components/GuestSays'
+import HowItWorks from '@/components/HowItWorks'
+import JoinCommunity from '@/components/JoinComunity'
+import TrustedBy from '@/components/TrustedBy'
+import WhoWeAre from '@/components/WhoWeAre'
 
 const About = () => {
   return (
-    <div>About</div>
+    <div>
+      <WhoWeAre />
+      <HowItWorks />
+      <TrustedBy />
+      <GuestsSay />
+      <JoinCommunity />
+    </div>
   )
 }
 

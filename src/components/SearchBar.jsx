@@ -15,11 +15,11 @@ export default function SearchBar() {
   const [checkOutDate, setCheckOutDate] = useState(null);
 
   return (
-    <div className="relative z-10 flex flex-col items-center justify-center text-center text-white px-6 py-10 h-full gap-24">
+    <div className="relative z-10 flex flex-col items-center justify-center text-center text-white py-10 h-full gap-24">
       {/* Only show on homepage */}
       {isHomePage && (
         <div className="flex flex-col jusitfy-center items-center gap-4">
-          <h1 className="text-3xl md:text-5xl font-bold leading-snug max-w-3xl">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-snug max-w-3xl">
             Find Your Perfect Stay – Hostel, PG & Hotels in One Place
           </h1>
 
@@ -45,7 +45,7 @@ export default function SearchBar() {
             </div>
 
             {/* Date Fields - side by side on md, stacked on smaller */}
-            <div className="flex flex-col md:flex-row gap-4 sm:gap-5 md:gap-6">
+            <div className="flex items-center gap-4 sm:gap-5 md:gap-6">
               {/* Check-in Date */}
               <div className="flex items-center gap-2 bg-white text-black px-4 py-3 rounded-full w-full md:flex-1 h-12">
                 <CalendarDays size={18} className="text-gray-600" />
@@ -58,6 +58,9 @@ export default function SearchBar() {
                   minDate={new Date()}
                 />
               </div>
+
+              {/* Arrow */}
+              <ArrowRight size={28} className="text-gray-300 flex-shrink-0" />
 
               {/* Check-out Date */}
               <div className="flex items-center gap-2 bg-white text-black px-4 py-3 rounded-full w-full md:flex-1 h-12">
@@ -74,12 +77,11 @@ export default function SearchBar() {
             </div>
 
             {/* Search Button */}
-            <button className="btn-wiper-bg w-full h-12 rounded-full text-sm md:text-base transition-all hover:scale-105 active:scale-95">
-              <span className="btn-wiper-bg-content flex items-center justify-center gap-2 font-medium">
+            <button className="btn-wiper-bg sm:w-2/3 mx-auto h-12 rounded-full text-sm md:text-base transition-all hover:scale-105 active:scale-95">
+              <span className="btn-wiper-bg-content flex items-center justify-center gap-2 font-semibold">
                 <Search size={18} /> Find Stay
               </span>
             </button>
-            
           </div>
 
           {/* --- Desktop Layout (hidden on lg-) --- */}

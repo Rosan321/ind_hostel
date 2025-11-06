@@ -1,3 +1,20 @@
+// Header Svg curved
+export const curveSvgDown = (
+  <div className="absolute -bottom-8 left-0 right-0 w-full overflow-visible rotate-180 bg-[#111]">
+    <svg
+      className="w-full h-8"
+      xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="none"
+      viewBox="0 0 1440 100"
+    >
+      <path 
+        d="M0,0 L0,0 Q360,100 720,100 T1440,0 L1440,0 Z" 
+        fill="currentColor"
+      />
+    </svg>
+  </div>
+);
+
 // 🎯 Dotted Pattern
 export const dotsSix = (
   <svg xmlns="http://www.w3.org/2000/svg" width="64" height="96" viewBox="0 0 64 96">

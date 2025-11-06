@@ -75,34 +75,48 @@ const StayListing = () => {
   return (
     <div className="bg-gray-100">
       <Hero />
-      <section className="lg:px-20">
+      <section className="px-4 lg:px-20">
         <Stats />
         <div className="flex items-center gap-10">
-          <Tabs 
-              tabs={tabs} 
-              activeTab={activeTab}
-              setActiveTab={setActiveTab}
-              priceFilter={priceFilter}
-              setPriceFilter={setPriceFilter}
-              stayType={stayType}
-              setStayType={setStayType} 
+          <Tabs
+            tabs={tabs}
+            activeTab={activeTab}
+            setActiveTab={setActiveTab}
+            priceFilter={priceFilter}
+            setPriceFilter={setPriceFilter}
+            stayType={stayType}
+            setStayType={setStayType}
           />
         </div>
 
         <div className="mt-10">
-          <p className="text-sm text-[#00BFA6] font-semibold">Featured in Mumbai</p>
-          <h3 className="text-3xl text-[#1A1A1A] font-bold py-2">Top picks this week</h3>
-          <p className="text-[#666666] mb-8">Verified stays with great reviews and exclusive offers</p>
+          {/* Section header */}
+          <p className="text-xs sm:text-sm text-[#00BFA6] font-semibold text-center sm:text-left">
+            Featured in Mumbai
+          </p>
+
+          <h3 className="text-2xl sm:text-3xl md:text-4xl text-[#1A1A1A] font-bold py-2 text-center sm:text-left">
+            Top picks this week
+          </h3>
+
+          <p className="text-[#666666] text-sm sm:text-base mb-8 text-center sm:text-left">
+            Verified stays with great reviews and exclusive offers
+          </p>
+
+          {/* Listings grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredListings.length > 0 ? (
-                  filteredListings.map((item) => <HostelCard key={item.id} {...item} />)
-                  ) : (
-                  <p className="col-span-full text-center text-gray-500">
-                      No stays found in {activeArea}.
-                  </p>
-              )}
+            {filteredListings.length > 0 ? (
+              filteredListings.map((item) => (
+                <HostelCard key={item.id} {...item} />
+              ))
+            ) : (
+              <p className="col-span-full text-center text-gray-500 text-sm sm:text-base">
+                No stays found in {activeArea}.
+              </p>
+            )}
           </div>
         </div>
+
         <LocationWithExpect />
       </section>
     </div>

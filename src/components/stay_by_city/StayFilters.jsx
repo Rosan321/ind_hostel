@@ -2,7 +2,7 @@
 
 export function StayFilters({ priceFilter, setPriceFilter, stayType, setStayType }) {
   return (
-    <div className="flex gap-4 max-w-6xl mx-auto mt-1 px-4">
+    <div className="flex gap-4 max-w-6xl mx-auto mt-2 lg:px-4">
       <select
         className="border border-gray-300 rounded-md px-4 py-2 pr-8 text-gray-700 cursor-pointer transition"
         value={priceFilter}

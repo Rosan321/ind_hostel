@@ -1,142 +1,26 @@
 "use client";
 
 import Image from "next/image";
-import { Mail, Phone } from "lucide-react";
 import Link from "next/link";
-import { emailIcon, facebook, insta, linkedin, location, locationIcon, phoneIcon, twitter, youtube } from "@/lib/utils/svgS";
-// import { motion } from "framer-motion";
+import {
+  emailIcon,
+  facebook,
+  insta,
+  linkedin,
+  locationIcon,
+  phoneIcon,
+  twitter,
+} from "@/lib/utils/svgS";
 
 export default function Footer() {
-  // Animation variants
-  // const containerVariants = {
-  //   hidden: { opacity: 0 },
-  //   visible: {
-  //     opacity: 1,
-  //     transition: {
-  //       duration: 0.8,
-  //       staggerChildren: 0.15,
-  //     },
-  //   },
-  // };
-
-  // const itemVariants = {
-  //   hidden: {
-  //     opacity: 0,
-  //     y: 60,
-  //   },
-  //   visible: {
-  //     opacity: 1,
-  //     y: 0,
-  //     transition: {
-  //       duration: 0.7,
-  //       ease: "easeOut",
-  //     },
-  //   },
-  // };
-
-  // const chevronVariants = {
-  //   hidden: {
-  //     opacity: 0,
-  //     scaleY: 0,
-  //     transformOrigin: "bottom",
-  //   },
-  //   visible: {
-  //     opacity: 1,
-  //     scaleY: 1,
-  //     transition: {
-  //       duration: 0.6,
-  //       ease: "easeOut",
-  //     },
-  //   },
-  // };
-
-  // const socialIconVariants = {
-  //   hidden: {
-  //     opacity: 0,
-  //     scale: 0.8,
-  //   },
-  //   visible: {
-  //     opacity: 1,
-  //     scale: 1,
-  //     transition: {
-  //       duration: 0.5,
-  //       ease: "backOut",
-  //     },
-  //   },
-  //   hover: {
-  //     scale: 1.1,
-  //     rotate: 5,
-  //     transition: {
-  //       duration: 0.2,
-  //     },
-  //   },
-  // };
-
-  // const linkItemVariants = {
-  //   hidden: {
-  //     opacity: 0,
-  //     x: -20,
-  //   },
-  //   visible: {
-  //     opacity: 1,
-  //     x: 0,
-  //     transition: {
-  //       duration: 0.5,
-  //       ease: "easeOut",
-  //     },
-  //   },
-  //   hover: {
-  //     x: 5,
-  //     color: "#ec4899", // pink-500
-  //     transition: {
-  //       duration: 0.2,
-  //     },
-  //   },
-  // };
-
-  // const formVariants = {
-  //   hidden: {
-  //     opacity: 0,
-  //     y: 30,
-  //   },
-  //   visible: {
-  //     opacity: 1,
-  //     y: 0,
-  //     transition: {
-  //       duration: 0.6,
-  //       ease: "easeOut",
-  //     },
-  //   },
-  // };
-
-  // const bottomBarVariants = {
-  //   hidden: {
-  //     opacity: 0,
-  //     y: 40,
-  //   },
-  //   visible: {
-  //     opacity: 1,
-  //     y: 0,
-  //     transition: {
-  //       duration: 0.7,
-  //       ease: "easeOut",
-  //     },
-  //   },
-  // };
-
   return (
     <footer
       id="footer"
       className="relative bg-[#1f1f1f] text-white pt-24 sm:pb-8"
-      // initial="hidden"
-      // whileInView="visible"
-      // viewport={{ once: true, amount: 0.3 }}
-      // variants={containerVariants}
     >
       {/* Top Chevron Shape */}
       <div
         className="absolute top-0 left-0 w-full overflow-hidden leading-none"
-        // variants={chevronVariants}
       >
         <svg
           className="relative block w-full h-16"
@@ -146,20 +30,16 @@ export default function Footer() {
         >
           <path d="M0 0 L600 60 L1200 0 H0 Z" fill="currentColor"></path>
         </svg>
-
       </div>
 
       {/* Footer Content */}
-      <div className="relative z-10 mx-auto px-4 lg:px-20 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10">
+      <div className="relative z-10 mx-auto px-4 sm:px-8 lg:px-20 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-10">
         {/* Logo Section */}
         <div
-          className="col-span-full md:col-span-1 lg:col-span-1"
-          // variants={itemVariants}
+          className="col-span-full md:col-span-1 lg:col-span-2"
         >
           <div
             className="flex items-center gap-3 mb-4"
-            // whileHover={{ scale: 1.02 }}
-            // transition={{ type: "spring", stiffness: 300 }}
           >
             <Image
               src="/images/logo.png"
@@ -170,14 +50,13 @@ export default function Footer() {
             />
           </div>
           <p
-            className="text-[#fff] text-base font-medium mb-6"
-            // variants={itemVariants}
+            className="text-[#fff] text-sm font-medium mb-6"
           >
-            Simplifying Hostel, PG, and OYO bookings with verified stays across India
+            Simplifying Hostel, PG, and Hotels bookings with verified stays across
+            India
           </p>
 
           {/* Social Icons */}
-          {/* <div className="flex gap-4" variants={containerVariants}> */}
           <div className="flex gap-4">
             {[
               { href: "https://www.facebook.com/", icon: facebook },
@@ -191,9 +70,6 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-full text-[#F1FF51] flex items-center justify-center transition"
-                // variants={socialIconVariants}
-                // whileHover="hover"
-                // custom={index}
               >
                 {social.icon}
               </a>
@@ -203,22 +79,20 @@ export default function Footer() {
 
         <div className="grid grid-cols-2 md:gap-10 sm:col-span-2 lg:col-span-2">
           {/* Quick Links */}
-          {/* <div variants={itemVariants}> */}
           <div>
             <h4
-              className="text-lg font-semibold mb-2 md:mb-8"
+              className="text-lg font-bold mb-2 md:mb-8"
               // variants={itemVariants}
             >
               Quick Links
             </h4>
-            <ul className="space-y-2 text-[#FFFFFFE5] text-base">
+            <ul className="space-y-3 text-[#FFFFFFE5] text-sm font-medium">
               {[
                 { name: "Home", path: "/" },
-                { name: "About Us", path: "/pages/about" },
-                { name: "Programs", path: "/pages/programs" },
-                { name: "Trainers", path: "/pages/trainers" },
-                { name: "Blog", path: "/pages/blog" },
-                { name: "Contact", path: "/pages/contact" },
+                { name: "About Us", path: "/about" },
+                { name: "Explore Locations", path: "/" },
+                { name: "Why Choose Us", path: "/" },
+                { name: "Contact", path: "/contact" },
               ].map((item, index) => (
                 <li
                   key={item.name}
@@ -232,22 +106,20 @@ export default function Footer() {
             </ul>
           </div>
           {/* Programs */}
-          {/* <div variants={itemVariants}> */}
           <div>
             <h4
-              className="text-lg font-semibold mb-2 md:mb-8"
+              className="text-lg font-bold mb-2 md:mb-8"
               // variants={itemVariants}
             >
-              Programs
+              Our Stays
             </h4>
-            <ul className="space-y-2 text-[#FFFFFFE5] text-base">
+            <ul className="space-y-3 text-[#FFFFFFE5] text-sm font-medium">
               {[
-                "Strength Training",
-                "Yoga & Mindfulness",
-                "HIIT & Cardio",
-                "Nutrition Coaching",
-                "Wellness Bootcamp",
-                "Corporate Programs",
+                "Hotels",
+                "PGs For Students",
+                "PGs For Proffesional",
+                "Hostels",
+                "Premium Hostels",
               ].map((item, index) => (
                 <li
                   key={item}
@@ -267,38 +139,32 @@ export default function Footer() {
         {/* Connect */}
         <div
           className="col-span-full lg:col-span-1"
-          // variants={itemVariants}
         >
           <h4
-            className="text-lg font-semibold mb-2 md:mb-8"
-            // variants={itemVariants}
+            className="text-lg font-bold mb-2 md:mb-8"
           >
             Connect
           </h4>
           <ul
             className="space-y-3 text-gray-300 text-sm mb-6"
-            // variants={containerVariants}
           >
             <li
               className="flex items-start gap-3"
-              // variants={itemVariants}
             >
               {locationIcon}
-              <span>IndHostels, New Delhi, India - 500089</span>
+              <span className="text-sm font-medium">IndHostels, New Delhi, India - 500089</span>
             </li>
             <li
               className="flex items-start gap-3"
-              // variants={itemVariants}
             >
               {emailIcon}
-              <span>support@indhostel.com</span>
+              <span className="text-sm font-medium">support@indhostel.com</span>
             </li>
             <li
               className="flex items-start gap-3"
-              // variants={itemVariants}
             >
               {phoneIcon}
-              <span>+91-9876543210</span>
+              <span className="text-sm font-medium">+91-9876543210</span>
             </li>
           </ul>
         </div>
@@ -306,34 +172,9 @@ export default function Footer() {
 
       {/* Bottom Line */}
       <div
-        className="mt-4 md:mt-12 px-4 md:px-16 border-t border-[#FFFFFF1F] pt-4 text-center text-white text-sm flex flex-col sm:flex-row justify-between items-center gap-2"
-        // variants={bottomBarVariants}
+        className="mt-4 md:mt-12 px-4 sm:px-8 lg:px-20 border-t border-[#FFFFFF1F] pt-4 text-center text-white text-sm flex flex-col sm:flex-row justify-between items-center gap-2"
       >
-        {/* <p whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}> */}
-        <p>
-          © 2025 FitIQ. All rights reserved
-        </p>
-
-        <div
-          className="flex flex-wrap justify-center gap-x-2 gap-y-1"
-          // variants={containerVariants}
-        >
-          {["Privacy Policy", "Terms & Conditions", "Cookie Policy"].map(
-            (item, index) => (
-              <a
-                key={item}
-                href="#"
-                className="hover:text-pink-500 transition"
-                // variants={linkItemVariants}
-                // whileHover="hover"
-                // custom={index}
-              >
-                {item}
-                {index < 2 && <span className="mx-1 hidden sm:inline">|</span>}
-              </a>
-            )
-          )}
-        </div>
+        <p className="text-sm font-medium">© 2025 FitIQ. All rights reserved</p>
       </div>
     </footer>
   );

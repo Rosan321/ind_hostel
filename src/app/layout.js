@@ -1,5 +1,12 @@
-import { Geist, Geist_Mono, Open_Sans, Playfair_Display } from "next/font/google";
+import {
+  Geist,
+  Geist_Mono,
+  Open_Sans,
+  Playfair_Display,
+} from "next/font/google";
 import "./globals.css";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,7 +27,7 @@ const playfairDisplay = Playfair_Display({
 
 const openSans = Open_Sans({
   subsets: ["latin"],
-  display: "swap", 
+  display: "swap",
   variable: "--font-open-sans",
   weight: ["300", "400", "500", "600", "700", "800"], // Specify the weights you need
 });
@@ -36,7 +43,9 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} ${openSans.variable} font-sans antialiased`}
       >
+        <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );

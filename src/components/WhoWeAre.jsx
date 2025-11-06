@@ -6,8 +6,8 @@ import Hero from "./stay_by_city/Hero";
 export default function WhoWeAre() {
   return (
     <div>
-        <Hero />
-      <div className="grid md:grid-cols-2 gap-6 items-start bg-gray-50 w-full mx-auto px-4 lg:px-20 py-12">
+      <Hero />
+      <div className="grid lg:grid-cols-2 gap-6 items-start bg-gray-50 w-full px-4 sm:px-8 lg:px-20 py-12">
         {/* LEFT TEXT */}
         <div>
           <h2 className="text-4xl md:text-5xl font-semibold text-black mb-6">
@@ -42,9 +42,9 @@ export default function WhoWeAre() {
         </div>
 
         {/* RIGHT IMAGES GRID */}
-        <div className="grid grid-cols-[1.2fr_0.8fr] gap-4">
-          {/* BIG LEFT IMAGE */}
-          <div className="relative h-[520px] rounded-3xl overflow-hidden">
+        <div className="space-y-4 md:grid md:grid-cols-[1.2fr_0.8fr] md:gap-4">
+          {/* BIG IMAGE */}
+          <div className="relative h-96 lg:h-[460px] xl:h-[520px] rounded-3xl overflow-hidden">
             <Image
               src="/images/1.png"
               alt="Bunk Beds"
@@ -53,10 +53,9 @@ export default function WhoWeAre() {
             />
           </div>
 
-          {/* COLUMN OF 2 IMAGES RIGHT */}
-          <div className="flex flex-col gap-4">
-            {/* slightly tall image */}
-            <div className="relative h-[325px] rounded-xl overflow-hidden">
+          {/* RIGHT SIDE FOR md+ */}
+          <div className="hidden md:flex flex-col gap-4">
+            <div className="relative h-full lg:h-[259px] xl:h-[325px] rounded-xl overflow-hidden">
               <Image
                 src="/images/2.png"
                 alt="People"
@@ -64,9 +63,27 @@ export default function WhoWeAre() {
                 className="object-cover"
               />
             </div>
-
-            {/* smaller one */}
             <div className="relative h-[180px] rounded-xl overflow-hidden">
+              <Image
+                src="/images/3.png"
+                alt="City"
+                fill
+                className="object-cover"
+              />
+            </div>
+          </div>
+
+          {/* mobile two images side by side */}
+          <div className="grid grid-cols-2 gap-4 md:hidden">
+            <div className="relative h-[120px] rounded-xl overflow-hidden">
+              <Image
+                src="/images/2.png"
+                alt="People"
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div className="relative h-[120px] rounded-xl overflow-hidden">
               <Image
                 src="/images/3.png"
                 alt="City"

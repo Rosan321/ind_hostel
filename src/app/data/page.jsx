@@ -7,7 +7,7 @@ import { ArrowDownWideNarrow } from "lucide-react";
 
 export default function HostelListingPage() {
   return (
-    <div className="bg-gray-100 px-4 lg:px-20">
+    <div className="bg-gray-100 px-4 sm:px-8 lg:px-20">
       <div className="w-full mx-auto">
         <SearchBar />
 
