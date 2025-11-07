@@ -70,7 +70,7 @@ const CarouselCard = ({ item }) => {
       <div>
         {/* Carousel */}
         <div
-          className="relative w-full sm:w-48 overflow-hidden rounded-lg select-none"
+          className="relative w-full sm:w-48 lg:w-32 xl:w-48 lg:h-32 overflow-hidden rounded-lg select-none"
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
           onMouseDown={handleMouseDown}

@@ -1,4 +1,4 @@
-import BookingConfirmation from "@/components/BookingConfirmation";
+import BookingConfirmation from "@/components/BookingConfirmation"
 
 const Checkout = () => {
   return (

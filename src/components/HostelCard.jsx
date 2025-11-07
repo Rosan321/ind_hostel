@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function HostelCard({ id, title, location, rating, price, imgs }) {
   return (
-    <div className="relative bg-white shadow rounded-2xl overflow-hidden flex flex-col hover:shadow-lg transition w-full max-w-sm mx-auto sm:max-w-md lg:max-w-lg">
+    <div className="relative bg-white shadow rounded-2xl overflow-hidden flex flex-col hover:shadow-lg transition w-full sm:max-w-md lg:max-w-lg">
       {/* Badge and Price Container */}
       <div className="absolute top-3 left-0 right-0 flex justify-between items-center z-10">
         {/* New Badge - Same size as price button */}

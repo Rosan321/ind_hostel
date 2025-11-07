@@ -89,17 +89,17 @@ const StayListing = () => {
           />
         </div>
 
-        <div className="mt-10">
+        <div className="mt-8 lg:mt-10">
           {/* Section header */}
-          <p className="text-xs sm:text-sm text-[#00BFA6] font-semibold text-center sm:text-left">
+          <p className="text-sm text-[#00BFA6] font-semibold">
             Featured in Mumbai
           </p>
 
-          <h3 className="text-2xl sm:text-3xl md:text-4xl text-[#1A1A1A] font-bold py-2 text-center sm:text-left">
+          <h3 className="text-2xl text-[#1A1A1A] font-bold py-2">
             Top picks this week
           </h3>
 
-          <p className="text-[#666666] text-sm sm:text-base mb-8 text-center sm:text-left">
+          <p className="text-[#666666] text-base mb-8">
             Verified stays with great reviews and exclusive offers
           </p>
 

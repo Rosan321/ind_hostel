@@ -82,8 +82,8 @@ const LocationWithExpect = () => {
   const [search, setSearch] = useState("");
 
   return (
-    <div className="w-full mx-auto py-10 space-y-4">
-      <div className="py-12 space-y-8">
+    <div className="w-full mx-auto pb-10 space-y-4">
+      <div className="py-12 space-y-6 lg:space-y-8">
         {/* Heading + Search */}
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
           <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
@@ -107,9 +107,9 @@ const LocationWithExpect = () => {
         </div>
 
         {/* Main Split Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+        <div className="grid grid-cols-12 gap-6">
           {/* Left: Map (2/3 width on large screens) */}
-          <div className="lg:col-span-2 w-full h-[300px] sm:h-[400px] lg:h-[600px] overflow-hidden rounded-2xl">
+          <div className="col-span-12 lg:col-span-6 xl:col-span-7 h-[300px] sm:h-[400px] lg:h-[600px] rounded-2xl overflow-hidden mb-4 border border-gray-300">
             <iframe
               className="w-full h-full rounded-2xl"
               src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d30456.667134248048!2d78.463169!3d17.4077852!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99daeaebd2c7%3A0xae93b78392bafbc2!2sHyderabad%2C%20Telangana!5e0!3m2!1sen!2sin!4v1761975563874!5m2!1sen!2sin"
@@ -120,7 +120,7 @@ const LocationWithExpect = () => {
           </div>
 
           {/* Right: Listings */}
-          <div className="lg:col-span-1 flex flex-col gap-4 sm:gap-6 w-full border border-gray-200 p-4 sm:p-6 rounded-2xl bg-white">
+          <div className="col-span-12 lg:col-span-6 xl:col-span-5 flex flex-col gap-4 sm:gap-6 border border-gray-200 p-4 rounded-2xl bg-white">
             {listings.map((item) => (
               <CarouselCard key={item.id} item={item} />
             ))}

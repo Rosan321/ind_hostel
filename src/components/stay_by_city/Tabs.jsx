@@ -62,8 +62,8 @@ export function Tabs({
   };
 
   return (
-    <div className="flex flex-col-reverse lg:flex-row w-full mt-8 md:mt-10 gap-4">
-    <section className="w-full lg:flex-1">
+    <div className="flex flex-col-reverse lg:flex-row w-full mt-8 lg:mt-10 gap-4">
+      <section className="w-full lg:w-7/12 xl:w-7/10">
         {/* ---- Tabs Row ---- */}
         <div className="relative w-full">
           <div
@@ -101,7 +101,7 @@ export function Tabs({
         </div>
 
         {/* ---- Subtitle ---- */}
-        <p className="text-[#666666] text-xs sm:text-sm mt-4 text-center sm:text-left">
+        <p className="text-[#666666] text-sm mt-4">
           Tap or swipe a neighborhood, or use filters to find the best matches
         </p>
       </section>

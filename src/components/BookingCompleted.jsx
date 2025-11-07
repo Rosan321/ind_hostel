@@ -2,319 +2,218 @@
 
 import { useState } from "react";
 import {
-  CheckCircle,
   Building,
-  Receipt,
-  User,
   Phone,
   MessageCircle,
-  Download,
   Mail,
   Headphones,
-  FileText,
   Info,
-  CircleCheck,
-  MoveRight,
   ArrowRight,
   CalendarDays,
+  ChevronDown,
+  CircleCheck,
+  Download,
 } from "lucide-react";
 import Image from "next/image";
 
 export default function BookingCompleted() {
   const [isDownloading, setIsDownloading] = useState(false);
   const [isEmailing, setIsEmailing] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleDownloadReceipt = async () => {
     setIsDownloading(true);
-    // Simulate download process
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    alert("Receipt downloaded successfully!");
+    await new Promise((r) => setTimeout(r, 1000));
+    alert("Receipt downloaded");
     setIsDownloading(false);
   };
 
   const handleEmailReceipt = async () => {
     setIsEmailing(true);
-    // Simulate email process
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    const email = prompt("Enter email address to send receipt:");
-    if (email) {
-      alert(`Receipt sent to ${email}`);
-    }
+    await new Promise((r) => setTimeout(r, 1000));
+    const email = prompt("Enter email:");
+    if (email) alert(`Receipt sent to ${email}`);
     setIsEmailing(false);
   };
 
-  const handleContactAction = (action) => {
-    alert(`${action} action triggered`);
-  };
-
   return (
-    <div className="min-h-screen bg-gray-100 py-8 px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto overflow-hidden">
-        {/* Header */}
-        <div className="p-6 sm:p-8 text-center">
-          <div className="flex justify-center mb-4">
-            <CircleCheck className="h-12 w-12 stroke-white fill-[#00BFA6]" />
-          </div>
-          <h1 className="text-[#000000] text-2xl sm:text-3xl font-bold mb-3">
-            Booking Confirmed!
-          </h1>
-          <p className="text-[#666666] mb-6">
-            Your stay at UrbanNest PG is confirmed. A confirmation email and SMS
-            have been sent to you
+    <div className="min-h-screen bg-gray-100 px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto">
+        {/* TOP SUCCESS */}
+        <div className="text-center px-4 sm:px-8">
+          <CircleCheck className="h-14 w-14 mx-auto stroke-white fill-[#00BFA6] mb-4" />
+          <h1 className="text-2xl sm:text-[28px] lg:text-[32px] font-bold">Booking Confirmed!</h1>
+          <p className="text-sm lg:text-base text-[#666666] mt-2">
+            Your stay at UrbanNest PG is confirmed. We have emailed & SMSed you
           </p>
-          <button className="bg-[#F1FF51] px-6 py-3 rounded-full font-semibold transition-colors duration-200">
+          <button className="bg-[#F1FF51] px-6 py-3 rounded-full font-semibold mt-6">
             Go to My Bookings
           </button>
         </div>
 
-        {/* Main Content */}
-        <div className="flex gap-12">
-          <div className="px-6 sm:px-8">
+        {/* MAIN WRAPPER */}
+        <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-8 mt-12">
+          {/* LEFT SIDE */}
+          <div className="space-y-8">
+
             {/* Property Info */}
-            <div className="mb-8 bg-white rounded-3xl shadow-sm p-8">
-              <div className="flex items-start gap-4 mb-6 border-b-1 border-gray-200 pb-6">
-                <div className="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Building className="h-8 w-8 text-blue-600" />
+            <div className="bg-white rounded-3xl p-4 sm:p-6 lg:p-8">
+              <div className="flex items-start gap-4 border-b border-gray-200 pb-6">
+                <div className="w-14 h-14 bg-blue-200 rounded-lg flex items-center justify-center">
+                  <Building className="text-blue-600 w-7 h-7" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-semibold text-gray-900 mb-1">
-                    UrbanNest PG – Cozy Stay in Bandra
-                  </h2>
-                  <p className="text-gray-600">
-                    Bandra West, Mumbai - Near Linking Road
-                  </p>
+                  <h2 className="text-lg text-[#1A1A1A] font-bold tracking-wide">UrbanNest PG – Cozy Stay in Bandra</h2>
+                  <p className="text-[#666666] text-base">Bandra West, Mumbai - Near Linking Road</p>
                 </div>
               </div>
 
-              {/* Booking Details Grid */}
-              <div className="grid grid-cols-1 gap-4 mb-6">
-                <div className="flex gap-12 py-2 border-b border-gray-100">
-                  <section className="flex items-center gap-3">
-                    <CalendarDays size={12} className="text-[#00BFA6]" />
-                    <span className="text-[#666666] text-sm">Check-in</span>
-                  </section>
-                  <ArrowRight size={18} className="text-gray-700" />
-                  <span className="text-base">12 Nov 2025</span>
-                </div>
-                <div className="flex gap-12 py-2 border-b border-gray-100">
-                  <section className="flex items-center gap-3">
-                    <CalendarDays size={12} className="text-[#00BFA6]" />
-                    <span className="text-[#666666] text-sm">Check-out</span>
-                  </section>
-                  <ArrowRight size={18} className="text-gray-700" />
-                  <span className="text-base">15 Nov 2025</span>
-                </div>
-                <div className="flex gap-12 py-2 border-b border-gray-100">
-                  <section className="flex items-center gap-3">
-                    <CalendarDays size={12} className="text-[#00BFA6]" />
-                    <span className="text-[#666666] text-sm">Nights</span>
-                  </section>
-                  <ArrowRight size={18} className="text-gray-700" />
-                  <span className="text-base">3 nights</span>
-                </div>
-                <div className="flex gap-12 py-2 border-b border-gray-100">
-                  <section className="flex items-center gap-3">
-                    <CalendarDays size={12} className="text-[#00BFA6]" />
-                    <span className="text-[#666666] text-sm">Guests</span>
-                  </section>
-                  <ArrowRight size={18} className="text-gray-700" />
-                  <span className="text-base">2 Adults</span>
-                </div>
-                <div className="flex gap-12 py-2 border-b border-gray-100">
-                  <section className="flex items-center gap-3">
-                    <CalendarDays size={12} className="text-[#00BFA6]" />
-                    <span className="text-[#666666] text-sm">Room type</span>
-                  </section>
-                  <ArrowRight size={18} className="text-gray-700" />
-                  <span className="text-base">Single Room</span>
-                </div>
-                <div className="flex gap-12 py-2 border-b border-gray-100">
-                  <section className="flex items-center gap-3">
-                    <CalendarDays size={12} className="text-[#00BFA6]" />
-                    <span className="text-[#666666] text-sm">Booking ref</span>
-                  </section>
-                  <ArrowRight size={18} className="text-gray-700" />
-                  <span className="text-base">IND-2025-24561</span>
-                </div>
+              {/* Booking GRID */}
+              <div className="w-1/2 grid grid-cols-1 gap-4 mt-6 border-b border-gray-200">
+                {[
+                  { label: "Check-in", value: "12 Nov 2025" },
+                  { label: "Check-out", value: "15 Nov 2025" },
+                  { label: "Nights", value: "3 nights" },
+                  { label: "Guests", value: "2 Adults" },
+                  { label: "Room type", value: "Single Room" },
+                  { label: "Booking ref", value: "IND-2025-24561" }
+                ].map((i, idx) => (
+                  <div key={idx} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 pb-2">
+                    <span className="flex items-center gap-2 text-sm text-gray-600">
+                      <CalendarDays size={14} className="text-[#00BFA6]" /> {i.label}
+                    </span>
+                    <ArrowRight size={18} />
+                    <span className="font-medium">{i.value}</span>
+                  </div>
+                ))}
               </div>
 
-              {/* Price Details */}
-              <div className="space-y-3">
-                <div className="flex justify-between">
-                  <span className="text-[#666666]">Price</span>
-                  <span className="text-[#666666]">1500 × 3 nights</span>
-                  <ArrowRight size={18} className="text-[#666666]" />
-                  <span className="text-sm font-medium">₹4,500</span>
+              {/* PRICE */}
+              <div className="mt-6 space-y-3">
+                <div className="flex justify-between text-[#666666]">
+                  <span className="text-xs">Price</span>
+                  <span className="text-sm">1500 × 3 nights</span>
+                  <ArrowRight size={18} />
+                  <span className="font-medium text-base">₹4,500</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-[#666666]">Taxes & Fees</span>
-                  <span className="text-[#666666]">₹400</span>
-                  <ArrowRight size={18} className="text-[#666666]" />
-                  <span>₹400</span>
+                <div className="flex justify-between text-xs text-[#666666]">
+                  <span className="text-xs">Taxes & Fees</span>
+                  <span className="text-sm font-medium">₹400</span>
+                  <ArrowRight size={18} />
+                  <span className="text-base font-medium">₹400</span>
                 </div>
-                <div className="flex justify-between border-t border-gray-200 pt-3 font-semibold text-lg">
-                  <span className="text-base text-[#666666]">Total</span>
+                <div className="flex justify-between border-t border-gray-200 pt-3">
+                  <span className="text-[#666666] text-base font-semibold">Total</span>
                   <h4 className="text-[#1A1A1A] text-2xl font-bold">₹4,900</h4>
                 </div>
+                <p className="text-xs text-gray-500">
+                  Booking reference: IND-2025-24561 • Paid via Card (visa)
+                </p>
               </div>
-              <p className="text-sm text-[#666666] mt-3">
-                Booking reference: IND-2025-24561 • Paid via Card (visa)
-              </p>
             </div>
 
             {/* Host Contact */}
-            <div className="mb-8 bg-white p-8 rounded-3xl">
-              <h3 className="flex items-center gap-2 text-xl font-bold text-[#1A1A1A] mb-4">
-                Host Contact & Check-in Info
-              </h3>
+            <div className="bg-white rounded-3xl p-4 sm:p-6 lg:p-8">
+              <h3 className="text-lg md:text-xl font-bold mb-4">Host Contact & Check-in Info</h3>
 
               <div className="flex flex-col gap-4">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center justify-center gap-2">
-                    <Image
-                        src="/images/pp1.png"
-                        alt="profile"
-                        width={30}
-                        height={30}
-                        className="rounded-xl"
-                    />
-                    <h4 className="font-bold text-[#1A1A1A] mb-1">
-                        Ramesh Kumar
-                    </h4>
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                  <div className="flex items-center gap-2">
+                    <Image src="/images/pp1.png" alt="profile" width={35} height={35} className="rounded-xl" />
+                    <h4 className="text-sm md:text-base font-bold">Ramesh Kumar</h4>
                   </div>
 
-                  <div className="flex flex-col sm:flex-row gap-2">
-                    <button
-                      onClick={() => handleContactAction("Call Host")}
-                      className="flex items-center justify-center gap-2 border border-[#00BFA6] px-4 py-2 rounded-lg text-[#00BFA6] cursor-pointer"
-                    >
-                      <Phone size={15} className="text-[#00BFA6]" />
-                      Call Host
+                  <div className="flex gap-2">
+                    <button className="flex items-center gap-2 border border-[#00BFA6] text-[#00BFA6] px-4 py-2 rounded-lg text-sm lg:text-base">
+                      <Phone size={14} /> Call Host
                     </button>
-                    <button
-                      onClick={() => handleContactAction("Message Host")}
-                      className="flex items-center justify-center gap-2 border border-[#00BFA6] px-4 py-2 rounded-lg text-[#00BFA6] cursor-pointer"
-                    >
-                      <MessageCircle size={15} className="text-[#00BFA6]" />
-                      Message Host
+                    <button className="flex items-center gap-2 border border-[#00BFA6] text-[#00BFA6] px-4 py-2 rounded-lg text-sm lg:text-base">
+                      <MessageCircle size={14} /> Message Host
                     </button>
                   </div>
                 </div>
-                <div className="flex-1">
-                    <section className="flex items-center gap-4">
-                        <CalendarDays size={15} className="text-[#00BFA6]" />
-                        <p className="text-[#666666]">
-                            Check-in: After 2:00 PM. Show valid ID at reception
-                        </p>
-                  </section>
 
-                  <div className="flex items-center gap-4 mt-4 text-gray-700">
-                    <Headphones size={15} className="text-[#00BFA6]" />
-                    <p className="text-[#666666]">24/7 Support: +91 98765 43210</p>
-                  </div>
-                </div>
+                <p className="flex items-center gap-3 text-sm text-[#666666]">
+                  <CalendarDays size={15} className="text-[#00BFA6]" />
+                  Check-in: After 2pm. Show valid ID at reception
+                </p>
+
+                <p className="flex items-center gap-3 text-sm text-[#666666]">
+                  <Phone size={15} className="text-[#00BFA6]" />
+                  24/7 Support: +91 98765 43210
+                </p>
               </div>
             </div>
 
             {/* Policies */}
-            <div>
-              <h3 className="flex items-center gap-2 text-lg font-semibold text-gray-900 mb-4">
-                <FileText className="h-5 w-5 text-blue-600" />
-                Cancellation & Policies
-              </h3>
-              <p className="text-gray-600 text-sm">
-                Free cancellation until 48 hours before check-in. After that,
-                cancel before check-in to get a partial refund, excluding
-                service fee.
-              </p>
+            <div className="bg-white rounded-xl">
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="px-4 sm:px-6 py-4 w-full flex items-center justify-between"
+              >
+                <h3 className="font-semibold text-base">Cancellation & Policies</h3>
+                <ChevronDown className={`transition-transform ${isOpen ? "rotate-180" : ""}`} />
+              </button>
+
+              <div className={`px-4 sm:px-6 text-sm text-gray-600 transition-all duration-300 overflow-hidden ${isOpen ? "max-h-40 pb-5" : "max-h-0"}`}>
+                Free cancellation until 48 hours before check-in. After that partial refund excluding service fee.
+              </div>
             </div>
           </div>
 
-          {/* Receipt Section */}
-          <div className="bg-white h-100 rounded-3xl p-8 mb-8">
-            <h3 className="flex items-center gap-2 text-2xl font-bold text-[#1A1A1A] mb-2 sm:mb-4">
-              Receipt
-            </h3>
+          {/* RIGHT receipt */}
+          <div className="bg-white rounded-3xl p-4 sm:p-6 lg:p-8 h-fit">
+            <h3 className="text-xl sm:text-2xl font-bold mb-6">Receipt</h3>
 
-            <div className="space-y-3 mb-6">
-              <div className="flex justify-between border-b-1 border-gray-200 pb-4">
-                <span className="text-sm font-medium text-[#666666]">
-                  Transaction
-                </span>
-                <span className="text-sm font-medium">ID TXN-452916</span>
+            <div className="space-y-3 mb-6 font-medium text-sm">
+              <div className="flex justify-between border-b border-gray-200 pb-3">
+                <span className="text-[#666666]">Transaction</span>
+                <span className="text-base">TXN-452916</span>
               </div>
+
               <div className="flex justify-between">
-                <span className="text-sm font-medium text-[#666666]">
-                  Room total
-                </span>
-                <span className="text-sm font-medium">₹4,500</span>
+                <span className="text-[#666666]">Room total</span>
+                <span className="text-base">₹4,500</span>
               </div>
+
               <div className="flex justify-between">
-                <span className="text-sm font-medium text-[#666666]">
-                  Taxes & Fees
-                </span>
-                <span className="text-sm font-medium">₹400</span>
+                <span className="text-[#666666]">Taxes & Fees</span>
+                <span className="text-base">₹400</span>
               </div>
+
               <div className="flex justify-between">
-                <span className="text-sm font-medium text-[#666666]">
-                  Discounts
-                </span>
-                <span className="text-green-600">-₹300</span>
+                <span className="text-[#666666]">Discounts</span>
+                <span className="text-base">₹300</span>
               </div>
-              <div className="flex justify-between border-t border-gray-300 pt-3 font-semibold text-lg">
-                <span className="text-sm font-medium text-[#666666]">
-                  Total Paid
-                </span>
-                <h5 className="text-[#1A1A1A] text-xl font-bold">₹4,600</h5>
+
+              <div className="flex justify-between border-t border-gray-200 pt-3 text-sm text-[#666666]">
+                <span>Total Paid</span>
+                <h4 className="text-xl text-[#1A1A1A] font-bold">₹4,600</h4>
               </div>
             </div>
 
-            <div className="flex flex-col gap-3">
-              <button
-                onClick={handleDownloadReceipt}
-                disabled={isDownloading}
-                className="flex items-center justify-center gap-2 bg-[#F1FF51] px-4 py-3 rounded-full font-semibold"
-              >
-                <Download className="h-4 w-4" />
-                {isDownloading ? "Downloading..." : "Download Receipt"}
-              </button>
-              <button
-                onClick={handleEmailReceipt}
-                disabled={isEmailing}
-                className="flex items-center mx-auto gap-2 px-4 py-3 font-medium text-sm text-[#00BFA6] cursor-pointer"
-              >
-                <Mail className="h-4 w-4" />
-                {isEmailing ? "Sending..." : "Email receipt to someone else"}
-              </button>
-            </div>
+            <button
+              className="w-full bg-[#F1FF51] py-3 rounded-full font-semibold flex items-center justify-center gap-2 mb-3"
+              onClick={handleDownloadReceipt}
+            >
+              <Download size={15} />
+              {isDownloading ? "Downloading..." : "Download Receipt"}
+            </button>
 
-            {/* Support Info */}
-            <div className="p-4 mb-8">
-              <div className="flex items-start gap-3">
-                <Info className="h-5 w-5 text-[#00BFA6] mt-0.5 flex-shrink-0" />
-                <div>
-                  <p className="text-[#1A1A1A] mb-3">
-                    Need to change dates? Contact support within 24 hours to
-                    request modification
-                  </p>
-                  <button
-                    onClick={() => handleContactAction("Contact Support")}
-                    className="flex items-center mx-auto gap-2 font-medium text-sm text-[#00BFA6] cursor-pointer border-b-1 border-gray-400"
-                  >
-                    Contact Support
-                  </button>
-                </div>
-              </div>
+            <button
+              className="w-full text-[#00BFA6] text-sm py-3 flex items-center justify-center gap-2"
+              onClick={handleEmailReceipt}
+            >
+              <Mail size={15} />
+              {isEmailing ? "Sending..." : "Email receipt to someone else"}
+            </button>
+
+            <div className="flex items-start gap-2 text-sm text-gray-600 mt-6">
+              <Info className="text-[#00BFA6] flex-shrink-0" size={18} />
+              <p>Need to change dates? Contact support within 24 hours to request modification</p>
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Footer */}
-      <div className="bg-gray-50 border-t border-gray-200 px-6 py-4 text-center">
-        <p className="text-gray-600 text-sm">
-          UrbanNest PG © 2025. All rights reserved.
-        </p>
       </div>
     </div>
   );

@@ -51,9 +51,9 @@ const LocationExplorer = () => {
       </div>
 
       {/* Main Content */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-12 items-start">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 xl:gap-12 items-start">
         {/* Left - City Image */}
-        <div className="rounded-2xl overflow-hidden w-full h-64 sm:h-96 lg:h-[540px]">
+        <div className="rounded-2xl overflow-hidden w-full h-64 sm:h-96 lg:h-[480px] xl:h-[540px]">
           <Image
             src={
               cities.find((c) => c.name === selectedCity)?.image ||
@@ -73,7 +73,7 @@ const LocationExplorer = () => {
           </h3>
 
           {/* Hostel List */}
-          <div className="lg:space-y-6">
+          <div className="xl:space-y-6">
             {currentHostels.length > 0 ? (
               currentHostels.slice(0, 3).map((hostel) => (
                 <div key={hostel.id}>
@@ -117,7 +117,7 @@ const LocationExplorer = () => {
 
           {/* View All Button */}
           {currentHostels.length > 0 && (
-            <div className="mt-4">
+            <div className="mt-4 lg:mt-0 xl:mt-4">
               <Link
                 href="/data"
                 className="lg:inline-block bg-[#00BFA6] hover:bg-[#11a793] text-white px-12 lg:px-5 py-2 lg:py-3 rounded-full font-semibold transition-colors duration-300"

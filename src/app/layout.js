@@ -44,7 +44,7 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} ${openSans.variable} font-sans antialiased`}
       >
         <Header />
-        {children}
+        <main className="pt-22">{children}</main>
         <Footer />
       </body>
     </html>
