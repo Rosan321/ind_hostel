@@ -1,9 +1,27 @@
 "use client";
-import { Funnel, SlidersHorizontal, X } from "lucide-react";
+import {
+  ChevronDown,
+  Funnel,
+  MapPin,
+  SlidersHorizontal,
+  X,
+} from "lucide-react";
 import { useState } from "react";
+import SearchFilter from "./SearchFilter";
 
 export default function Filters({ isOpen = false, onClose }) {
   const [budget, setBudget] = useState(8000);
+  // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  // const [selected, setSelected] = useState("All");
+  // const [search, setSearch] = useState("");
+
+  const options = ["All", "Hostel", "PG", "OYO", "Suite"];
+
+  // const handleSelect = (option) => {
+  //   setSelected(option);
+  //   setIsDropdownOpen(false);
+  // };
+
   const min = 2000;
   const max = 15000;
   const percentage = ((budget - min) / (max - min)) * 100;
@@ -20,9 +38,13 @@ export default function Filters({ isOpen = false, onClose }) {
 
       {/* Filters Sidebar */}
       <aside
-        className={` fixed lg:static top-0 right-0 h-full lg:h-auto w-4/5 max-w-sm md:w-3/4 lg:w-2/8 bg-white rounded-l-xl lg:rounded-xl shadow p-5 space-y-6 transform transition-transform duration-800 ease-in-out z-50 lg:transform-none ${
+        className={`${
           isOpen ? "translate-x-0" : "translate-x-full lg:translate-x-0"
-        } ${!isOpen ? "lg:block hidden" : "block"} `}
+        } ${!isOpen ? "lg:block hidden" : "block"} 
+  bg-white rounded-l-xl lg:rounded-xl shadow p-5 space-y-6 
+  transform transition-transform duration-500 ease-in-out z-50
+  fixed top-0 right-0 h-full w-4/5 max-w-sm md:w-3/4 
+  lg:static lg:h-auto lg:w-1/4 lg:z-auto lg:transform-none`}
       >
         {/* Header with Close Button for Mobile */}
         <section className="flex items-center justify-between text-[#1A1A1A]">
@@ -43,6 +65,55 @@ export default function Filters({ isOpen = false, onClose }) {
           </button>
         </section>
 
+        {/* Filter */}
+        <SearchFilter />
+        {/* <div className="relative w-full sm:max-w-sm md:max-w-md lg:max-w-xs mb-4">
+          <div className="flex items-center border border-gray-300 rounded-md overflow-hidden bg-white">
+            <span className="pl-3 text-gray-500">
+              <MapPin size={16} />
+            </span>
+            <input
+              type="text"
+              value={selected && selected !== "All" ? `${selected}` : search}
+              onChange={(e) => {
+                setSearch(e.target.value);
+                setSelected("");
+              }}
+              placeholder="Search..."
+              className="flex-1 px-3 py-2 focus:outline-none text-gray-800 text-sm sm:text-base"
+            />
+            <button
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-700 cursor-pointer"
+            >
+              <ChevronDown
+                size={16}
+                className={`transition-transform duration-200 ${
+                  isDropdownOpen ? "rotate-180" : "rotate-0"
+                }`}
+              />
+            </button>
+          </div>
+
+          {isDropdownOpen && (
+            <div className="absolute left-0 top-full mt-1 w-full bg-white border border-gray-200 rounded-md shadow-md z-20">
+              {options.map((option) => (
+                <button
+                  key={option}
+                  onClick={() => handleSelect(option)}
+                  className={`block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 ${
+                    selected === option
+                      ? "bg-gray-50 text-[#00BFA6]"
+                      : "text-gray-700"
+                  }`}
+                >
+                  {option}
+                </button>
+              ))}
+            </div>
+          )}
+        </div> */}
+        
         {/* Budget Range */}
         <div>
           <label className="font-bold text-[#222222] text-lg">
@@ -72,7 +143,7 @@ export default function Filters({ isOpen = false, onClose }) {
         {/* Stay Type */}
         <div>
           <h4 className="font-bold mb-1 text-[#222222] text-lg">Stay Type</h4>
-          {["Hostel", "PG", "OYO"].map((type) => (
+          {["Hostel", "PG", "Hotel"].map((type) => (
             <div key={type} className="flex items-center space-x-2">
               <input type="checkbox" id={type} className="accent-[#00BFA6]" />
               <label
@@ -154,21 +225,6 @@ export default function Filters({ isOpen = false, onClose }) {
             </div>
           ))}
           <p className="text-xs text-[#666666] font-medium mt-2">Min Rating</p>
-        </div>
-
-        {/* Location Zone */}
-        <div>
-          <h4 className="font-bold mb-1 text-[#222222] text-lg">
-            Location Zone
-          </h4>
-          <select className="w-full border border-gray-300 rounded-md px-3 py-2 text-[#1A1A1A] text-sm font-medium">
-            <option value="">Select Zone</option>
-            <option value="north">North Bangalore</option>
-            <option value="south">South Bangalore</option>
-            <option value="east">East Bangalore</option>
-            <option value="west">West Bangalore</option>
-            <option value="central">Central Bangalore</option>
-          </select>
         </div>
       </aside>
     </>

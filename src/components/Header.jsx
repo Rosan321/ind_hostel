@@ -136,15 +136,9 @@ const Header = () => {
               {DROPDOWNS.map(({ type, label, items }) => (
                 <li
                   key={type}
-                  className="relative group flex items-center cursor-pointer"
+                  className="relative group flex items-center gap-2 cursor-pointer select-none"
                   onMouseEnter={() => openDropdown(type)}
-                  onMouseLeave={() =>
-                    setTimeout(
-                      () => !isHoveringDropdown && closeDropdown(),
-                      100
-                    )
-                  }
-                  onClick={() => toggleDropdown(type)}
+                  onClick={() => toggleDropdown(type)} // click toggles
                 >
                   <span
                     className={`xl:text-lg ${
