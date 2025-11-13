@@ -183,6 +183,7 @@ import {
 import { usePathname } from "next/navigation";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Link from "next/link";
 
 const BookingSummary = ({ basePrice = 2999, listingType = "pg" }) => {
   const pathname = usePathname();
@@ -241,7 +242,7 @@ const BookingSummary = ({ basePrice = 2999, listingType = "pg" }) => {
   }, [nights, guests, basePrice, calculatedBasePrice, durationType, durationMultipliers, checkIn, checkOut, isPG]);
 
   return (
-    <div className="bg-white rounded-3xl shadow-md p-4 py-6 space-y-4 sm:space-y-5 sticky top-24">
+    <div className="bg-white rounded-3xl shadow-md p-6 py-6 space-y-4 sm:space-y-5 sticky top-24">
       <h3 className="text-lg font-semibold border-b border-gray-300 pb-4 sm:pb-6">
         Booking Summary
       </h3>
@@ -254,10 +255,7 @@ const BookingSummary = ({ basePrice = 2999, listingType = "pg" }) => {
               key={type}
               className={`flex items-center gap-2 cursor-pointer transition-all
                 ${
-                  durationType === type
-                    ? "text-blue-700"
-                    : "text-gray-500"
-                }`}
+                  durationType === type && "text-[#1A1A1A]"}`}
             >
               <input
                 type="radio"
@@ -375,9 +373,11 @@ const BookingSummary = ({ basePrice = 2999, listingType = "pg" }) => {
       </div>
 
       {/* ✅ Book Now */}
-      <button className="w-full bg-blue-700 text-white py-3 rounded-full font-medium hover:bg-blue-800 transition-all">
-        Book Now
-      </button>
+      <div className="w-full sm:w-1/2 lg:w-full bg-blue-700 text-white text-center mx-auto py-3 rounded-full font-medium hover:bg-blue-800 transition-all cursor-pointer">
+        <Link href="/checkout">
+          Book Now
+        </Link>
+      </div>
 
       {/* ✅ Footer */}
       <div className="flex justify-between items-center text-xs text-gray-500 pt-3">

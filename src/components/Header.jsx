@@ -88,7 +88,6 @@ const Header = () => {
   const router = useRouter();
   const {
     activeDropdown,
-    isHoveringDropdown,
     setIsHoveringDropdown,
     dropdownRef,
     openDropdown,
@@ -167,7 +166,7 @@ const Header = () => {
           {/* Desktop Auth Buttons */}
           <div className="hidden lg:flex items-center gap-3">
             <AuthButton href="/signup" label="Sign-Up" variant="primary" />
-            <AuthButton href="/login" label="Login" variant="secondary" />
+            <AuthButton href="/user_dashboard" label="Login" variant="secondary" />
           </div>
 
           {/* Mobile Menu Toggle */}

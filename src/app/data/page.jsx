@@ -1,8 +1,8 @@
 "use client";
 
-import Filters from "@/components/Filters";
-import HostelGrid from "@/components/HostelGrid";
+import Filters from "@/components/filter/Filters";
 import SearchBar from "@/components/SearchBar";
+import StayGrid from "@/components/StayGrid";
 import { ArrowDownWideNarrow, Funnel, SlidersHorizontal } from "lucide-react";
 import { useState } from "react";
 
@@ -14,7 +14,7 @@ export default function HostelListingPage() {
       <div className="w-full mx-auto">
         <SearchBar />
 
-        <div className="flex flex-col lg:flex-row gap-6 py-12">
+        <div className="flex flex-col lg:flex-row gap-6 pt-6 lg:pt-12 pb-12 lg:pb-24">
           <Filters isOpen={filtersOpen} onClose={() => setFiltersOpen(false)} />
 
           <div className="flex-1">
@@ -55,7 +55,7 @@ export default function HostelListingPage() {
               </div>
             </div>
 
-            <HostelGrid />
+            <StayGrid />
           </div>
         </div>
       </div>

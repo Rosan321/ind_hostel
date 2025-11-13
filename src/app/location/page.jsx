@@ -1,6 +1,6 @@
 "use client";
 
-import HostelCard from "@/components/HostelCard";
+import HostelCard from "@/components/StayCard";
 import Hero from "@/components/stay_by_city/Hero";
 import LocationWithExpect from "@/components/stay_by_city/LocationWithExpect";
 import Stats from "@/components/stay_by_city/Stats";
@@ -75,7 +75,7 @@ const StayListing = () => {
   return (
     <div className="bg-gray-100">
       <Hero />
-      <section className="px-4 lg:px-20">
+      <section className="px-4 sm:px-8 lg:px-20 py-12 space-y-4 lg:space-y-8">
         <Stats />
         <div className="flex items-center gap-10">
           <Tabs

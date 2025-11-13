@@ -14,7 +14,7 @@ const WhyChooseUs = () => {
   ];
 
   return (
-    <div className="py-12 bg-gray-100">
+    <div className="py-12 lg:py-24 bg-gray-100">
       <section className="py-16 px-4 sm:px-8 lg:px-20 bg-[#1A1A1A] relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center justify-items-end mx-auto">
           {/* Left Side - Image/Stats */}

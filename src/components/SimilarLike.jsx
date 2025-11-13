@@ -1,5 +1,5 @@
 import React from 'react'
-import HostelCard from './HostelCard'
+import HostelCard from './StayCard'
 import { hostels } from '@/lib/utils/hotels'
 import Link from 'next/link'
 

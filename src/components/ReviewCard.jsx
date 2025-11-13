@@ -64,8 +64,7 @@ export function ReviewCard() {
       {/* Title */}
       <h2 className="text-lg sm:text-xl font-bold text-[#1A1A1A]">
         Guest Reviews (
-        {(reviews.reduce((a, r) => a + r.rating, 0) / reviews.length).toFixed(1)}{" "}
-        / 5)
+        {(reviews.reduce((a, r) => a + r.rating, 0) / reviews.length).toFixed(1)}/5)
       </h2>
 
       <hr className="text-gray-300" />

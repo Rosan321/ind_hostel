@@ -15,10 +15,10 @@ export default function SearchBar() {
   const [checkOutDate, setCheckOutDate] = useState(null);
 
   return (
-    <div className="relative z-10 flex flex-col items-center justify-center text-center text-white py-10 h-full gap-24">
+    <div className="relative z-10 flex flex-col items-center justify-center text-center text-white py-10 h-full gap-24 px-4 sm:px-6 lg:px-20">
       {/* Only show on homepage */}
       {isHomePage && (
-        <div className="flex flex-col jusitfy-center items-center gap-4">
+        <div className="flex flex-col justify-center items-center gap-4">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-snug max-w-3xl">
             Find Your Perfect Stay – Hostel, PG & Hotels in One Place
           </h1>
@@ -30,7 +30,7 @@ export default function SearchBar() {
       )}
 
       {/* Search Section */}
-      <div className="bg-black/70 backdrop-blur-md rounded-3xl lg:rounded-full py-8 xl:py-12 w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-24">
+      <div className="bg-black/70 backdrop-blur-md rounded-3xl lg:rounded-full py-8 xl:py-12 w-full px-4 sm:px-8 md:px-12 lg:px-16 xl:px-24">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-4 sm:gap-6 md:gap-8 lg:gap-10 max-w-7xl mx-auto w-full">
           {/* --- Mobile & Tablet Layout (hidden on lg+) --- */}
           <div className="flex flex-col w-full lg:hidden gap-4 sm:gap-5 md:gap-6">

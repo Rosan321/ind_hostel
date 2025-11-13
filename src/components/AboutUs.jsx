@@ -7,7 +7,7 @@ import Link from "next/link";
 
 const AboutUs = () => {
   return (
-    <div className="lg:py-12 lg:pt-12 xl:py-24 px-4 sm:px-8 lg:px-20 bg-gray-100">
+    <div className="lg:py-12 xl:py-24 px-4 sm:px-8 lg:px-20 bg-gray-100">
       <section className="relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center justify-center mx-auto">
           {/* Left Side - Content */}

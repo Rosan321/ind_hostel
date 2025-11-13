@@ -20,7 +20,7 @@ const LocationExplorer = () => {
   const currentHostels = cityHostels[selectedCity] || [];
 
   return (
-    <section className="bg-gray-100 py-12 px-4 sm:px-8 lg:px-20">
+    <section className="bg-gray-100 py-12 lg:py-24 px-4 sm:px-8 lg:px-20">
       {/* Header Section */}
       <div className="text-center mb-8 lg:mb-12">
         <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">

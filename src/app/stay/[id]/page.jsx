@@ -120,7 +120,7 @@ export default function Page({ searchParams }) {
 
       {/* ---------- Image Section ---------- */}
       <section className="py-10 px-4 sm:px-6 md:px-10 lg:px-20">
-        <div className="max-w-7xl mx-auto space-y-12">
+        <div className="mx-auto space-y-12">
           {/* ---------- Image Gallery ---------- */}
           <ImageThumbnail images={data.images} badge={data.badge} />
 
@@ -256,7 +256,7 @@ export default function Page({ searchParams }) {
             </div>
 
             {/* RIGHT SIDEBAR */}
-            <aside className="lg:col-span-5 xl:col-span-4 lg:sticky lg:top-24 self-start">
+            <aside className="lg:col-span-5 xl:col-span-4 lg:sticky lg:top-24 self-start mt-6 lg:mt-0">
               <BookingSummary basePrice={data.basePrice} />
             </aside>
           </div>

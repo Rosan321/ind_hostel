@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import HostelCard from "./HostelCard";
 import Pagination from "./Pagination";
 import { hostels } from "@/lib/utils/hotels";
+import StayCard from "./StayCard";
 
-export default function HostelGrid() {
+export default function StayGrid() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9;
 
@@ -16,9 +16,9 @@ export default function HostelGrid() {
   return (
     <div className="space-y-8">
       {/* Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
         {displayedHostels.map((hostel) => (
-          <HostelCard key={hostel.id} {...hostel} />
+          <StayCard key={hostel.id} {...hostel} />
         ))}
       </div>
 

@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import CarouselCard from "./Carousel";
+import Link from "next/link";
 
 const listings = [
   {
@@ -82,7 +83,7 @@ const LocationWithExpect = () => {
   const [search, setSearch] = useState("");
 
   return (
-    <div className="w-full mx-auto pb-10 space-y-4">
+    <div className="w-full mx-auto pb-10 space-y-4 lg:space-y-8">
       <div className="py-12 space-y-6 lg:space-y-8">
         {/* Heading + Search */}
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
@@ -186,9 +187,9 @@ const LocationWithExpect = () => {
                 </ul>
 
                 {/* CTA Button */}
-                <button className="text-sm sm:text-base font-semibold text-[#1A1A1A] bg-[#F1FF51] px-6 py-3 rounded-full mt-2 hover:bg-[#e8f847] transition-colors duration-200">
+                <Link href="/data" className="text-sm sm:text-base font-semibold text-[#1A1A1A] bg-[#F1FF51] px-6 py-3 rounded-full mt-2 hover:bg-[#e8f847] transition-colors duration-200">
                   {neighborhood.cta}
-                </button>
+                </Link>
               </div>
             </div>
           ))}

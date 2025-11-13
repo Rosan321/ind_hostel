@@ -2,7 +2,7 @@ import SwiperButton from "@/lib/utils/swiperButton";
 import { Star } from "lucide-react";
 import Image from "next/image";
 
-export default function HostelCard({ id, title, location, rating, price, imgs }) {
+export default function StayCard({ id, title, location, rating, price, imgs }) {
   return (
     <div className="relative bg-white shadow rounded-2xl overflow-hidden flex flex-col hover:shadow-lg transition w-full sm:max-w-md lg:max-w-lg">
       {/* Badge and Price Container */}

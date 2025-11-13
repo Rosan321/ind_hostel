@@ -1,27 +1,230 @@
-import { Check, Lock, Sparkles, Utensils, Wifi, X } from "lucide-react";
-import React from "react";
+// import { Circle, CircleSmall, House, Lock, Slice, Utensils, Wifi } from "lucide-react";
+// import React from "react";
 
+// const roomsData = [
+//   {
+//     id: 1,
+//     title: "Single Bed – Mixed Dorm",
+//     description: "Single room · 1 bed · 1 guest",
+//     images: "/images/bedroom.png",
+//     details:
+//       "Affordable bed in a 6-bed dorm with lockers and common kitchen. Great for short stays",
+//     amenities: [
+//       { name: "WIFI", available: false, icon: <Wifi size={16} /> },
+//       { name: "Common kitchen", available: true, icon: <Slice size={16} /> },
+//       { name: "Lockers", available: false, icon: <Lock size={16} /> },
+//       {
+//         name: "Daily housekeeping",
+//         available: false,
+//         icon: <House size={16} />,
+//       },
+//     ],
+//     roomsAvailable: 6,
+//     cancellation: "Free cancellation until 24 hrs before check-in",
+//     price: "₹ 499 / night",
+//     includes: "Includes taxes & hostel fees",
+//     type: "monthly",
+//   },
+//   {
+//     id: 2,
+//     title: "Double Bed – Mixed Dorm",
+//     description: "Double Shared room · 2 bed · 2 guest",
+//     images: "/images/bedroom.png",
+//     details:
+//       "Affordable bed in a 6-bed dorm with lockers and common kitchen. Great for short stays",
+//     amenities: [
+//       { name: "WIFI", available: false, icon: <Wifi size={16} /> },
+//       { name: "Common kitchen", available: true, icon: <Utensils size={16} /> },
+//       { name: "Lockers", available: false, icon: <Lock size={16} /> },
+//       {
+//         name: "Daily housekeeping",
+//         available: false,
+//         icon: <House size={16} />,
+//       },
+//     ],
+//     roomsAvailable: 6,
+//     cancellation: "Free cancellation until 24 hrs before check-in",
+//     price: "₹ 799 / night",
+//     includes: "Includes taxes & hostel fees",
+//     type: "night",
+//   },
+//   {
+//     id: 3,
+//     title: "Single Bed – Mixed Dorm",
+//     description: "Single room · 1 bed · 1 guest",
+//     images: "/images/bedroom.png",
+//     details:
+//       "Affordable bed in a 6-bed dorm with lockers and common kitchen. Great for short stays",
+//     amenities: [
+//       { name: "WIFI", available: false, icon: <Wifi size={16} /> },
+//       { name: "Common kitchen", available: true, icon: <Utensils size={16} /> },
+//       { name: "Lockers", available: false, icon: <Lock size={16} /> },
+//       {
+//         name: "Daily housekeeping",
+//         available: false,
+//         icon: <House size={16} />,
+//       },
+//     ],
+//     roomsAvailable: 6,
+//     cancellation: "Free cancellation until 24 hrs before check-in",
+//     price: "₹ 499 / night",
+//     includes: "Includes taxes & hostel fees",
+//     type: "night",
+//   },
+// ];
+
+// const TypesOfRoom = () => {
+//   return (
+//     <>
+//       <div className="bg-white rounded-3xl p-6 shadow">
+//         {/* Header */}
+//         <div className="mb-8">
+//           <h2 className="text-2xl font-bold text-gray-800 mb-2">
+//             Types of Rooms Available
+//           </h2>
+//           <div className="w-12 h-1 bg-emerald-500 rounded-full"></div>
+//         </div>
+
+//         {/* Rooms List */}
+//         <div className="space-y-6">
+//           {roomsData.map((room) => (
+//             <div key={room.id}>
+//               {/* Room Card */}
+//               <div
+//                 className={`p-6 rounded-2xl border-2 flex flex-col lg:flex-row justify-between lg:items-center gap-4 ${
+//                   room.type === "monthly"
+//                     ? "bg-white border-gray-200"
+//                     : "bg-white border-gray-100"
+//                 }`}
+//               >
+//                 <div className="flex flex-col sm:flex-row gap-6">
+//                   {/* Image Section */}
+//                   <div className="flex-shrink-0">
+//                     <img
+//                       src={room.images}
+//                       alt={room.title}
+//                       className="w-full sm:w-full h-36 lg:w-40 lg:h-32 object-cover rounded-xl"
+//                     />
+//                   </div>
+
+//                   {/* Content Section */}
+//                   <div className="flex-1">
+//                     {/* Room Header */}
+//                     <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 mb-4">
+//                       <div className="flex-1">
+//                         <h3 className="text-lg font-bold text-[#1A1A1A] mb-1">
+//                           {room.title}
+//                         </h3>
+//                         <p className="text-[#1A1A1A] text-sm mb-2">
+//                           {room.description}
+//                         </p>
+//                         {room.details && (
+//                           <p className="text-[#666666] text-xs">
+//                             {room.details}
+//                           </p>
+//                         )}
+//                       </div>
+//                     </div>
+
+//                     {/* Amenities */}
+//                     {room.amenities && (
+//                       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+//                         {room.amenities.map((amenity, index) => (
+//                           <div key={index} className="flex items-center">
+//                             <div className="flex items-center gap-2 text-sm text-[#44475A] font-semibold">
+//                               <span>{amenity.icon}</span>
+//                               <span>{amenity.name}</span>
+//                             </div>
+//                           </div>
+//                         ))}
+//                       </div>
+//                     )}
+                    
+//                     {/* Availability & Cancellation */}
+//                     {room.roomsAvailable && (
+//                       <div className="space-y-2 mt-4">
+//                         <div className="flex items-center gap-1">
+//                           <Circle size={14} fill="#079400" stroke="none" />
+//                           {/* <Circle size={16} fill="#079400" stroke="none" /> */}
+//                           <h4 className="font-bold text-[#666666] text-sm sm:text-lg">
+//                             {room.roomsAvailable} Rooms available
+//                           </h4>
+//                         </div>
+//                         <p className="text-xs sm:text-sm bg-[#666666] text-[#FFFFFF] px-4 py-2 rounded-full inline-block">
+//                           {room.cancellation}
+//                         </p>
+//                       </div>
+//                     )}
+//                   </div>
+//                 </div>
+
+//                 {/* Price Section */}
+//                 {room.price && (
+//                   <div>
+//                     <h4 className="text-lg md:text-xl font-bold text-gray-800">
+//                       {room.price}
+//                     </h4>
+//                     <p className="text-xs md:text-sm text-gray-500">{room.includes}</p>
+
+//                     {/* Action Buttons */}
+//                     <div className="mt-4 flex flex-col sm:flex-row lg:flex-col gap-3">
+//                       {room.type === "monthly" ? (
+//                         <button className="flex-1 bg-blue-700 hover:bg-blue-600 text-white text-sm md:text-base font-semibold py-2 xl:py-3 px-2 xl:px-4 rounded-full transition-colors cursor-pointer">
+//                           Book Now
+//                         </button>
+//                       ) : (
+//                         <>
+//                           <button className="flex-1 border-2 border-blue-700 text-blue-700 hover:bg-blue-700 hover:text-white text-sm md:text-base font-semibold py-2 xl:py-3 px-2 xl:px-4 rounded-full transition-colors cursor-pointer">
+//                             View Details
+//                           </button>
+//                           <button className="flex-1 bg-blue-700 hover:bg-blue-600 text-white text-sm md:text-base font-semibold py-2 xl:py-3 px-2 xl:px-4 rounded-full transition-colors cursor-pointer">
+//                             Book Now
+//                           </button>
+//                         </>
+//                       )}
+//                     </div>
+//                   </div>
+//                 )}
+//               </div>
+//             </div>
+//           ))}
+//         </div>
+//       </div>
+//     </>
+//   );
+// };
+
+// export default TypesOfRoom;
+
+//////////////////////////////////////////
+
+"use client"
+
+import React, { useState } from "react";
+import { Circle, House, Lock, Slice, Utensils, Wifi } from "lucide-react";
+
+// ✅ Room Data
 const roomsData = [
   {
     id: 1,
     title: "Single Bed – Mixed Dorm",
     description: "Single room · 1 bed · 1 guest",
-    images: "/images/bedroom.png",
+    images: [
+      "/images/bedroom.png",
+      "/images/bedroom2.png",
+      "/images/bedroom3.png",
+    ],
     details:
       "Affordable bed in a 6-bed dorm with lockers and common kitchen. Great for short stays",
     amenities: [
       { name: "WIFI", available: false, icon: <Wifi size={16} /> },
-      { name: "Common kitchen", available: true, icon: <Utensils size={16} /> },
+      { name: "Common kitchen", available: true, icon: <Slice size={16} /> },
       { name: "Lockers", available: false, icon: <Lock size={16} /> },
-      {
-        name: "Daily housekeeping",
-        available: false,
-        icon: <Sparkles size={16} />,
-      },
+      { name: "Daily housekeeping", available: false, icon: <House size={16} /> },
     ],
     roomsAvailable: 6,
     cancellation: "Free cancellation until 24 hrs before check-in",
-    price: "499 / night",
+    price: "₹ 499 / night",
     includes: "Includes taxes & hostel fees",
     type: "monthly",
   },
@@ -29,180 +232,170 @@ const roomsData = [
     id: 2,
     title: "Double Bed – Mixed Dorm",
     description: "Double Shared room · 2 bed · 2 guest",
-    images: "/images/bedroom.png",
+    images: ["/images/bedroom.png", "/images/bedroom2.png"],
     details:
       "Affordable bed in a 6-bed dorm with lockers and common kitchen. Great for short stays",
     amenities: [
       { name: "WIFI", available: false, icon: <Wifi size={16} /> },
       { name: "Common kitchen", available: true, icon: <Utensils size={16} /> },
       { name: "Lockers", available: false, icon: <Lock size={16} /> },
-      {
-        name: "Daily housekeeping",
-        available: false,
-        icon: <Sparkles size={16} />,
-      },
+      { name: "Daily housekeeping", available: false, icon: <House size={16} /> },
     ],
     roomsAvailable: 6,
     cancellation: "Free cancellation until 24 hrs before check-in",
-    price: "799 / night",
-    includes: "Includes taxes & hostel fees",
-    type: "night",
-  },
-  {
-    id: 3,
-    title: "Single Bed – Mixed Dorm",
-    description: "Single room · 1 bed · 1 guest",
-    images: "/images/bedroom.png",
-    details:
-      "Affordable bed in a 6-bed dorm with lockers and common kitchen. Great for short stays",
-    amenities: [
-      { name: "WIFI", available: false, icon: <Wifi size={16} /> },
-      { name: "Common kitchen", available: true, icon: <Utensils size={16} /> },
-      { name: "Lockers", available: false, icon: <Lock size={16} /> },
-      {
-        name: "Daily housekeeping",
-        available: false,
-        icon: <Sparkles size={16} />,
-      },
-    ],
-    roomsAvailable: 6,
-    cancellation: "Free cancellation until 24 hrs before check-in",
-    price: "499 / night",
+    price: "₹ 799 / night",
     includes: "Includes taxes & hostel fees",
     type: "night",
   },
 ];
 
+// ✅ Image Slider Component (dots only)
+const ImageSlider = ({ images }) => {
+  const [current, setCurrent] = useState(0);
+
+  return (
+    <div className="flex flex-col items-center">
+      {/* Image Display */}
+      <div className="relative w-full sm:w-full h-36 lg:w-40 lg:h-32 rounded-xl overflow-hidden">
+        <img
+          src={images[current]}
+          alt={`Slide ${current + 1}`}
+          className="w-full h-full object-cover rounded-xl transition-all duration-500"
+        />
+
+        {/* Badge showing image number */}
+        <div className="absolute top-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded-full">
+          {images.length}
+        </div>
+      </div>
+
+      {/* Dots BELOW image */}
+      {images.length > 1 && (
+        <div className="flex justify-center gap-1 mt-2">
+          {images.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrent(index)}
+              className={`w-3 h-3 rounded-full transition-all ${
+                current === index ? "bg-blue-600 w-3 h-3" : "bg-gray-500 border"
+              }`}
+              aria-label={`Go to image ${index + 1}`}
+            ></button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
+
+// ✅ Main Component
 const TypesOfRoom = () => {
   return (
-    <>
-      <div className="bg-white rounded-3xl p-6 shadow">
-        {/* Header */}
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-800 mb-2">
-            Types of Rooms Available
-          </h2>
-          <div className="w-12 h-1 bg-emerald-500 rounded-full"></div>
-        </div>
+    <div className="bg-white rounded-3xl p-6 shadow">
+      {/* Header */}
+      <div className="mb-8">
+        <h2 className="text-2xl font-bold text-gray-800 mb-2">
+          Types of Rooms Available
+        </h2>
+        <div className="w-12 h-1 bg-emerald-500 rounded-full"></div>
+      </div>
 
-        {/* Rooms List */}
-        <div className="space-y-6">
-          {roomsData.map((room) => (
-            <div key={room.id}>
-              {/* Room Card */}
-              <div
-                className={`p-6 rounded-2xl border-2 flex justify-between gap-4 ${
-                  room.type === "monthly"
-                    ? "bg-gray-50 border-gray-200"
-                    : "bg-white border-gray-100 hover:border-emerald-200 transition-colors"
-                }`}
-              >
-                <div className="flex flex-col lg:flex-row gap-6">
-                  {/* Image Section */}
-                  <div className="flex-shrink-0">
-                    <img
-                      src={room.images}
-                      alt={room.title}
-                      className="w-32 h-24 lg:w-40 lg:h-28 object-cover rounded-xl"
-                    />
-                  </div>
+      {/* Room List */}
+      <div className="space-y-6">
+        {roomsData.map((room) => (
+          <div
+            key={room.id}
+            className={`p-6 rounded-2xl border-2 flex flex-col lg:flex-row justify-between lg:items-center gap-4 ${
+              room.type === "monthly"
+                ? "bg-white border-gray-200"
+                : "bg-white border-gray-100"
+            }`}
+          >
+            <div className="flex flex-col sm:flex-row gap-6">
+              {/* Image Slider */}
+              <div className="flex-shrink-0">
+                <ImageSlider
+                  images={Array.isArray(room.images) ? room.images : [room.images]}
+                />
+              </div>
 
-                  {/* Content Section */}
+              {/* Room Info */}
+              <div className="flex-1">
+                <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 mb-4">
                   <div className="flex-1">
-                    {/* Room Header */}
-                    <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 mb-4">
-                      <div className="flex-1">
-                        <h3 className="text-lg font-semibold text-gray-800 mb-1">
-                          {room.title}
-                        </h3>
-                        <p className="text-gray-600 text-sm mb-2">
-                          {room.description}
-                        </p>
-                        {room.details && (
-                          <p className="text-gray-700 text-sm">
-                            {room.details}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Amenities */}
-                    {room.amenities && (
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4">
-                        {room.amenities.map((amenity, index) => (
-                          <div key={index} className="flex items-center gap-3">
-                            <div
-                              className={`w-5 h-5 rounded flex items-center justify-center ${
-                                amenity.available
-                                  ? "bg-emerald-100 text-emerald-600"
-                                  : "bg-gray-100 text-gray-400"
-                              }`}
-                            >
-                              {amenity.available ? (
-                                <Check size={14} />
-                              ) : (
-                                <X size={14} />
-                              )}
-                            </div>
-                            <div className="flex items-center gap-2 text-sm text-gray-700">
-                              {amenity.icon}
-                              <span>{amenity.name}</span>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-
-                    {/* Availability & Cancellation */}
-                    {room.roomsAvailable && (
-                      <div className="space-y-2">
-                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                          <h4 className="font-semibold text-gray-800 text-sm">
-                            {room.roomsAvailable} Rooms available
-                          </h4>
-                        </div>
-                        <p className="text-sm text-gray-500">
-                          {room.cancellation}
-                        </p>
-                      </div>
+                    <h3 className="text-lg font-bold text-[#1A1A1A] mb-1">
+                      {room.title}
+                    </h3>
+                    <p className="text-[#1A1A1A] text-sm mb-2">
+                      {room.description}
+                    </p>
+                    {room.details && (
+                      <p className="text-[#666666] text-xs">{room.details}</p>
                     )}
                   </div>
                 </div>
 
-                {/* Price Section */}
-                {room.price && (
-                  <div className="">
-                    <div className="text-xl font-bold text-gray-800">
-                      {room.price}
-                    </div>
-                    <div className="text-sm text-gray-500">{room.includes}</div>
+                {/* Amenities */}
+                {room.amenities && (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+                    {room.amenities.map((amenity, index) => (
+                      <div key={index} className="flex items-center gap-2 text-sm text-[#44475A] font-semibold">
+                        {amenity.icon}
+                        <span>{amenity.name}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
 
-                    {/* Action Buttons */}
-                    <div className="mt-4 flex flex-col gap-3">
-                      {room.type === "monthly" ? (
-                        <button className="flex-1 bg-blue-700 hover:bg-blue-600 text-white font-semibold py-3 px-4 rounded-full transition-colors">
-                          Book Now
-                        </button>
-                      ) : (
-                        <>
-                          <button className="flex-1 border-2 border-blue-700 text-blue-700 hover:bg-blue-700 hover:text-white font-semibold py-3 px-4 rounded-full transition-colors">
-                            View Details
-                          </button>
-                          <button className="flex-1 bg-blue-700 hover:bg-blue-600 text-white font-semibold py-3 px-4 rounded-full transition-colors">
-                            Book Now
-                          </button>
-                        </>
-                      )}
+                {/* Availability & Cancellation */}
+                {room.roomsAvailable && (
+                  <div className="space-y-2 mt-4">
+                    <div className="flex items-center gap-1">
+                      <Circle size={14} fill="#079400" stroke="none" />
+                      <h4 className="font-bold text-[#666666] text-sm sm:text-lg">
+                        {room.roomsAvailable} Rooms available
+                      </h4>
                     </div>
+                    <p className="text-xs sm:text-sm bg-[#666666] text-[#FFFFFF] px-4 py-2 rounded-full inline-block">
+                      {room.cancellation}
+                    </p>
                   </div>
                 )}
               </div>
             </div>
-          ))}
-        </div>
+
+            {/* Price Section */}
+            <div>
+              <h4 className="text-lg md:text-xl font-bold text-gray-800">
+                {room.price}
+              </h4>
+              <p className="text-xs md:text-sm text-gray-500">{room.includes}</p>
+
+              {/* Buttons */}
+              <div className="mt-4 flex flex-col sm:flex-row lg:flex-col gap-3">
+                {room.type === "monthly" ? (
+                  <button className="flex-1 bg-blue-700 hover:bg-blue-600 text-white text-sm md:text-base font-semibold py-2 xl:py-3 px-2 xl:px-4 rounded-full transition-colors cursor-pointer">
+                    Book Now
+                  </button>
+                ) : (
+                  <>
+                    <button className="flex-1 border-2 border-blue-700 text-blue-700 hover:bg-blue-700 hover:text-white text-sm md:text-base font-semibold py-2 xl:py-3 px-2 xl:px-4 rounded-full transition-colors cursor-pointer">
+                      View Details
+                    </button>
+                    <button className="flex-1 bg-blue-700 hover:bg-blue-600 text-white text-sm md:text-base font-semibold py-2 xl:py-3 px-2 xl:px-4 rounded-full transition-colors cursor-pointer">
+                      Book Now
+                    </button>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
-    </>
+    </div>
   );
 };
 
 export default TypesOfRoom;
+
