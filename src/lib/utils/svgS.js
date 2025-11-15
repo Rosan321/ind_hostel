@@ -28,7 +28,7 @@ export const dotsSix = (
 
 // 📍 Location Icon
 export const locationIcon = (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="#F1FF51" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" stroke="#F1FF51" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 1 1 18 0Z" />
     <circle cx="12" cy="10" r="3" />
   </svg>
@@ -36,7 +36,7 @@ export const locationIcon = (
 
 // ✉️ Email Icon
 export const emailIcon = (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="#F1FF51" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" stroke="#F1FF51" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <rect x="2" y="4" width="20" height="16" rx="2" ry="2" />
     <polyline points="22,6 12,13 2,6" />
   </svg>
@@ -44,7 +44,7 @@ export const emailIcon = (
 
 // 📞 Phone Icon
 export const phoneIcon = (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="#F1FF51" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" stroke="#F1FF51" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.09 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.81.32 1.6.58 2.37a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l.71-.71a2 2 0 0 1 2.11-.45c.77.26 1.56.46 2.37.58A2 2 0 0 1 22 16.92Z" />
   </svg>
 );

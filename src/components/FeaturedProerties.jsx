@@ -1,11 +1,17 @@
-'use client';
+"use client";
 
-import SwiperButton from '@/lib/utils/swiperButton';
-import Image from 'next/image';
-import { useState } from 'react';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/pagination";
+
+import Image from "next/image";
+import SwiperButton from "@/lib/utils/swiperButton";
+import { useState } from "react";
 
 const FeaturedProperties = () => {
-  const [activeFilter, setActiveFilter] = useState('all');
+  const [activeFilter, setActiveFilter] = useState("all");
 
   const properties = [
     {
@@ -13,68 +19,111 @@ const FeaturedProperties = () => {
       name: "Coxy Stay Hostel",
       location: "Mumbai, India",
       price: "₹8,000/month",
-      description: "Amadeim hostel with all amenities, free Wi-Fi, and guest community space",
+      description:
+        "Amadeim hostel with all amenities, free Wi-Fi, and guest community space",
       category: "budget",
-      amenities: ["WiFi", "AC", "Laundry"],
-      images: "/images/coxy.png"
+      images: "/images/coxy.png",
     },
     {
       id: 2,
       name: "Green Leaf Hostel",
       location: "Pune, India",
       price: "₹7,500/month",
-      description: "Amadeim hostel with all amenities, free Wi-Fi, and guest community space",
+      description:
+        "Amadeim hostel with all amenities, free Wi-Fi, and guest community space",
       category: "budget",
-      amenities: ["WiFi", "Parking", "Security"],
-      images: "/images/g-leaf.png"
+      images: "/images/g-leaf.png",
     },
     {
       id: 3,
-      name: "Green Leaf Hostel",
+      name: "Blue Star Hostel",
       location: "Goa, India",
       price: "₹9,000/month",
-      description: "Amadeim hostel with all amenities, free Wi-Fi, and guest community space",
+      description:
+        "Amadeim hostel with all amenities, free Wi-Fi, and guest community space",
       category: "premium",
-      amenities: ["WiFi", "Pool", "Gym"],
-      images: "/images/g_leaf.png"
+      images: "/images/g_leaf.png",
     },
     {
       id: 4,
       name: "Ocean View Hostel",
       location: "Hyderabad, India",
       price: "₹8,500/month",
-      description: "Amadeim hostel with all amenities, free Wi-Fi, and guest community space",
+      description:
+        "Amadeim hostel with all amenities, free Wi-Fi, and guest community space",
       category: "premium",
-      amenities: ["WiFi", "AC", "TV"],
-      images: "/images/ocean.png"
-    }
+      images: "/images/ocean.png",
+    },
+    {
+      id: 5,
+      name: "Mountain View Hostel",
+      location: "Bangalore, India",
+      price: "₹8,200/month",
+      description:
+        "Amadeim hostel with all amenities, free Wi-Fi, and guest community space",
+      category: "budget",
+      images: "/images/3.png",
+    },
+    {
+      id: 6,
+      name: "City Center Hostel",
+      location: "Delhi, India",
+      price: "₹9,500/month",
+      description:
+        "Amadeim hostel with all amenities, free Wi-Fi, and guest community space",
+      category: "premium",
+      images: "/images/city.png",
+    },
+    {
+      id: 7,
+      name: "Riverside Hostel",
+      location: "Chennai, India",
+      price: "₹7,800/month",
+      description:
+        "Amadeim hostel with all amenities, free Wi-Fi, and guest community space",
+      category: "budget",
+      images: "/images/goa.png",
+    },
+    {
+      id: 8,
+      name: "Luxury Stay Hostel",
+      location: "Kolkata, India",
+      price: "₹11,000/month",
+      description:
+        "Amadeim hostel with all amenities, free Wi-Fi, and guest community space",
+      category: "luxury",
+      images: "/images/urban.png",
+    },
   ];
 
-  const filteredProperties = activeFilter === 'all' 
-    ? properties 
-    : properties.filter(property => property.category === activeFilter);
+  const filtered =
+    activeFilter === "all"
+      ? properties
+      : properties.filter((p) => p.category === activeFilter);
 
   return (
-    <section className="bg-gray-100 lg:pb-12 lg:pb-0 px-4 sm:px-8 lg:px-20">
-      {/* Header Section */}
-      <div className="mb-8 lg:mb-12 text-center">
-        <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">Featured Properties</h2>
-        <p className="text-base sm:text-lg text-gray-600">
+    <section className="bg-gray-100 py-12 px-4 sm:px-8 lg:px-20">
+      {/* Header */}
+      <div className="mb-8 text-center">
+        <h2 className="text-3xl sm:text-4xl font-bold text-gray-800">
+          Featured Properties
+        </h2>
+        <p className="text-lg text-gray-600 mt-2">
           Hand-picked Hostels, PGs, and Hotels verified for comfort and safety
         </p>
       </div>
 
-      {/* Filter Buttons (Scrollable) */}
-      <div className="overflow-x-auto no-scrollbar mb-8">
-        <div className="flex gap-4 min-w-max md:justify-center px-2">
-          {['all', 'budget', 'premium', 'luxury'].map((filter) => (
+      {/* Filters */}
+      <div className="overflow-x-auto mb-8 no-scrollbar">
+        <div className="flex gap-4 min-w-max md:justify-center">
+          {["all", "budget", "premium", "luxury"].map((filter) => (
             <button
               key={filter}
               onClick={() => setActiveFilter(filter)}
-              className={`flex-shrink-0 px-4 lg:px-6 py-2 lg:py-3 text-[#1A1A1A] rounded-full text-base font-semibold transition-all duration-300 cursor-pointer whitespace-nowrap ${
+              className={`px-5 py-2 rounded-full font-semibold ${
                 activeFilter === filter
-                  ? 'bg-[#C7D800]'
-                  : 'border border-gray-300 text-[#1A1A1A] hover:bg-[#C7D800]'
+                  ? "bg-[#C7D800]"
+                  : "border border-gray-300 hover:bg-[#C7D800]"
               }`}
             >
               {filter.charAt(0).toUpperCase() + filter.slice(1)}
@@ -83,56 +132,101 @@ const FeaturedProperties = () => {
         </div>
       </div>
 
-      {/* Properties Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {filteredProperties.map((property) => (
-          <div key={property.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-            {/* Property Image */}
-            <div className="h-48 sm:h-56 bg-gradient-to-br from-yellow-100 to-yellow-200 flex items-center justify-center">
-              <Image
-                src={property.images}
-                alt={property.name}
-                width={500}
-                height={500}
-                className='w-full h-full object-cover'
-              />
+      {/* Swiper */}
+      <Swiper
+        modules={[Autoplay, Pagination]}
+        // loop={true}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        }}
+        pagination={{
+          el: ".custom-pagination",
+          clickable: true,
+        }}
+        spaceBetween={25}
+        breakpoints={{
+          0: { slidesPerView: 1.2 },
+          480: { slidesPerView: 1.4 },
+          640: { slidesPerView: 2 },
+          1024: { slidesPerView: 3 },
+          1280: { slidesPerView: 4 },
+        }}
+        className="pb-6 relative"
+      >
+        {filtered.map((property) => (
+          <SwiperSlide key={property.id}>
+            <div className="bg-white rounded-lg shadow-md hover:shadow-xl transform transition duration-300 hover:scale-105 flex flex-col h-full my-3">
+              {/* Image */}
+              <div className="h-48 bg-gray-100 rounded-t-lg overflow-hidden">
+                <Image
+                  src={property.images}
+                  width={500}
+                  height={500}
+                  alt={property.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              {/* Content */}
+              <div className="p-4 flex flex-col flex-grow">
+                <h3 className="text-lg font-bold">{property.name}</h3>
+                <p className="text-sm text-[#00BFA6]">{property.location}</p>
+
+                <p className="text-sm text-gray-600 mt-2 flex-grow">
+                  {property.description}
+                </p>
+
+                <h4 className="font-semibold mt-3">{property.price}</h4>
+
+                {/* Button */}
+                <div className="mt-5">
+                  <SwiperButton
+                    id={property.id}
+                    title="View Details"
+                    className="w-full h-11 rounded-full bg-white hover:bg-gray-100 flex items-center justify-center gap-2"
+                    showIcon
+                  />
+                </div>
+              </div>
             </div>
-            
-            {/* Property Details */}
-            <div className="p-4">
-              <h3 className="text-lg lg:text-xl font-bold text-[#1A1A1A] mb-2">{property.name}</h3>
-              <p className="text-sm lg:text-base text-[#00BFA6] mb-2 flex items-center">
-                {property.location}
-              </p>
-              <p className="text-[#666666] mb-3 text-xs lg:text-sm">{property.description}</p>
-              
-              {/* Amenities */}
-              {/* <div className="flex flex-wrap gap-2 mb-3">
-                {property.amenities.map((amenity, index) => (
-                  <span key={index} className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">
-                    {amenity}
-                  </span>
-                ))}
-              </div> */}
-              <h4 className="text-base lg:text-lg font-semibold text-[#1A1A1A]">{property.price}</h4>
-              
-              {/* Price and Button */}
-              {/* <div className="mt-8 flex justify-center items-center btn-wiper-bg">
-                <Link href={`/stay/${property.id}`} className="btn-wiper-bg-content flex gap-2 px-6 py-2">
-                  View Details
-                  <ArrowRight />
-                </Link>
-              </div> */}
-              <SwiperButton 
-                id={property.id}
-                title="View Details"
-                className="xl:w-60 h-10 xl:h-14 text-sm sm:text-base mt-4 xl:mt-8 mx-auto mb-4 flex items-center justify-center"
-                showIcon
-              />
-            </div>
-          </div>
+          </SwiperSlide>
         ))}
+        {/* Gradient Overlays */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-white to-transparent z-20" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-white to-transparent z-20" />
+      </Swiper>
+
+      {/* Custom Pagination BELOW slider */}
+      <div className="mt-6 flex justify-center">
+        <div className="custom-pagination"></div>
       </div>
+
+      {/* Pagination styling */}
+      <style>
+        {`
+    .custom-pagination {
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .custom-pagination .swiper-pagination-bullet {
+      background: #ccc;
+      opacity: 1;
+      width: 10px;
+      height: 10px;
+    }
+
+    .custom-pagination .swiper-pagination-bullet-active {
+      background: #C7D800;
+      transform: scale(1.3);
+    }
+  `}
+      </style>
     </section>
   );
 };

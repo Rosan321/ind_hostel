@@ -33,17 +33,17 @@ export default function Footer() {
       </div>
 
       {/* Footer Content */}
-      <div className="relative z-10 mx-auto px-4 sm:px-8 lg:px-20 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-10">
+      <div className="relative z-10 mx-auto px-4 sm:px-8 lg:px-20 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-10">
         {/* Logo Section */}
         <div
           className="col-span-full md:col-span-1 lg:col-span-2"
         >
           <div
-            className="flex items-center gap-3 mb-4"
+            className="flex items-center gap-3 mb-4 w-16 lg:w-20 w-16 lg:h-20"
           >
             <Image
               src="/images/logo.png"
-              alt="FitIQ Logo"
+              alt="Ind Hostel Logo"
               width={100}
               height={100}
               className="object-contain"
@@ -151,19 +151,20 @@ export default function Footer() {
             <li
               className="flex items-start gap-3"
             >
-              {locationIcon}
+              <span>{locationIcon}</span>
+              {/* {locationIcon} */}
               <span className="text-sm font-medium">IndHostels, New Delhi, India - 500089</span>
             </li>
             <li
               className="flex items-start gap-3"
             >
-              {emailIcon}
+              <span>{emailIcon}</span>
               <span className="text-sm font-medium">support@indhostel.com</span>
             </li>
             <li
               className="flex items-start gap-3"
             >
-              {phoneIcon}
+              <span>{phoneIcon}</span>
               <span className="text-sm font-medium">+91-9876543210</span>
             </li>
           </ul>
@@ -172,7 +173,7 @@ export default function Footer() {
 
       {/* Bottom Line */}
       <div
-        className="mt-4 md:mt-12 px-4 sm:px-8 lg:px-20 border-t border-[#FFFFFF1F] pt-4 text-center text-white text-sm flex flex-col sm:flex-row justify-between items-center gap-2"
+        className="pb-2 sm:pb-0 sm:mt-12 px-4 sm:px-8 lg:px-20 border-t border-[#FFFFFF1F] pt-4 text-center text-white text-sm flex flex-col sm:flex-row justify-between items-center gap-2"
       >
         <p className="text-sm font-medium">© 2025 FitIQ. All rights reserved</p>
       </div>

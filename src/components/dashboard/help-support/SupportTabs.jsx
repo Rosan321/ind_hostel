@@ -25,7 +25,7 @@ export default function SupportTabs({ activeTab, setActiveTab }) {
   ];
 
   return (
-    <div className="flex gap-4 mb-8">
+    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-8">
       {tabs.map((tab) => (
         <button
           key={tab.id}

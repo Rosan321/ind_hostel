@@ -87,7 +87,7 @@ export default function SearchBar() {
           {/* --- Desktop Layout (hidden on lg-) --- */}
           <div className="hidden lg:flex flex-row items-center justify-between gap-4 xl:gap-6 w-full">
             {/* Location Input */}
-            <div className="flex items-center gap-3 bg-white text-black px-4 xl:px-6 rounded-full h-12 flex-1 min-w-0">
+            <div className="flex items-center gap-3 bg-white text-black px-4 xl:px-6 rounded-full h-12 flex-2 min-w-0">
               <MapPin size={20} className="flex-shrink-0" />
               <input
                 type="text"

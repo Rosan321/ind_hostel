@@ -242,7 +242,7 @@ const BookingSummary = ({ basePrice = 2999, listingType = "pg" }) => {
   }, [nights, guests, basePrice, calculatedBasePrice, durationType, durationMultipliers, checkIn, checkOut, isPG]);
 
   return (
-    <div className="bg-white rounded-3xl shadow-md p-6 py-6 space-y-4 sm:space-y-5 sticky top-24">
+    <div className="bg-white rounded-3xl shadow-md p-4 sm:p-6 py-6 space-y-4 sm:space-y-5 sticky">
       <h3 className="text-lg font-semibold border-b border-gray-300 pb-4 sm:pb-6">
         Booking Summary
       </h3>

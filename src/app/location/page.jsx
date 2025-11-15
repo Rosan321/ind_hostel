@@ -34,6 +34,7 @@ const StayListing = () => {
       rating: 4.6,
       reviews: 128,
       type: "Hostel",
+      imgs: "/images/sunr.png"
     },
     {
       id: 2,
@@ -44,6 +45,7 @@ const StayListing = () => {
       rating: 4.4,
       reviews: 90,
       type: "PG",
+      imgs: "/images/urban.png"
     },
     {
       id: 3,
@@ -54,6 +56,7 @@ const StayListing = () => {
       rating: 4.7,
       reviews: 150,
       type: "Hostel",
+      imgs: "/images/sunr.png"
     },
   ];
 

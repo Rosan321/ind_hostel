@@ -25,30 +25,41 @@ const ImageThumbnail = ({ badge, images = [] }) => {
           </div>
         )}
 
-        {badge && (
-          <div className="absolute left-4 top-4 bg-emerald-500 text-white text-xs px-3 py-1 rounded-full shadow">
-            {badge}
-          </div>
-        )}
+        {/* VERIFIED BADGE */}
+        <section className="
+          flex items-center gap-1 sm:gap-2 absolute left-2 sm:left-4 top-2 sm:top-4
+          bg-[#00BFA6] text-white px-2 sm:px-4 py-1 sm:py-2 rounded-full
+          text-[10px] sm:text-sm shadow
+        ">
+          <CircleCheck size={14} className="sm:w-4 sm:h-4" />
+          <p className="font-medium">Verified Stay</p>
+        </section>
 
-        <section className="flex items-center gap-2 absolute left-4 top-4 bg-[#00BFA6] text-white px-4 py-2 rounded-full">
-            <CircleCheck size={15} />
-            <p className="font-medium text-sm">
-            Verified Stay
-            </p>
-        </section>
-        <section className="flex items-center gap-2 absolute left-4 bottom-4 bg-[#F1FF51] px-3 py-2 rounded-lg">
-            <Star fill="#1A1A1A" size={15} />
-            <p className="font-medium text-sm text-[#1A1A1A]">
+        {/* RATING BADGE */}
+        <section className="
+          flex items-center gap-1 sm:gap-2 absolute left-2 sm:left-4 bottom-2 sm:bottom-4
+          bg-[#F1FF51] px-2 sm:px-3 py-1 sm:py-2 rounded-lg
+          text-[10px] sm:text-sm shadow
+        ">
+          <Star fill="#1A1A1A" size={14} className="sm:w-4 sm:h-4" />
+          <p className="font-medium text-[#1A1A1A]">
             4.8 / 5 (210 Reviews)
-            </p>
+          </p>
         </section>
-        <section className="flex items-center absolute right-4 bottom-4 bg-white px-3 py-1 rounded-lg shadow ">
-            <h3 className="text-2xl font-bold">
+
+        {/* PRICE BADGE */}
+        <section className="
+          flex items-baseline gap-1 absolute right-2 sm:right-4 bottom-2 sm:bottom-4
+          bg-white px-2 sm:px-3 py-1 sm:py-2 rounded-lg shadow
+        ">
+          <h3 className="text-base sm:text-xl lg:text-2xl font-bold">
             From ₹2,999 /
-            </h3>
-            <p className="mt-2 text-[#666666] font-medium">night</p>
+          </h3>
+          <p className="text-[10px] sm:text-sm text-[#666666] font-medium">
+            night
+          </p>
         </section>
+
       </div>
 
       {/* Thumbnails */}

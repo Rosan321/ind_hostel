@@ -27,7 +27,7 @@ export default function HelpPage() {
   ];
 
   return (
-    <section className="pr-12 py-10">
+    <section className="lg:pr-12 pb-10">
       <h1 className="text-2xl font-semibold mb-1">Help & Support</h1>
       <p className="text-gray-600 mb-6">
         We’re here to help you with bookings, rooms, or payments
@@ -37,7 +37,7 @@ export default function HelpPage() {
       <SupportTabs activeTab={activeTab} setActiveTab={setActiveTab} />
 
       {/* Content */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
         <MessageForm />
         <PreviousMessages messages={previousMessages} />
       </div>

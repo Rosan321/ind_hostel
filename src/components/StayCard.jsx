@@ -84,7 +84,7 @@ export default function StayCard({ id, title, location, rating, price, imgs }) {
       <SwiperButton 
         id={id}
         title="Book Now"
-        className="w-44 h-11 text-sm sm:text-base mx-auto mb-4"
+        className="sm:w-44 sm:h-11 text-sm sm:text-base mx-auto mb-4"
         showIcon
       />
 

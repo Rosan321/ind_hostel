@@ -62,8 +62,8 @@ const AboutUs = () => {
               className="
     flex flex-col items-center text-center gap-6 text-white bg-[#1A1A1A]
     w-3/4 md:w-2/3 lg:w-56 p-6 rounded-lg
-    shadow-lg transition-all duration-300
-    relative lg:absolute lg:bottom-[-48] lg:right-52 xl:bottom-[-80] xl:right-96
+    shadow-lg transform transition duration-300 hover:scale-105
+    relative lg:absolute lg:bottom-[-48] lg:right-52 xl:bottom-[-80] xl:right-106
   "
             >
               {/* 1 */}

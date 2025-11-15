@@ -4,7 +4,7 @@ import { ArrowRight, Link2 } from "lucide-react";
 
 export default function LocationSection() {
   return (
-    <div className="bg-white rounded-3xl p-6 shadow mt-6">
+    <div className="bg-white rounded-3xl p-4 sm:p-6 shadow mt-6">
       <h3 className="text-2xl text-[#1A1A1A] font-bold mb-4">Find Us Easily</h3>
 
       <p className="text-[#666666] text-base mb-6">

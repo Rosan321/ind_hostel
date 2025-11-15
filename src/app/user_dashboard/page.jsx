@@ -8,10 +8,8 @@ import { Bed, Clock, MessageSquareMore } from "lucide-react";
 const DashboardHome = () => {
   return (
     <>
-      <div className="pr-12">
+      <div className="lg:pr-12">
         <DashboardHeader />
-
-        {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <StatsCard
             title="Active Bookings"
@@ -34,7 +32,7 @@ const DashboardHome = () => {
         <BookingCard />
 
         {/* Messages + Announcements */}
-        <div className="flex flex-col md:flex-row gap-6">
+        <div className="flex flex-col xl:flex-row gap-6 mb-6 lg:mb-6">
           <MessagesSection />
           <AnnouncementsCard />
         </div>

@@ -11,7 +11,6 @@ import {
 } from "@/lib/utils/headerDropdowns";
 import { useDropdown } from "@/hooks/useDropDown";
 
-// Navigation and Dropdown Data
 const NAV_LINKS = [
   { path: "/", label: "Home" },
   { path: "/about", label: "About Us" },
@@ -24,14 +23,23 @@ const DROPDOWNS = [
   { type: "hotels", label: "Hotels", items: hotelsDropdownItems },
 ];
 
-// Unified Dropdown Component
-const DropdownMenu = ({ items, onItemClick, isMobile = false }) => {
+const DropdownMenu = ({
+  items,
+  onItemClick,
+  isMobile = false,
+  onMouseEnter,
+  onMouseLeave,
+}) => {
   const baseClasses = isMobile
     ? "mt-2 flex flex-col gap-3 text-sm bg-gray-800 p-3 rounded-lg"
     : "absolute left-1/2 -translate-x-1/2 top-full mt-3 bg-white text-black rounded-xl shadow-xl p-4 w-64 flex flex-col gap-3 text-sm";
 
   return (
-    <ul className={baseClasses}>
+    <ul
+      className={baseClasses}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
       {items.map(({ label, type, category }, index) => (
         <li
           key={index}
@@ -45,7 +53,6 @@ const DropdownMenu = ({ items, onItemClick, isMobile = false }) => {
   );
 };
 
-// Unified NavLink Component
 const NavLink = ({ path, label, isActive, onClick }) => (
   <Link
     href={path}
@@ -60,7 +67,6 @@ const NavLink = ({ path, label, isActive, onClick }) => (
   </Link>
 );
 
-// Unified Auth Button Component
 const AuthButton = ({ href, label, variant = "primary", onClick }) => {
   const baseClasses =
     variant === "primary"
@@ -92,6 +98,7 @@ const Header = () => {
     dropdownRef,
     openDropdown,
     closeDropdown,
+    closeDropdownWithDelay,
     toggleDropdown,
   } = useDropdown();
 
@@ -105,10 +112,38 @@ const Header = () => {
     setIsHoveringDropdown(false);
   };
 
+  const handleNavItemMouseEnter = (type) => {
+    setIsHoveringDropdown(true);
+    openDropdown(type);
+  };
+
+  const handleNavItemMouseLeave = () => {
+    setIsHoveringDropdown(false);
+    closeDropdownWithDelay();
+  };
+
+  const handleDropdownMouseEnter = () => {
+    setIsHoveringDropdown(true);
+  };
+
+  const handleDropdownMouseLeave = () => {
+    setIsHoveringDropdown(false);
+    closeDropdownWithDelay();
+  };
+
+  const handleNavMouseLeave = (e) => {
+    // Check if we're leaving the entire nav container
+    if (!e.relatedTarget || !dropdownRef.current?.contains(e.relatedTarget)) {
+      setIsHoveringDropdown(false);
+      closeDropdown();
+    }
+  };
+
   return (
     <nav
       ref={dropdownRef}
       className="fixed top-0 w-full z-50 bg-[#111] text-white shadow-md"
+      onMouseLeave={handleNavMouseLeave}
     >
       <div className="relative z-10 px-4 sm:px-8 lg:px-20">
         <div className="flex items-center justify-between py-4">
@@ -136,8 +171,9 @@ const Header = () => {
                 <li
                   key={type}
                   className="relative group flex items-center gap-2 cursor-pointer select-none"
-                  onMouseEnter={() => openDropdown(type)}
-                  onClick={() => toggleDropdown(type)} // click toggles
+                  onMouseEnter={() => handleNavItemMouseEnter(type)}
+                  onMouseLeave={handleNavItemMouseLeave}
+                  onClick={() => toggleDropdown(type)}
                 >
                   <span
                     className={`xl:text-lg ${
@@ -156,6 +192,8 @@ const Header = () => {
                     <DropdownMenu
                       items={items}
                       onItemClick={handleDropdownItemClick}
+                      onMouseEnter={handleDropdownMouseEnter}
+                      onMouseLeave={handleDropdownMouseLeave}
                     />
                   )}
                 </li>
@@ -166,7 +204,11 @@ const Header = () => {
           {/* Desktop Auth Buttons */}
           <div className="hidden lg:flex items-center gap-3">
             <AuthButton href="/signup" label="Sign-Up" variant="primary" />
-            <AuthButton href="/user_dashboard" label="Login" variant="secondary" />
+            <AuthButton
+              href="/user_dashboard"
+              label="Login"
+              variant="secondary"
+            />
           </div>
 
           {/* Mobile Menu Toggle */}

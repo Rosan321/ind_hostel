@@ -79,7 +79,7 @@ const WhyChooseUs = () => {
                 className="w-3/5 h-4/5"
               />
             </div>
-            <div className="absolute bottom-16 xl:right-4/12 flex flex-col text-center gap-4 bg-[#F1FF51] w-32 md:w-56 p-4 md:p-6">
+            <div className="absolute bottom-16 xl:right-4/12 flex flex-col text-center gap-4 bg-[#F1FF51] w-32 md:w-56 p-4 md:p-6 transform transition duration-300 hover:scale-105">
               <section className="flex flex-col items-start gap-3">
                 {/* <CircleCheck className="text-white w-5 h-5" /> */}
                 <h6 className="text-xs lg:text-base font-semibold md:h-20">

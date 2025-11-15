@@ -32,7 +32,7 @@ const LocationExplorer = () => {
 
         {/* Draggable City Buttons */}
         <div className="overflow-x-auto no-scrollbar">
-          <div className="flex gap-4 min-w-max md:justify-center">
+          <div className="flex gap-4 min-w-max md:justify-center mb-4">
             {cities.map((city) => (
               <button
                 key={city.name}
@@ -53,7 +53,7 @@ const LocationExplorer = () => {
       {/* Main Content */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 xl:gap-12 items-start">
         {/* Left - City Image */}
-        <div className="rounded-2xl overflow-hidden w-full h-64 sm:h-96 lg:h-[480px] xl:h-[540px]">
+        <div className="rounded-2xl overflow-hidden w-full h-64 sm:h-96 lg:h-[480px] xl:h-[540px] transform transition duration-300 hover:scale-102">
           <Image
             src={
               cities.find((c) => c.name === selectedCity)?.image ||
@@ -77,7 +77,7 @@ const LocationExplorer = () => {
             {currentHostels.length > 0 ? (
               currentHostels.slice(0, 3).map((hostel) => (
                 <div key={hostel.id}>
-                  <div className="flex lg:gap-4 gap-6 items-start">
+                  <div className="flex lg:gap-4 gap-6 items-start transform transition duration-300 hover:scale-102">
                     <Image
                       src={hostel.image}
                       alt={hostel.name}

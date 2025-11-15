@@ -33,7 +33,7 @@ export default function MessagesSection() {
       </p>
       <ul className="space-y-3">
         {messages.map((msg, idx) => (
-          <li key={idx} className="flex justify-between">
+          <li key={idx} className="flex flex-col sm:flex-row justify-between">
             <div className="flex items-center gap-2">
               <img
                 src={msg.profile}

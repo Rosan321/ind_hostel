@@ -6,9 +6,9 @@ import SecuritySection from "@/components/dashboard/dashboard-settings/SecurityS
 
 export default function SettingsPage() {
   return (
-    <section className="pr-12 py-10">
-      <h1 className="text-2xl font-semibold mb-1">Account Settings</h1>
-      <p className="text-gray-600 mb-6">
+    <div className="lg:pr-12">
+      <h1 className="text-2xl text-[#1A1A1A] font-semibold mb-1">Account Settings</h1>
+      <p className="text-[#666666] mb-6">
         Manage your personal info, password, and preferences
       </p>
 
@@ -16,6 +16,6 @@ export default function SettingsPage() {
       <SecuritySection />
       <NotificationSection />
       <AccountSection />
-    </section>
+    </div>
   );
 }

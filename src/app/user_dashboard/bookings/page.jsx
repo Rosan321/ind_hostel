@@ -9,7 +9,6 @@ export default function BookingsPage() {
   const [status, setStatus] = useState("All");
   const [sortBy, setSortBy] = useState("recent");
 
-  // Dummy Data (Replace with API data)
   const bookings = [
     {
       id: 1,
@@ -20,7 +19,7 @@ export default function BookingsPage() {
       checkOut: "Nov 30, 2025",
       price: "7,500",
       per: "Month",
-      image: "/images/hostel1.jpg",
+      image: "/images/coxy.png",
     },
     {
       id: 2,
@@ -31,7 +30,7 @@ export default function BookingsPage() {
       checkOut: "Jan 2, 2026",
       price: "8,200",
       per: "Month",
-      image: "/images/pg1.jpg",
+      image: "/images/g-leaf.png",
     },
     {
       id: 3,
@@ -42,11 +41,10 @@ export default function BookingsPage() {
       checkOut: "Oct 25, 2025",
       price: "3,600",
       per: "Night",
-      image: "/images/hotel1.jpg",
+      image: "/images/g_leaf.png",
     },
   ];
 
-  // Filtering Logic
   const filteredBookings = useMemo(() => {
     let data = [...bookings];
 
@@ -76,7 +74,7 @@ export default function BookingsPage() {
   }, [bookingType, status, sortBy]);
 
   return (
-    <section className="pr-12 pt-4">
+    <section className="lg:pr-12 pb-8">
       <h1 className="text-2xl font-semibold mb-2">My Bookings</h1>
       <p className="text-gray-600 mb-6">
         Manage all your hostel, PG, and hotel stays in one place
