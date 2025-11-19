@@ -62,21 +62,21 @@ const Login = () => {
                 />
                 <p>Remember Me</p>
               </section>
-              <button className="py-2.5 sm:py-3 text-[#00BFA6] text-xs md:text-base font-medium cursor-pointer">
+              <button className="py-2.5 sm:py-3 text-[#44475A] text-xs md:text-base font-medium cursor-pointer">
                 Forget Password?
               </button>
             </div>
 
-            <button
-              type="submit"
-              className="bg-[#F3FF3D] rounded-full py-2.5 sm:py-3 w-full text-[#1A1A1A] font-semibold hover:bg-[#e9f728] transition-colors text-sm sm:text-base cursor-pointer"
+            <Link
+              href="/user_dashboard"
+              className="block bg-[#0D0BA8] rounded-full py-2.5 sm:py-3 w-full text-white font-semibold hover:bg-[#2A32FF] transition-colors text-sm sm:text-base text-center"
             >
               Login
-            </button>
+            </Link>
 
             <p className="text-center text-xs sm:text-sm text-[#666666] mt-1">
               New to IndHostel?{" "}
-              <Link href="/signup" className="text-[#00BFA6] font-semibold">
+              <Link href="/signup" className="text-[#44475A] font-semibold">
                 Sign Up
               </Link>{" "}
               here

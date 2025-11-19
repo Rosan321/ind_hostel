@@ -88,7 +88,7 @@ export function Tabs({
                   flex-shrink-0 px-5 py-2.5 rounded-full border text-sm font-medium transition-all
                   ${
                     activeTab === tab.id
-                      ? "bg-[#00BFA6] text-white border-[#00BFA6]"
+                      ? "bg-[#44475A] text-white border-[#44475A]"
                       : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
                   }
                 `}

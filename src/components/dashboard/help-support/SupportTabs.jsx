@@ -1,5 +1,7 @@
 "use client";
 
+import ShuffleInOnScroll from "@/components/animations/SuffleInOnScroll";
+
 export default function SupportTabs({ activeTab, setActiveTab }) {
   const tabs = [
     {
@@ -28,7 +30,6 @@ export default function SupportTabs({ activeTab, setActiveTab }) {
     <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-8">
       {tabs.map((tab) => (
         <button
-          key={tab.id}
           className={`w-full px-6 py-4 rounded-xl border transition cursor-pointer ${
             activeTab === tab.id
               ? "bg-[#0D0BA8] text-white border-blue-700"
@@ -36,14 +37,16 @@ export default function SupportTabs({ activeTab, setActiveTab }) {
           }`}
           onClick={() => setActiveTab(tab.id)}
         >
-          <p className="font-semibold">{tab.label}</p>
-          <p
-            className={`text-sm ${
-              activeTab === tab.id ? "text-blue-100" : "text-gray-500"
-            }`}
-          >
-            {tab.desc}
-          </p>
+          <ShuffleInOnScroll delay={0.2} key={tab.id}>
+            <p className="font-semibold">{tab.label}</p>
+            <p
+              className={`text-sm ${
+                activeTab === tab.id ? "text-blue-100" : "text-gray-500"
+              }`}
+            >
+              {tab.desc}
+            </p>
+          </ShuffleInOnScroll>
         </button>
       ))}
     </div>

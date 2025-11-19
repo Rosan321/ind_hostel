@@ -1,25 +1,3 @@
-// "use client";
-
-// import SearchBar from "./SearchBar";
-
-// // import { MapPin, Calendar, Search } from "lucide-react";
-
-// export default function HeroSection() {
-//   return (
-//     <section
-//       className="relative w-full h-screen bg-cover bg-center flex items-center justify-center"
-//       style={{ backgroundImage: "url('/images/hero.png')" }}
-//     >
-//       <div className="absolute inset-0 bg-black/60"></div>
-
-//       {/* Centered Search Bar */}
-//       <div className="relative z-10 w-full flex justify-center px-4">
-//         <SearchBar />
-//       </div>
-//     </section>
-//   );
-// }
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -44,13 +22,13 @@ export default function HeroSection() {
   }, [images.length]);
 
   return (
-    <section className="relative w-full h-[836px] flex items-center justify-center overflow-hidden">
+    <section className="relative w-full h-[100vh] flex items-center justify-center overflow-hidden">
       {/* Background Images */}
       <div className="absolute inset-0">
         {images.map((src, index) => (
           <div
             key={index}
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-[1500ms] ${
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-[3000ms] ${
               current === index ? "opacity-100" : "opacity-0"
             }`}
             style={{ backgroundImage: `url(${src})` }}

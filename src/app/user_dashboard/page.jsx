@@ -1,3 +1,5 @@
+import RevealOnScroll from "@/components/animations/RevealOnScroll";
+import SlideUp from "@/components/animations/SlideUp";
 import AnnouncementsCard from "@/components/dashboard/AnnouncementCard";
 import BookingCard from "@/components/dashboard/BookingCard";
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
@@ -10,7 +12,7 @@ const DashboardHome = () => {
     <>
       <div className="lg:pr-12">
         <DashboardHeader />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-8">
           <StatsCard
             title="Active Bookings"
             value="2"
@@ -32,10 +34,12 @@ const DashboardHome = () => {
         <BookingCard />
 
         {/* Messages + Announcements */}
-        <div className="flex flex-col xl:flex-row gap-6 mb-6 lg:mb-6">
-          <MessagesSection />
-          <AnnouncementsCard />
-        </div>
+        <RevealOnScroll delay={0.2}>
+          <div className="flex flex-col xl:flex-row gap-6 mb-6 lg:mb-6">
+            <MessagesSection />
+            <AnnouncementsCard />
+          </div>
+        </RevealOnScroll>
       </div>
     </>
   );

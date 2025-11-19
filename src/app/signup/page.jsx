@@ -104,7 +104,7 @@ export default function SignUp() {
 
             <button
               type="submit"
-              className="bg-[#F3FF3D] rounded-full py-2.5 sm:py-3 w-full text-black font-semibold hover:bg-[#e9f728] transition-colors text-sm sm:text-base"
+              className="bg-[#0D0BA8] rounded-full py-2.5 sm:py-3 w-full text-[#FFF] font-semibold hover:bg-[#2A32FF] transition-colors text-sm sm:text-base cursor-pointer"
             >
               Sign Up
             </button>
@@ -113,7 +113,7 @@ export default function SignUp() {
               Already have an account?{" "}
               <Link
                 href="/login"
-                className="text-[#00BFA6] font-medium cursor-pointer hover:underline"
+                className="text-[#666666] font-medium cursor-pointer hover:underline"
               >
                 Log In
               </Link>

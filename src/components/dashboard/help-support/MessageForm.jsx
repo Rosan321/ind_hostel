@@ -1,5 +1,6 @@
 "use client";
 
+import RevealOnScroll from "@/components/animations/RevealOnScroll";
 import { Upload } from "lucide-react";
 import { useState } from "react";
 
@@ -19,6 +20,7 @@ export default function MessageForm() {
 
   return (
     <div className="bg-white shadow rounded-2xl p-6 w-full">
+      <RevealOnScroll delay={0.2}>
       <p className="text-[#1A1A1A] mb-2">Subject</p>
       <input
         type="text"
@@ -58,6 +60,7 @@ export default function MessageForm() {
             Send Message
         </button>
       </div>
+      </RevealOnScroll>
     </div>
   );
 }

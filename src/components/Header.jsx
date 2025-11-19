@@ -43,7 +43,7 @@ const DropdownMenu = ({
       {items.map(({ label, type, category }, index) => (
         <li
           key={index}
-          className="hover:text-yellow-500 cursor-pointer transition-colors duration-200 py-1 px-2 rounded"
+          className="hover:text-[#0D0BA8] cursor-pointer transition-colors duration-200 py-1 px-2 rounded"
           onClick={() => onItemClick(type, category)}
         >
           {label}
@@ -57,11 +57,15 @@ const NavLink = ({ path, label, isActive, onClick }) => (
   <Link
     href={path}
     onClick={onClick}
-    className={`xl:text-lg px-4 lg:px-0 xl:px-4 font-medium border-b-2 pb-2 transition-colors duration-300 ${
-      isActive
-        ? "border-[#C7D800] text-[#C7D800]"
-        : "border-transparent hover:border-[#C7D800]"
-    }`}
+    className={`relative xl:text-lg px-4 lg:px-0 xl:px-4 font-semibold pb-2
+      after:absolute after:left-0 after:bottom-0 after:h-[2px]
+      after:bg-[#0D0BA8]
+      after:transition-all after:duration-300
+      ${isActive 
+        ? "after:w-full"
+        : "after:w-0 hover:after:w-full"
+      }
+    `}
   >
     {label}
   </Link>
@@ -78,7 +82,7 @@ const AuthButton = ({ href, label, variant = "primary", onClick }) => {
       <span
         className={
           variant === "primary"
-            ? "btn-wiper-content text-base"
+            ? "btn-wiper-content text-base text-[#FFF] lg:text-[#0D0BA8]"
             : "btn-wiper-bg-content text-base"
         }
       >
@@ -132,8 +136,13 @@ const Header = () => {
   };
 
   const handleNavMouseLeave = (e) => {
-    // Check if we're leaving the entire nav container
-    if (!e.relatedTarget || !dropdownRef.current?.contains(e.relatedTarget)) {
+    const dropdownEl = dropdownRef.current;
+
+    if (
+      !dropdownEl ||
+      !(e.relatedTarget instanceof Node) ||
+      !dropdownEl.contains(e.relatedTarget)
+    ) {
       setIsHoveringDropdown(false);
       closeDropdown();
     }
@@ -142,21 +151,25 @@ const Header = () => {
   return (
     <nav
       ref={dropdownRef}
-      className="fixed top-0 w-full z-50 bg-[#111] text-white shadow-md"
+      className="fixed top-0 w-full z-50 bg-[#FFFFFF] text-white shadow-md"
       onMouseLeave={handleNavMouseLeave}
     >
       <div className="relative z-10 px-4 sm:px-8 lg:px-20">
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
-          <div className="w-24 h-14 bg-yellow-400 flex items-center justify-center text-black font-bold">
+          <div className="w-18 h-14 flex items-center justify-center">
             <Link href="/">
-              <h4>Logo</h4>
+              <img 
+                src="/images/logo.png"
+                alt="logo"
+                className="w-20 h-16"
+              />
             </Link>
           </div>
 
           {/* Desktop Nav */}
           <div className="hidden lg:flex items-center justify-center flex-1">
-            <ul className="flex items-center gap-5 text-sm">
+            <ul className="flex items-center gap-5 text-sm text-[#1A1A1A] font-semibold">
               {NAV_LINKS.map(({ path, label }) => (
                 <li key={path}>
                   <NavLink
@@ -177,7 +190,7 @@ const Header = () => {
                 >
                   <span
                     className={`xl:text-lg ${
-                      activeDropdown === type ? "text-[#C7D800]" : ""
+                      activeDropdown === type ? "text-[#1A1A1A]" : ""
                     }`}
                   >
                     {label}
@@ -205,7 +218,7 @@ const Header = () => {
           <div className="hidden lg:flex items-center gap-3">
             <AuthButton href="/signup" label="Sign-Up" variant="primary" />
             <AuthButton
-              href="/user_dashboard"
+              href="/login"
               label="Login"
               variant="secondary"
             />
@@ -213,11 +226,11 @@ const Header = () => {
 
           {/* Mobile Menu Toggle */}
           <button
-            className="lg:hidden text-white cursor-pointer"
+            className="lg:hidden text-[#1A1A1A] cursor-pointer"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle Menu"
           >
-            {isMenuOpen ? <X size={48} /> : <LayoutGrid size={44} />}
+            {isMenuOpen ? <X size={48} /> : <LayoutGrid size={44} fill="#1A1A1A" />}
           </button>
         </div>
 

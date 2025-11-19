@@ -1,14 +1,12 @@
 import GuestsSay from '@/components/GuestSays'
-import HowItWorks from '@/components/HowItWorks'
 import JoinCommunity from '@/components/JoinComunity'
 import TrustedBy from '@/components/TrustedBy'
 import WhoWeAre from '@/components/WhoWeAre'
 
 const About = () => {
   return (
-    <div>
+    <div className='bg-gray-100'>
       <WhoWeAre />
-      <HowItWorks />
       <TrustedBy />
       <GuestsSay />
       <JoinCommunity />

@@ -28,7 +28,7 @@ export default function Footer() {
           preserveAspectRatio="none"
           viewBox="0 0 1200 120"
         >
-          <path d="M0 0 L600 60 L1200 0 H0 Z" fill="currentColor"></path>
+          <path d="M0 0 L600 60 L1200 0 H0 Z" fill="lab(96.1596% -.082314 -1.13575)"></path>
         </svg>
       </div>
 
@@ -39,14 +39,12 @@ export default function Footer() {
           className="col-span-full md:col-span-1 lg:col-span-2"
         >
           <div
-            className="flex items-center gap-3 mb-4 w-16 lg:w-20 w-16 lg:h-20"
+            className="flex items-center gap-3 mb-4 w-16 sm:w-20 lg:w-30 h-16 sm:h-20 lg:h-30"
           >
-            <Image
-              src="/images/logo.png"
+            <img
+              src="/images/logoF.png"
               alt="Ind Hostel Logo"
-              width={100}
-              height={100}
-              className="object-contain"
+              className="object-contain w-16 sm:w-20 lg:w-30 h-16 sm:h-20 lg:h-30"
             />
           </div>
           <p
@@ -69,7 +67,7 @@ export default function Footer() {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full text-[#F1FF51] flex items-center justify-center transition"
+                className="w-9 h-9 rounded-full text-[#2A32FF] flex items-center justify-center transition"
               >
                 {social.icon}
               </a>

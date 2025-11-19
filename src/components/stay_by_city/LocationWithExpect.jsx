@@ -9,6 +9,9 @@ import {
 import { useState } from "react";
 import CarouselCard from "./Carousel";
 import Link from "next/link";
+import RevealOnScroll from "../animations/RevealOnScroll";
+import ShuffleInOnScroll from "../animations/SuffleInOnScroll";
+import AnimatedCard from "../animations/AnimatedCard";
 
 const listings = [
   {
@@ -86,26 +89,30 @@ const LocationWithExpect = () => {
     <div className="w-full mx-auto pb-10 space-y-4 lg:space-y-8">
       <div className="py-12 space-y-6 lg:space-y-8">
         {/* Heading + Search */}
+        <RevealOnScroll delay={0.2}>
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
-            Find Stays In Mumbai
-          </h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
+              Find Stays In Mumbai
+            </h2>
 
-          {/* Search Bar */}
-          <div className="relative w-full lg:w-[520px]">
-            <Search
-              className="absolute top-1/2 -translate-y-1/2 left-3 text-gray-500"
-              size={18}
-            />
-            <input
-              type="text"
-              placeholder="Search neighborhood"
-              className="w-full border border-gray-300 rounded-full py-2 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-[#00BFA6] focus:border-transparent transition"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-          </div>
+            {/* Search Bar */}
+            <div className="relative w-full lg:w-[520px]">
+              <Search
+                className="absolute top-1/2 -translate-y-1/2 left-3 text-gray-500"
+                size={18}
+              />
+              <input
+                type="text"
+                placeholder="Search neighborhood"
+                className="w-full border border-gray-300 rounded-full py-2 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-transparent transition"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </div>
         </div>
+          </RevealOnScroll>
+          
+          <ShuffleInOnScroll delay={0.2}>
 
         {/* Main Split Section */}
         <div className="grid grid-cols-12 gap-6">
@@ -127,73 +134,83 @@ const LocationWithExpect = () => {
             ))}
           </div>
         </div>
+        </ShuffleInOnScroll>
       </div>
 
       {/* Local Guide Section */}
       <div>
         {/* Header */}
-        <p className="text-xs sm:text-sm font-semibold text-[#00BFA6] ">
+        <RevealOnScroll delay={0.2}>
+        <p className="text-xs sm:text-sm font-semibold text-[#44475A] ">
           Local Guide
         </p>
-
+        </RevealOnScroll>
+        <RevealOnScroll delay={0.3}>
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#1A1A1A] my-2 ">
           Neighborhoods & Safety — What to expect
         </h2>
-
+        </RevealOnScroll>
+        <RevealOnScroll delay={0.4}>
         <p className="text-[#666666] text-sm sm:text-base mb-6  max-w-2xl">
           Short local tips to help students, professionals & travelers pick the
           best spot
         </p>
+        </RevealOnScroll>
 
         {/* Neighborhood Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {neighborhoods.map((neighborhood) => (
-            <div
-              key={neighborhood.id}
-              className="border border-gray-200 rounded-3xl p-5 sm:p-6 flex flex-col sm:flex-row sm:items-start gap-4 bg-white hover:shadow-md transition-shadow duration-200"
-            >
-              {/* Icon */}
-              <neighborhood.icon className="h-10 w-10 p-2 rounded-full text-white bg-[#00BFA6] flex-shrink-0 mx-auto sm:mx-0" />
+        <RevealOnScroll delay={0.4}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {neighborhoods.map((neighborhood) => (
+              <AnimatedCard
+                key={neighborhood.id}
+                className="border border-gray-200 rounded-3xl p-5 sm:p-6 flex flex-col sm:flex-row sm:items-start gap-4 bg-white hover:shadow-md transition-shadow duration-200"
+              >
+                <RevealOnScroll delay={0.6}>
+                {/* Icon */}
+                <neighborhood.icon className="h-10 w-10 p-2 rounded-full text-[#44475A] bg-[#44475A14] flex-shrink-0 mx-auto sm:mx-0" />
+                </RevealOnScroll>
+                <RevealOnScroll delay={0.6}>
+                  {/* Card Content */}
+                  <div className="flex flex-col justify-between gap-3 text-center sm:text-left">
+                    <h3 className="font-bold text-lg sm:text-xl text-[#1A1A1A]">
+                      {neighborhood.title}
+                    </h3>
 
-              {/* Card Content */}
-              <div className="flex flex-col justify-between gap-3 text-center sm:text-left">
-                <h3 className="font-bold text-lg sm:text-xl text-[#1A1A1A]">
-                  {neighborhood.title}
-                </h3>
+                    {/* Areas Tags */}
+                    <div className="flex flex-wrap justify-center sm:justify-start gap-2">
+                      {neighborhood.areas.map((area, index) => (
+                        <span
+                          key={index}
+                          className="px-3 py-1 bg-white rounded-full text-xs sm:text-sm text-[#666666] font-medium border border-gray-300"
+                        >
+                          {area}
+                        </span>
+                      ))}
+                    </div>
 
-                {/* Areas Tags */}
-                <div className="flex flex-wrap justify-center sm:justify-start gap-2">
-                  {neighborhood.areas.map((area, index) => (
-                    <span
-                      key={index}
-                      className="px-3 py-1 bg-white rounded-full text-xs sm:text-sm text-[#666666] font-medium border border-gray-300"
-                    >
-                      {area}
-                    </span>
-                  ))}
-                </div>
+                    {/* Features List */}
+                    <ul className="space-y-1">
+                      {neighborhood.features.map((feature, index) => (
+                        <li
+                          key={index}
+                          className="flex items-center justify-center sm:justify-start gap-2 text-sm text-[#666666]"
+                        >
+                          <span className="h-2 w-2 bg-[#44475A] rounded-full flex-shrink-0" />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
 
-                {/* Features List */}
-                <ul className="space-y-1">
-                  {neighborhood.features.map((feature, index) => (
-                    <li
-                      key={index}
-                      className="flex items-center justify-center sm:justify-start gap-2 text-sm text-[#666666]"
-                    >
-                      <span className="h-2 w-2 bg-[#00BFA6] rounded-full flex-shrink-0" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-
-                {/* CTA Button */}
-                <Link href="/data" className="text-sm sm:text-base font-semibold text-[#1A1A1A] bg-[#F1FF51] px-6 py-3 rounded-full mt-2 hover:bg-[#e8f847] transition-colors duration-200">
-                  {neighborhood.cta}
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
+                    {/* CTA Button */}
+                    <Link href="/data" className="text-sm sm:text-base font-semibold text-[#FFFFFF] bg-[#0D0BA8] px-6 py-3 rounded-full mt-2 hover:bg-[#e8f847] transition-colors duration-200">
+                      {neighborhood.cta}
+                    </Link>
+                  </div>
+                </RevealOnScroll>
+              </AnimatedCard>
+            ))}
+          </div>
+        </RevealOnScroll>
       </div>
     </div>
   );

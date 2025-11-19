@@ -3,7 +3,7 @@ import BookingConfirmation from "@/components/BookingConfirmation"
 const Checkout = () => {
   return (
     <div>
-        <BookingConfirmation />
+      <BookingConfirmation />
     </div>
   )
 }

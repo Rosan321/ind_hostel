@@ -2,6 +2,8 @@
 
 import { Bed, HandPlatter, Users, WashingMachine, Wifi } from "lucide-react";
 import { useState } from "react";
+import RevealOnScroll from "../animations/RevealOnScroll";
+import HoverLift from "../animations/HoverLift";
 
 export default function BookingCard() {
   const images = [
@@ -32,37 +34,44 @@ export default function BookingCard() {
       <h1 className="text-lg sm:text-2xl font-bold text-gray-900 mb-2">
         Single Bed — Mixed Dorm
       </h1>
-      <p className="text-gray-600 text-sm sm:text-base mb-4">Single room · 1 bed · 1 guest</p>
+      <p className="text-gray-600 text-sm sm:text-base mb-4">
+        Single room · 1 bed · 1 guest
+      </p>
 
       {/* Main Image + Thumbnails */}
       <div className="flex flex-col gap-6">
         {/* Main Image */}
-        <div className="w-full">
-          <img
-            src={selectedImage}
-            alt="Selected Room"
-            className="w-full md:h-[320px] lg:h-[350px] object-cover rounded-xl"
-          />
-        </div>
+        <RevealOnScroll delay={0.2} className="w-full">
+          <HoverLift>
+            <img
+              src={selectedImage}
+              alt="Selected Room"
+              className="w-full md:h-[320px] lg:h-[310px] object-cover rounded-xl"
+            />
+          </HoverLift>
+        </RevealOnScroll>
 
         {/* Thumbnail Images */}
-        <div className="flex items-center gap-3 w-full overflow-x-auto">
-          {images.map((img, index) => (
-            <img
-              key={index}
-              src={img}
-              onClick={() => setSelectedImage(img)}
-              className={`w-16 md:w-24 h-16 md:h-24 object-cover rounded-lg cursor-pointer border 
-                ${
-                  selectedImage === img
-                    ? "border-blue-600"
-                    : "border-transparent"
-                }
-              `}
-              alt="Room thumbnail"
-            />
-          ))}
-        </div>
+        <RevealOnScroll delay={0.2}>
+          <div className="flex items-center gap-3 w-full overflow-x-auto">
+            {images.map((img, index) => (
+              <HoverLift key={index}>
+                <img
+                  src={img}
+                  onClick={() => setSelectedImage(img)}
+                  className={`w-16 md:w-24 h-16 md:h-24 object-cover rounded-lg cursor-pointer border 
+                    ${
+                      selectedImage === img
+                        ? "border-blue-600"
+                        : "border-transparent"
+                    }
+                  `}
+                  alt="Room thumbnail"
+                />
+              </HoverLift>
+            ))}
+          </div>
+        </RevealOnScroll>
       </div>
       {/* Amenities Section */}
       <div className="flex flex-wrap gap-4 sm:gap-6 mt-6">

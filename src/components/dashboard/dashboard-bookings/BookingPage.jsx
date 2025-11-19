@@ -1,9 +1,12 @@
 "use client";
 
+import AnimatedCard from "@/components/animations/AnimatedCard";
+
 export default function BookingPage({ booking }) {
   return (
-    <div className="bg-white shadow-sm rounded-2xl overflow-hidden border border-gray-300 hover:shadow-md transition flex flex-col">
+    <div className="bg-white shadow-sm rounded-2xl overflow-hidden border border-gray-300 hover:shadow-md transition flex flex-col pb-4">
       {/* Image */}
+      <AnimatedCard>
       <div className="relative h-52 rounded-t-lg overflow-hidden">
         <img src={booking.image} alt={booking.title} className="object-cover" />
 
@@ -63,6 +66,7 @@ export default function BookingPage({ booking }) {
           )}
         </div>
       </div>
+      </AnimatedCard>
     </div>
   );
 }

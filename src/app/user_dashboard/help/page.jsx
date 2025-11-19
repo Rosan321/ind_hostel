@@ -1,5 +1,6 @@
 "use client"
 
+import RevealOnScroll from "@/components/animations/RevealOnScroll";
 import MessageForm from "@/components/dashboard/help-support/MessageForm";
 import PreviousMessages from "@/components/dashboard/help-support/PreviousMessage";
 import SupportTabs from "@/components/dashboard/help-support/SupportTabs";
@@ -28,10 +29,12 @@ export default function HelpPage() {
 
   return (
     <section className="lg:pr-12 pb-10">
-      <h1 className="text-2xl font-semibold mb-1">Help & Support</h1>
-      <p className="text-gray-600 mb-6">
-        We’re here to help you with bookings, rooms, or payments
-      </p>
+      <RevealOnScroll delay={0.2}>
+        <h1 className="text-2xl font-semibold mb-1">Help & Support</h1>
+        <p className="text-gray-600 mb-6">
+          We’re here to help you with bookings, rooms, or payments
+        </p>
+      </RevealOnScroll>
 
       {/* Tabs */}
       <SupportTabs activeTab={activeTab} setActiveTab={setActiveTab} />

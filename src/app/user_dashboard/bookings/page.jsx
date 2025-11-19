@@ -3,6 +3,8 @@
 import BookingPage from "@/components/dashboard/dashboard-bookings/BookingPage";
 import BookingFilters from "@/components/dashboard/dashboard-bookings/BookingFilters";
 import { useMemo, useState } from "react";
+import RevealOnScroll from "@/components/animations/RevealOnScroll";
+import ShuffleInOnScroll from "@/components/animations/SuffleInOnScroll";
 
 export default function BookingsPage() {
   const [bookingType, setBookingType] = useState("All");
@@ -75,27 +77,33 @@ export default function BookingsPage() {
 
   return (
     <section className="lg:pr-12 pb-8">
-      <h1 className="text-2xl font-semibold mb-2">My Bookings</h1>
-      <p className="text-gray-600 mb-6">
-        Manage all your hostel, PG, and hotel stays in one place
-      </p>
+      <RevealOnScroll delay={0.2}>
+        <h1 className="text-2xl font-semibold mb-2">My Bookings</h1>
+        <p className="text-gray-600 mb-6">
+          Manage all your hostel, PG, and hotel stays in one place
+        </p>
+      </RevealOnScroll>
 
       {/* Filters */}
-      <BookingFilters
-        bookingType={bookingType}
-        setBookingType={setBookingType}
-        status={status}
-        setStatus={setStatus}
-        sortBy={sortBy}
-        setSortBy={setSortBy}
-      />
+      <RevealOnScroll delay={0.2}>
+        <BookingFilters
+          bookingType={bookingType}
+          setBookingType={setBookingType}
+          status={status}
+          setStatus={setStatus}
+          sortBy={sortBy}
+          setSortBy={setSortBy}
+        />
+      </RevealOnScroll>
 
       {/* Cards */}
-      <div className="mt-8 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-        {filteredBookings.map((item) => (
-          <BookingPage key={item.id} booking={item} />
-        ))}
-      </div>
+      <ShuffleInOnScroll delay={0.2}>
+        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+          {filteredBookings.map((item) => (
+            <BookingPage key={item.id} booking={item} />
+          ))}
+        </div>
+      </ShuffleInOnScroll>
     </section>
   );
 }

@@ -1,6 +1,8 @@
 "use client";
 
 import { Star } from "lucide-react";
+import RevealOnScroll from "../animations/RevealOnScroll";
+import ShuffleInOnScroll from "../animations/SuffleInOnScroll";
 
 const Stats = () => {
   const statsData = [
@@ -21,6 +23,7 @@ const Stats = () => {
           key={item.label}
           className="bg-white p-4 rounded-lg shadow text-center flex flex-col items-center justify-center"
         >
+          <ShuffleInOnScroll delay={0.6}>
           <div className="flex items-center justify-center gap-2 mb-2">
             <h4 className="text-lg lg:text-lg xl:text-xl font-bold text-[#1A1A1A]">
               {item.value}
@@ -28,6 +31,7 @@ const Stats = () => {
             {item.rate && <span>{item.rate}</span>}
           </div>
           <p className="text-sm text-[#666666]">{item.label}</p>
+          </ShuffleInOnScroll>
         </div>
       ))}
     </div>

@@ -9,7 +9,7 @@ const SearchFilter = () => {
   const [search, setSearch] = useState("");
   const dropdownRef = useRef(null);
 
-  const options = ["All", "Hostel", "PG", "OYO", "Suite"];
+  const options = ["All", "Hostel", "PG", "Hotels"];
 
   const handleSelect = (option) => {
     setSelected(option);

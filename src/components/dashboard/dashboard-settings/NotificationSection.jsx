@@ -1,5 +1,6 @@
 "use client";
 
+import ShuffleInOnScroll from "@/components/animations/SuffleInOnScroll";
 import { useState } from "react";
 
 export default function NotificationSection() {
@@ -16,10 +17,12 @@ export default function NotificationSection() {
 
   return (
     <div className="bg-white p-6 rounded-2xl shadow mb-8">
-      <h2 className="text-2xl text-[#1A1A1A] font-bold mb-4">Notifications</h2>
-      <p className="text-sm text-gray-500 mb-4">
-        Choose how you'd like to be notified
-      </p>
+      <ShuffleInOnScroll delay={0.2}>
+        <h2 className="text-2xl text-[#1A1A1A] font-bold mb-4">Notifications</h2>
+        <p className="text-sm text-gray-500 mb-4">
+          Choose how you'd like to be notified
+        </p>
+      </ShuffleInOnScroll>
 
       <div className="space-y-4">
         <NotificationItem
@@ -56,24 +59,26 @@ export default function NotificationSection() {
 
 function NotificationItem({ title, desc, state, onToggle }) {
   return (
-    <div className="flex justify-between items-center">
-      <div className="space-y-2">
-        <p className="font-semibold text-[#1A1A1A] text-sm">{title}</p>
-        <p className="text-sm text-[#666666]">{desc}</p>
-      </div>
+    <ShuffleInOnScroll delay={0.2}>
+      <div className="flex justify-between items-center">
+        <div className="space-y-2">
+          <p className="font-semibold text-[#1A1A1A] text-sm">{title}</p>
+          <p className="text-sm text-[#666666]">{desc}</p>
+        </div>
 
-      <button
-        onClick={onToggle}
-        className={`w-14 h-8 rounded-full p-1 transition ${
-          state ? "bg-[#0D0BA8]" : "bg-[#D0D0D0]"
-        }`}
-      >
-        <div
-          className={`w-5 h-5 rounded-full transition ${
-            state ? "translate-x-6 bg-white" : "bg-[#44475A]"
+        <button
+          onClick={onToggle}
+          className={`w-14 h-8 rounded-full p-1 transition ${
+            state ? "bg-[#0D0BA8]" : "bg-[#D0D0D0]"
           }`}
-        ></div>
-      </button>
-    </div>
+        >
+          <div
+            className={`w-5 h-5 rounded-full transition ${
+              state ? "translate-x-6 bg-white" : "bg-[#44475A]"
+            }`}
+          ></div>
+        </button>
+      </div>
+    </ShuffleInOnScroll>
   );
 }

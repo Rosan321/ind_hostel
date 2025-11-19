@@ -1,6 +1,7 @@
 "use client";
 
 import HostelCard from "@/components/StayCard";
+import RevealOnScroll from "@/components/animations/RevealOnScroll";
 import Hero from "@/components/stay_by_city/Hero";
 import LocationWithExpect from "@/components/stay_by_city/LocationWithExpect";
 import Stats from "@/components/stay_by_city/Stats";
@@ -80,44 +81,50 @@ const StayListing = () => {
       <Hero />
       <section className="px-4 sm:px-8 lg:px-20 py-12 space-y-4 lg:space-y-8">
         <Stats />
-        <div className="flex items-center gap-10">
-          <Tabs
-            tabs={tabs}
-            activeTab={activeTab}
-            setActiveTab={setActiveTab}
-            priceFilter={priceFilter}
-            setPriceFilter={setPriceFilter}
-            stayType={stayType}
-            setStayType={setStayType}
-          />
-        </div>
+        <RevealOnScroll delay={0.2}>
+          <div className="flex items-center gap-10">
+            <Tabs
+              tabs={tabs}
+              activeTab={activeTab}
+              setActiveTab={setActiveTab}
+              priceFilter={priceFilter}
+              setPriceFilter={setPriceFilter}
+              stayType={stayType}
+              setStayType={setStayType}
+            />
+          </div>
+        </RevealOnScroll>
 
         <div className="mt-8 lg:mt-10">
-          {/* Section header */}
-          <p className="text-sm text-[#00BFA6] font-semibold">
-            Featured in Mumbai
-          </p>
+          <RevealOnScroll delay={0.3}>
+            {/* Section header */}
+            <p className="text-sm text-[#44475A] font-semibold">
+              Featured in Mumbai
+            </p>
 
-          <h3 className="text-2xl text-[#1A1A1A] font-bold py-2">
-            Top picks this week
-          </h3>
+            <h3 className="text-2xl text-[#1A1A1A] font-bold py-2">
+              Top picks this week
+            </h3>
 
-          <p className="text-[#666666] text-base mb-8">
-            Verified stays with great reviews and exclusive offers
-          </p>
+            <p className="text-[#666666] text-base mb-8">
+              Verified stays with great reviews and exclusive offers
+            </p>
+          </RevealOnScroll>
 
           {/* Listings grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredListings.length > 0 ? (
-              filteredListings.map((item) => (
-                <HostelCard key={item.id} {...item} />
-              ))
-            ) : (
-              <p className="col-span-full text-center text-gray-500 text-sm sm:text-base">
-                No stays found in {activeArea}.
-              </p>
-            )}
-          </div>
+          <RevealOnScroll delay={0.4}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredListings.length > 0 ? (
+                filteredListings.map((item) => (
+                  <HostelCard key={item.id} {...item} />
+                ))
+              ) : (
+                <p className="col-span-full text-center text-gray-500 text-sm sm:text-base">
+                  No stays found in {activeArea}.
+                </p>
+              )}
+            </div>
+          </RevealOnScroll>
         </div>
 
         <LocationWithExpect />

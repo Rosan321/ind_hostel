@@ -3,8 +3,10 @@
 import { useState } from "react";
 import { Calendar, User, Mail, Phone } from "lucide-react";
 import BookingSummary from "./BookingSummary";
+import RevealOnScroll from "./animations/RevealOnScroll";
+import { useParams } from "next/navigation";
 
-export default function BookingConfirmation({ basePrice = 2999, pgName = "UrbanNest PG – Cozy Stay in Bandra", location = "Bandra West, Mumbai" }) {
+export default function BookingConfirmation({ id, basePrice = 2999, pgName = "UrbanNest PG – Cozy Stay in Bandra", location = "Bandra West, Mumbai" }) {
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -15,6 +17,7 @@ export default function BookingConfirmation({ basePrice = 2999, pgName = "UrbanN
     specialRequests: "",
     agreeToTerms: false
   });
+  const params = useParams();
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -31,24 +34,26 @@ export default function BookingConfirmation({ basePrice = 2999, pgName = "UrbanN
   };
 
   return (
-    <main className="min-h-screen bg-gray-50 py-8">
+    <main className="min-h-screen bg-gray-100 py-8">
       <div className="mx-auto px-4 lg:px-20">
         {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Complete Your Booking
-          </h1>
-          <p className="text-gray-600 text-lg">
-            You're just one step away from confirming your stay at {pgName}
-          </p>
-        </div>
+        <RevealOnScroll delay={0.2}>
+          <div className="text-center mb-8">
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">
+              Complete Your Booking
+            </h1>
+            <p className="text-gray-600 text-lg">
+              You're just one step away from confirming your stay at {pgName}
+            </p>
+          </div>
+        </RevealOnScroll>
 
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 lg:grid-cols-12 lg:gap-6 xl:gap-8">
             {/* Left Column - Guest Details (2/3 width) */}
-            <div className="bg-white rounded-xl p-6 rounded-3xl lg:col-span-7 xl:col-span-8 space-y-6">
+            <div className="bg-white p-6 rounded-4xl border-2 border-gray-200 lg:col-span-7 xl:col-span-8 space-y-6">
               {/* Guest Details Card */}
-              <div className="">
+              <RevealOnScroll delay={0.2}>
                 <h2 className="text-xl lg:text-2xl font-semibold mb-6 text-gray-900">Guest Details</h2>
                 
                 <div className="space-y-6">
@@ -64,7 +69,7 @@ export default function BookingConfirmation({ basePrice = 2999, pgName = "UrbanN
                         name="fullName"
                         value={formData.fullName}
                         onChange={handleInputChange}
-                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00BFA6] focus:border-transparent text-gray-900 placeholder-gray-500"
+                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-[#44475A] focus:border-transparent text-gray-900 placeholder-gray-500"
                         placeholder="Enter your full name"
                       />
                     </div>
@@ -83,7 +88,7 @@ export default function BookingConfirmation({ basePrice = 2999, pgName = "UrbanN
                           name="email"
                           value={formData.email}
                           onChange={handleInputChange}
-                          className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00BFA6] focus:border-transparent text-gray-900 placeholder-gray-500"
+                          className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-[#44475A] focus:border-transparent text-gray-900 placeholder-gray-500"
                           placeholder="Enter your email"
                         />
                       </div>
@@ -101,18 +106,18 @@ export default function BookingConfirmation({ basePrice = 2999, pgName = "UrbanN
                           name="phone"
                           value={formData.phone}
                           onChange={handleInputChange}
-                          className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00BFA6] focus:border-transparent text-gray-900 placeholder-gray-500"
+                          className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-[#44475A] focus:border-transparent text-gray-900 placeholder-gray-500"
                           placeholder="Enter your phone number"
                         />
                       </div>
                     </div>
                   </section>
                 </div>
-              </div>
+              </RevealOnScroll>
 
               {/* Stay Information Card */}
-              <div>
-                <h3 className="text-lg font-semibold mb-6 text-gray-900">Stay Information</h3>
+              <RevealOnScroll delay={0.2}>
+                <h3 className="text-lg font-semibold mb-6 text-[#1A1A1A]">Stay Information</h3>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Check-in */}
@@ -127,7 +132,7 @@ export default function BookingConfirmation({ basePrice = 2999, pgName = "UrbanN
                         name="checkIn"
                         value={formData.checkIn}
                         onChange={handleInputChange}
-                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00BFA6] focus:border-transparent text-gray-900"
+                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-[#44475A] focus:border-transparent text-gray-900"
                       />
                     </div>
                   </div>
@@ -183,10 +188,10 @@ export default function BookingConfirmation({ basePrice = 2999, pgName = "UrbanN
                     placeholder="Any special requests or requirements..."
                   />
                 </div>
-              </div>
+              </RevealOnScroll>
 
               {/* Terms and Conditions */}
-              <div>
+              <RevealOnScroll delay={0.2}>
                 <label className="flex items-start gap-3 cursor-pointer">
                   <input
                     type="checkbox"
@@ -199,12 +204,12 @@ export default function BookingConfirmation({ basePrice = 2999, pgName = "UrbanN
                     I agree to the Terms & Conditions and Cancellation Policy
                   </span>
                 </label>
-              </div>
+              </RevealOnScroll>
             </div>
 
             {/* Right Column - Booking Summary (1/3 width) */}
             <div className="lg:col-span-5 xl:col-span-4">
-              <BookingSummary formData={formData} basePrice={basePrice} pgName={pgName} location={location} />
+              <BookingSummary formData={formData} basePrice={basePrice} pgName={pgName} location={location} id={id} />
             </div>
           </div>
         </form>

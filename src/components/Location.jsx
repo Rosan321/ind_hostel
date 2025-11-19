@@ -1,20 +1,25 @@
 "use client";
 
 import { ArrowRight, Link2 } from "lucide-react";
+import RevealOnScroll from "./animations/RevealOnScroll";
 
 export default function LocationSection() {
   return (
     <div className="bg-white rounded-3xl p-4 sm:p-6 shadow mt-6">
-      <h3 className="text-2xl text-[#1A1A1A] font-bold mb-4">Find Us Easily</h3>
+      <RevealOnScroll delay={0.2}>
+        <h3 className="text-2xl text-[#1A1A1A] font-bold mb-4">
+          Find Us Easily
+        </h3>
 
-      <p className="text-[#666666] text-base mb-6">
-        We're located in the heart of the city — close to public transport,
-        eateries, and shopping streets
-      </p>
+        <p className="text-[#666666] text-base mb-6">
+          We're located in the heart of the city — close to public transport,
+          eateries, and shopping streets
+        </p>
+      </RevealOnScroll>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Left Side - Map Area */}
-        <div className="space-y-6">
+        <RevealOnScroll delay={0.2}>
           <div className="aspect-video w-full h-full overflow-hidden rounded-lg">
             <iframe
               className="w-full h-full rounded-lg"
@@ -25,19 +30,19 @@ export default function LocationSection() {
               referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
           </div>
-        </div>
+        </RevealOnScroll>
         {/* Right Side - Location Details */}
         <div className="space-y-6">
-          <div>
+          <RevealOnScroll delay={0.2}>
             <h4 className="font-bold text-xl text-[#1A1A1A] mb-4">
               Our Location
             </h4>
             <p className="text-[#666666] text-base">
               UrbanNest PG, Linking Road, Bandra West, Mumbai - 400050
             </p>
-          </div>
+          </RevealOnScroll>
 
-          <div>
+          <RevealOnScroll delay={0.2}>
             <h4 className="font-bold text-xl text-[#1A1A1A] mb-3">
               Nearby Essentials
             </h4>
@@ -57,11 +62,14 @@ export default function LocationSection() {
                 </div>
               ))}
             </div>
-          </div>
+          </RevealOnScroll>
 
-          <button
-            className="
-    bg-[#F1FF51] 
+          <RevealOnScroll delay={0.2}>
+            <button
+              className="
+    bg-[#0D0BA8] 
+    hover:bg-[#2A32FF]
+    text-[#FFF]
     py-3 
     px-5 
     rounded-full 
@@ -75,11 +83,12 @@ export default function LocationSection() {
     mx-auto
     lg:mx-0
   "
-          >
-            <Link2 size={20} style={{ transform: "rotate(-45deg)" }} />
-            <span>View on Google Maps</span>
-            <ArrowRight size={18} />
-          </button>
+            >
+              <Link2 size={20} style={{ transform: "rotate(-45deg)" }} />
+              <span>View on Google Maps</span>
+              <ArrowRight size={18} />
+            </button>
+          </RevealOnScroll>
         </div>
       </div>
     </div>
