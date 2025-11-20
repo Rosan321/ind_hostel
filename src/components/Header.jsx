@@ -18,9 +18,9 @@ const NAV_LINKS = [
 ];
 
 const DROPDOWNS = [
-  { type: "hostels", label: "Find Hostels", items: hostelsDropdownItems },
-  { type: "pgs", label: "Pay Guest (PGs)", items: pgDropdownItems },
-  { type: "hotels", label: "Hotels", items: hotelsDropdownItems },
+  { type: "hostels", label: "Find Hostels", items: hostelsDropdownItems, icon: "/images/hostel.png" },
+  { type: "pgs", label: "Pay Guest (PGs)", items: pgDropdownItems, icon: "/images/pg.png" },
+  { type: "hotels", label: "Hotels", items: hotelsDropdownItems, icon: "/images/hotel.png" },
 ];
 
 const DropdownMenu = ({
@@ -180,7 +180,7 @@ const Header = () => {
                 </li>
               ))}
 
-              {DROPDOWNS.map(({ type, label, items }) => (
+              {DROPDOWNS.map(({ type, label, items, icon }) => (
                 <li
                   key={type}
                   className="relative group flex items-center gap-2 cursor-pointer select-none"
@@ -189,10 +189,14 @@ const Header = () => {
                   onClick={() => toggleDropdown(type)}
                 >
                   <span
-                    className={`xl:text-lg ${
+                    className={`xl:text-lg flex items-center gap-2 ${
                       activeDropdown === type ? "text-[#1A1A1A]" : ""
                     }`}
                   >
+                    <img 
+                      src={icon}
+                      alt="icon"
+                    />
                     {label}
                   </span>
                   <ChevronDown

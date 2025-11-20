@@ -21,8 +21,6 @@ const BookingSummary = ({ basePrice = 2999 || basePrice, listingType = "pg", pgN
 
   const checkoutPage = pathname.endsWith("/checkout");
 
-  console.log(checkoutPage)
-
   // States
   const [guests, setGuests] = useState(1);
   const [durationType, setDurationType] = useState("day");

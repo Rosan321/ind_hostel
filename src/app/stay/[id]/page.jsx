@@ -341,6 +341,7 @@ import SimilarLike from "@/components/SimilarLike";
 import Hero from "@/components/stay_by_city/Hero";
 import TypesOfRoom from "@/components/TypesOfRoom";
 import { pgList } from "@/lib/utils/pgList";
+import { properties } from "@/lib/utils/properties";
 
 import {
   AirVent,
@@ -357,13 +358,19 @@ import {
 } from "lucide-react";
 
 export async function generateStaticParams() {
-  return pgList.map((pg) => ({
-    id: pg.id,
+  // Convert all IDs to strings to ensure consistency
+  return properties.map((pg) => ({
+    id: pg.id.toString(), // Ensure ID is a string
   }));
 }
 
-export default function Page({ params }) {
-  const data = pgList.find((pg) => pg.id === params.id);
+export default async function Page({ params }) {
+  // Await the params promise
+  const { id } = await params;
+  
+  // Convert id to string for consistent comparison
+  const stringId = id.toString();
+  const data = properties.find((pg) => pg.id.toString() === stringId);
 
   if (!data) {
     return (
@@ -442,14 +449,14 @@ export default function Page({ params }) {
 
   return (
     <main className="bg-gray-50">
-      <Hero />
+      <Hero name={data.name} location={data.location} />
 
       {/* Image Section */}
       <section className="py-10 px-4 sm:px-6 md:px-10 lg:px-20 mt-8 lg:mt-0">
         <div className="mx-auto space-y-12">
 
           {/* Image Gallery */}
-          <ImageThumbnail images={data.images} badge={data.badge} />
+          <ImageThumbnail images={data.allImages} mainImage={data.images} badge={data.badge} />
 
           {/* Content Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-12 lg:gap-4 xl:gap-8">
@@ -460,7 +467,7 @@ export default function Page({ params }) {
 
                 <header>
                   <h1 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900 mb-1">
-                    {data.title}
+                    {data.name}
                   </h1>
                   <p className="text-sm sm:text-base text-gray-500 mb-4">
                     {data.location}
@@ -582,13 +589,13 @@ export default function Page({ params }) {
 
             {/* RIGHT */}
             <aside className="lg:col-span-5 xl:col-span-4 lg:sticky lg:top-24">
-              <BookingSummary basePrice={data.basePrice} id={params.id} />
+              <BookingSummary basePrice={data.basePrice} id={stringId} />
             </aside>
           </div>
 
           {/* More Sections */}
           <section className="mt-10 space-y-10">
-            <TypesOfRoom id={params.id} />
+            <TypesOfRoom id={stringId} />
             <Location />
             <ReviewCard />
             <SimilarLike />

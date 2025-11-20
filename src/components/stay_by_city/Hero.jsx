@@ -6,11 +6,11 @@ import { usePathname } from "next/navigation";
 import ShuffleInOnScroll from "../animations/SuffleInOnScroll";
 import RevealOnScroll from "../animations/RevealOnScroll";
 
-const Hero = () => {
+const Hero = ({ name, location }) => {
   const pathname = usePathname();
   const isStay = pathname.startsWith("/stay");
 
-  const stayName = "UrbanNest PG – Andheri, Mumbai";
+  const stayName = `${name}, ${location}`;
 
   return (
     <div className="relative h-[280px] sm:h-[360px] lg:h-[420px] w-full">
@@ -60,7 +60,7 @@ const Hero = () => {
             <>
               <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4" />
               <Link href="/location" className="hover:text-white transition">
-                Mumbai
+                {location ? location : "Mumbai"}
               </Link>
               <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4" />
               <span className="text-[#B0B3C6] font-medium">{stayName}</span>

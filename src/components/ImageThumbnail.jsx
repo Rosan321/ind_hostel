@@ -3,8 +3,7 @@
 import { CircleCheck, Star } from "lucide-react";
 import AnimatedCard from "./animations/AnimatedCard";
 
-const ImageThumbnail = ({ images = [] }) => {
-  const mainImage = images[0];
+const ImageThumbnail = ({ images = [], mainImage }) => {
   const otherImages = images.slice(1); // remaining images
 
   return (
