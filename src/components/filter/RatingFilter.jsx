@@ -1,44 +1,74 @@
-import RevealOnScroll from "../animations/RevealOnScroll";
+"use client";
 
-const RatingFilter = () => {
-  return (
-    <>
-      <RevealOnScroll delay={0.2}>
-        <div>
-          <h4 className="font-bold mb-2 text-[#222222] text-lg">Rating</h4>
-          {[
-            { label: "5 Stars & Above", stars: 5 },
-            { label: "4 Stars & Above", stars: 4 },
-            { label: "3 Stars & Above", stars: 3 },
-            { label: "2 Stars & Above", stars: 2 },
-            { label: "1 Star & Above", stars: 1 },
-          ].map(({ label, stars }) => (
-            <div key={label} className="flex items-center space-x-2 mb-2">
-              <input type="checkbox" id={label} className="accent-[#44475A]" />
-              <label
-                htmlFor={label}
-                className="flex items-center space-x-1 cursor-pointer text-sm font-medium text-[#1A1A1A]"
-              >
-                <div className="flex">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <svg
-                      key={i}
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-4 w-4"
-                      viewBox="0 0 20 20"
-                      fill={i < stars ? "#44475A" : "#E5E7EB"}
-                    >
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.955a1 1 0 00.95.69h4.15c.969 0 1.371 1.24.588 1.81l-3.36 2.44a1 1 0 00-.364 1.118l1.287 3.955c.3.921-.755 1.688-1.54 1.118l-3.36-2.44a1 1 0 00-1.176 0l-3.36 2.44c-.784.57-1.838-.197-1.539-1.118l1.286-3.955a1 1 0 00-.364-1.118L2.036 9.382c-.783-.57-.38-1.81.588-1.81h4.15a1 1 0 00.95-.69l1.286-3.955z" />
-                    </svg>
-                  ))}
-                </div>
-              </label>
-            </div>
+import { Star } from "lucide-react";
+import RevealOnScroll from "../animations/RevealOnScroll";
+import { useState, useEffect } from "react";
+
+const RatingFilter = ({ selected = null, onChange }) => {
+  const [selectedRating, setSelectedRating] = useState(selected);
+
+  useEffect(() => {
+    setSelectedRating(selected);
+  }, [selected]);
+
+  const handleRatingClick = (rating) => {
+    const newRating = selectedRating === rating ? null : rating;
+    setSelectedRating(newRating);
+    onChange(newRating);
+  };
+
+  const renderStars = (rating) => {
+    return (
+      <div className="flex flex-col items-start gap-1">
+        <section className="flex items-center gap-1">
+          {[...Array(5)].map((_, index) => (
+            <Star
+              key={index}
+              size={16}
+              className={
+                index < rating
+                  ? "fill-[#44475A] text-[#44475A]"
+                  : "fill-gray-300 text-gray-300"
+              }
+            />
           ))}
-          <p className="text-xs text-[#666666] font-medium mt-2">Min Rating</p>
+        </section>
+      </div>
+    );
+  };
+
+  return (
+    <RevealOnScroll delay={0.6}>
+      <div className="space-y-1">
+        <h4 className="font-bold mb-2 text-[#222222] text-lg">Rating</h4>
+        <div className="space-y-2">
+          {[5, 4, 3, 2, 1].map((rating) => (
+            <button
+              key={rating}
+              onClick={() => handleRatingClick(rating)}
+              className={`flex items-center space-x-2 p-2 rounded-lg w-full text-left hover:bg-gray-100 transition-colors cursor-pointer ${
+                selectedRating === rating
+                  ? "bg-blue-50 border border-blue-200"
+                  : ""
+              }`}
+            >
+              <div
+                className={`w-4 h-4 rounded-full border flex items-center justify-center ${
+                  selectedRating === rating
+                    ? "bg-[#0D0BA8] border-[#0D0BA8]"
+                    : "border-[#4F4F4F]"
+                }`}
+              >
+                {selectedRating === rating && (
+                  <div className="w-1 h-1 bg-white rounded-full"></div>
+                )}
+              </div>
+              {renderStars(rating)}
+            </button>
+          ))}
         </div>
-      </RevealOnScroll>
-    </>
+      </div>
+    </RevealOnScroll>
   );
 };
 

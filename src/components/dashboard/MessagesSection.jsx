@@ -1,6 +1,14 @@
+"use client";
+
+import { API_ENDPOINTS } from "@/lib/api/api";
+import axiosInstance from "@/lib/axiosInstance";
+import { formattedDate } from "@/lib/utils/fromattedDate";
 import { MessagesSquare } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export default function MessagesSection() {
+  const [messagesAll, setMessagesAll] = useState(null);
+
   const messages = [
     {
       profile: "images/pp.png",
@@ -22,6 +30,21 @@ export default function MessagesSection() {
     },
   ];
 
+  useEffect(() => {
+    const fetchAllMessages = async () => {
+      try {
+        const res = await axiosInstance.get(API_ENDPOINTS.HELP.GET_HELP);
+        // console.log(res.data.data);
+        setMessagesAll(res.data.data);
+      } catch (error) {
+        console.error("Failed to fetch messages:", error);
+        toast.error(error.response.data.message);
+      }
+    };
+
+    fetchAllMessages();
+  }, []);
+
   return (
     <div className="bg-white shadow rounded-2xl p-4 flex-1 space-y-2 w-full">
       <section className="font-semibold flex items-center gap-2">
@@ -31,7 +54,7 @@ export default function MessagesSection() {
       <p className="text-sm text-[#666666]">
         Stay connected with your hostel owners & support team
       </p>
-      <ul className="space-y-3">
+      {/* <ul className="space-y-3">
         {messages.map((msg, idx) => (
           <li key={idx} className="flex flex-col sm:flex-row justify-between">
             <div className="flex items-center gap-2">
@@ -48,7 +71,25 @@ export default function MessagesSection() {
             <span className="text-sm text-gray-400">{msg.time}</span>
           </li>
         ))}
-      </ul>
+      </ul> */}
+      <>
+                    {messagesAll &&
+                      messagesAll.map((msg) => (
+                        <div key={msg._id}>
+                          {msg?.messages.map((item, index) => (
+                            <div key={index} className="flex">
+                              <div className="flex items-center gap-4 w-10/12 py-1">
+                                <p className="text-base text-[#1A1A1A] font-semibold">
+                                  {item.sender}:
+                                </p>
+                                <p className="text-[#666666]">{item.message}</p>
+                              </div>
+                              <p className="text-[#000000] text-sm">{formattedDate(msg.createdAt)}</p>
+                            </div>
+                          ))}
+                        </div>
+                      ))}
+                  </>
     </div>
   );
 }

@@ -15,7 +15,7 @@ const WhyChooseUs = () => {
   ];
 
   return (
-    <div className="py-12 lg:py-24 bg-gray-100">
+    <div className="py-12 sm:pt-18 xl:pt-0 lg:py-24 bg-gray-100">
       <section className="py-16 px-4 sm:px-8 lg:px-20 bg-[#1A1A1A] relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center justify-items-end mx-auto">
           {/* Left Side - Image/Stats */}
@@ -32,7 +32,7 @@ const WhyChooseUs = () => {
 
               <p className="text-base text-white leading-relaxed">
                 Whether you're a student, working professional, or traveler, our
-                platform brings together hostels, PGs, and OYOs in one place.
+                platform brings together hostels, PGs, and hotels in one place.
                 Compare, choose, and book your stay instantly — with full
                 transparency, affordable rates, and 24/7 support.
               </p>

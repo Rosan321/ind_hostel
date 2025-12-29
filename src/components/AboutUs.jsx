@@ -2,13 +2,12 @@
 
 import { dotsSix } from "@/lib/utils/svgS";
 import { Building2, CircleCheck, ShieldCheck } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import RevealOnScroll from "./animations/RevealOnScroll";
 
 const AboutUs = () => {
   return (
-    <div className="lg:py-12 xl:py-24 px-4 sm:px-8 lg:px-20 bg-gray-100">
+    <div className="pb-12 lg:pb-0 lg:py-18 xl:py-12 xl:pb-24 px-4 sm:px-8 lg:px-20 bg-gray-100">
       <section className="relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-18 xl:gap-4 items-center justify-center mx-auto">
           {/* Left Side - Content */}
@@ -25,11 +24,11 @@ const AboutUs = () => {
                 </h3>
 
                 <p className="text-sm sm:text-base lg:text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto lg:mx-0">
-                  At IND Hostel, we bring together verified hostels, PGs, and OYO
+                  At IND Hostel, we bring together verified hostels, PGs, and Hotels
                   rooms on one seamless platform. Our mission is to make finding
                   the right stay easy — whether you're a student searching for a
                   budget-friendly PG, a traveler looking for a hostel, or a
-                  professional booking an OYO for work. Every property listed is
+                  professional booking an Hotels for work. Every property listed is
                   verified for safety, affordability, and comfort, so you can book
                   with confidence.
                 </p>

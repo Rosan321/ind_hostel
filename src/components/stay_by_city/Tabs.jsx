@@ -63,9 +63,8 @@ export function Tabs({
 
   return (
     <div className="flex flex-col-reverse lg:flex-row w-full mt-8 lg:mt-10 gap-4">
-      <section className="w-full lg:w-7/12 xl:w-7/10">
+      <section className="w-full lg:w-9/12 xl:w-9/10">
         {/* ---- Tabs Row ---- */}
-        <div className="relative w-full">
           <div
             ref={scrollRef}
             onMouseDown={handleMouseDown}
@@ -98,7 +97,6 @@ export function Tabs({
               </button>
             ))}
           </div>
-        </div>
 
         {/* ---- Subtitle ---- */}
         <p className="text-[#666666] text-sm mt-4">
@@ -107,14 +105,14 @@ export function Tabs({
       </section>
 
       {/* ---- Filters ---- */}
-      <div className="w-full lg:w-[280px]">
-        <StayFilters
+      {/* <div className="w-full lg:w-[240px]"> */}
+        {/* <StayFilters
           priceFilter={priceFilter}
           setPriceFilter={setPriceFilter}
           stayType={stayType}
           setStayType={setStayType}
-        />
-      </div>
+        /> */}
+      {/* </div> */}
     </div>
   );
 }

@@ -6,12 +6,14 @@ import {
   BriefcaseBusiness,
   Backpack,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CarouselCard from "./Carousel";
 import Link from "next/link";
 import RevealOnScroll from "../animations/RevealOnScroll";
 import ShuffleInOnScroll from "../animations/SuffleInOnScroll";
 import AnimatedCard from "../animations/AnimatedCard";
+import axiosInstance from "@/lib/axiosInstance";
+import { API_ENDPOINTS } from "@/lib/api/api";
 
 const listings = [
   {
@@ -66,7 +68,7 @@ const neighborhoods = [
       "Private rooms & monthly leases common",
       "Quiet evenings & reliable cab availability",
     ],
-    cta: "View monthly PGs & OYO",
+    cta: "View monthly PGs & hostels",
   },
   {
     id: "travelers",
@@ -74,25 +76,79 @@ const neighborhoods = [
     icon: Backpack,
     areas: ["New bus hubs", "main railway lines"],
     features: [
-      "Hostels & dorms from ₹300 / night",
+      "All accomodations at best price",
       "Good for short stays & social meetups",
       "Shared kitchens & events",
     ],
-    cta: "View hostels & nightly stays",
+    cta: "View hotels & nightly stays",
   },
 ];
 
-const LocationWithExpect = () => {
-  const [search, setSearch] = useState("");
+const LocationWithExpect = ({ params }) => {
+  const [query, setQuery] = useState("");
+  const [searchData, setSearchData] = useState(null);
+  const city = params?.city;
+
+  const fetchSearch = async (cityParam, areaParam) => {
+    try {
+      // Build params object dynamically based on what's available
+      const paramsData = {};
+
+      if (cityParam) {
+        paramsData.city = cityParam;
+      }
+
+      if (areaParam && areaParam.trim() !== "") {
+        paramsData.area = areaParam;
+      }
+
+      // Only fetch if we have at least one parameter
+      if (Object.keys(paramsData).length > 0) {
+        const res = await axiosInstance.get(
+          API_ENDPOINTS.ACCOMMODATION.ACCOMMODATION_SEARCH,
+          { params: paramsData } // ✅ Fixed: pass as 'params' not 'paramsData'
+        );
+        // console.log("Search results:", res.data);
+        setSearchData(res.data.data);
+      }
+    } catch (error) {
+      console.error("Error fetching search results:", error);
+    }
+  };
+
+  // 🔥 Initial Search when page loads (with city only)
+  useEffect(() => {
+    if (city) {
+      fetchSearch(city, "");
+    }
+  }, [city]); // Only depend on city for initial load
+
+  // 🔥 Fetch when user searches by area (Enter key or separate search button)
+  const handleSearch = () => {
+    if (city || query.trim() !== "") {
+      fetchSearch(city, query);
+    }
+  };
+
+  // If you want to auto-search on query change (debounced), you could add:
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     if (city || query.trim() !== "") {
+  //       fetchSearch(city, query);
+  //     }
+  //   }, 500);
+  //   return () => clearTimeout(timer);
+  // }, [query]);
 
   return (
     <div className="w-full mx-auto pb-10 space-y-4 lg:space-y-8">
       <div className="py-12 space-y-6 lg:space-y-8">
         {/* Heading + Search */}
         <RevealOnScroll delay={0.2}>
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
-              Find Stays In Mumbai
+              Find Stays In{" "}
+              {city ? city.slice(0, 1).toUpperCase() + city.slice(1) : "City"}
             </h2>
 
             {/* Search Bar */}
@@ -103,37 +159,56 @@ const LocationWithExpect = () => {
               />
               <input
                 type="text"
-                placeholder="Search neighborhood"
+                placeholder="Search neighborhood by Area"
                 className="w-full border border-gray-300 rounded-full py-2 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-transparent transition"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleSearch();
+                  }
+                }}
               />
+              {/* Optional: Add a search button */}
+              <button
+                onClick={handleSearch}
+                className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#0D0BA8] text-white px-4 py-1 rounded-full hover:bg-[#2A32FF] transition-colors cursor-pointer"
+              >
+                Search
+              </button>
             </div>
-        </div>
-          </RevealOnScroll>
-          
-          <ShuffleInOnScroll delay={0.2}>
-
-        {/* Main Split Section */}
-        <div className="grid grid-cols-12 gap-6">
-          {/* Left: Map (2/3 width on large screens) */}
-          <div className="col-span-12 lg:col-span-6 xl:col-span-7 h-[300px] sm:h-[400px] lg:h-[600px] rounded-2xl overflow-hidden mb-4 border border-gray-300">
-            <iframe
-              className="w-full h-full rounded-2xl"
-              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d30456.667134248048!2d78.463169!3d17.4077852!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99daeaebd2c7%3A0xae93b78392bafbc2!2sHyderabad%2C%20Telangana!5e0!3m2!1sen!2sin!4v1761975563874!5m2!1sen!2sin"
-              style={{ border: 0 }}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
           </div>
+        </RevealOnScroll>
 
-          {/* Right: Listings */}
-          <div className="col-span-12 lg:col-span-6 xl:col-span-5 flex flex-col gap-4 sm:gap-6 border border-gray-200 p-4 rounded-2xl bg-white">
-            {listings.map((item) => (
-              <CarouselCard key={item.id} item={item} />
-            ))}
+        <ShuffleInOnScroll delay={0.2}>
+          {/* Main Split Section */}
+          <div className="grid grid-cols-12 gap-6">
+            {/* Left: Map (2/3 width on large screens) */}
+            <div className="col-span-12 lg:col-span-6 xl:col-span-7 h-[300px] sm:h-[400px] lg:h-[600px] rounded-2xl overflow-hidden mb-4 border border-gray-300">
+              <iframe
+                className="w-full h-full rounded-2xl"
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d30456.667134248048!2d78.463169!3d17.4077852!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99daeaebd2c7%3A0xae93b78392bafbc2!2sHyderabad%2C%20Telangana!5e0!3m2!1sen!2sin!4v1761975563874!5m2!1sen!2sin"
+                style={{ border: 0 }}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+
+            {/* Right: Listings - Display actual search results if available */}
+            <div className="col-span-12 lg:col-span-6 xl:col-span-5 flex flex-col gap-4 sm:gap-6 border border-gray-200 p-4 rounded-2xl bg-white">
+              {searchData && searchData.length > 0 ? (
+                // Display actual search results
+                searchData.map((item) => (
+                  <CarouselCard key={item._id} item={item} />
+                ))
+              ) : (
+                // No results found
+                <div className="text-center py-10 text-gray-500">
+                  No accommodations found. Try a different search.
+                </div>
+              )}
+            </div>
           </div>
-        </div>
         </ShuffleInOnScroll>
       </div>
 
@@ -141,20 +216,20 @@ const LocationWithExpect = () => {
       <div>
         {/* Header */}
         <RevealOnScroll delay={0.2}>
-        <p className="text-xs sm:text-sm font-semibold text-[#44475A] ">
-          Local Guide
-        </p>
+          <p className="text-xs sm:text-sm font-semibold text-[#44475A] ">
+            Local Guide
+          </p>
         </RevealOnScroll>
         <RevealOnScroll delay={0.3}>
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#1A1A1A] my-2 ">
-          Neighborhoods & Safety — What to expect
-        </h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#1A1A1A] my-2 ">
+            Neighborhoods & Safety — What to expect
+          </h2>
         </RevealOnScroll>
         <RevealOnScroll delay={0.4}>
-        <p className="text-[#666666] text-sm sm:text-base mb-6  max-w-2xl">
-          Short local tips to help students, professionals & travelers pick the
-          best spot
-        </p>
+          <p className="text-[#666666] text-sm sm:text-base mb-6  max-w-2xl">
+            Short local tips to help students, professionals & travelers pick
+            the best spot
+          </p>
         </RevealOnScroll>
 
         {/* Neighborhood Cards Grid */}
@@ -166,8 +241,8 @@ const LocationWithExpect = () => {
                 className="border border-gray-200 rounded-3xl p-5 sm:p-6 flex flex-col sm:flex-row sm:items-start gap-4 bg-white hover:shadow-md transition-shadow duration-200"
               >
                 <RevealOnScroll delay={0.6}>
-                {/* Icon */}
-                <neighborhood.icon className="h-10 w-10 p-2 rounded-full text-[#44475A] bg-[#44475A14] flex-shrink-0 mx-auto sm:mx-0" />
+                  {/* Icon */}
+                  <neighborhood.icon className="h-10 w-10 p-2 rounded-full text-[#44475A] bg-[#44475A14] flex-shrink-0 mx-auto sm:mx-0" />
                 </RevealOnScroll>
                 <RevealOnScroll delay={0.6}>
                   {/* Card Content */}
@@ -177,15 +252,18 @@ const LocationWithExpect = () => {
                     </h3>
 
                     {/* Areas Tags */}
-                    <div className="flex flex-wrap justify-center sm:justify-start gap-2">
-                      {neighborhood.areas.map((area, index) => (
-                        <span
-                          key={index}
-                          className="px-3 py-1 bg-white rounded-full text-xs sm:text-sm text-[#666666] font-medium border border-gray-300"
-                        >
-                          {area}
-                        </span>
-                      ))}
+                    <div className="flex flex-wrap gap-2">
+                      {searchData &&
+                        searchData.slice(0, 3).map((item) => (
+                          <span
+                            key={item._id}
+                            className="px-3 py-1 bg-white rounded-full text-xs sm:text-sm text-[#666666] font-medium border border-gray-300"
+                          >
+                            {item.location?.area
+                            ? item.location?.area?.charAt(0).toUpperCase() + item.location?.area.slice(1)
+                            : "Unknown Area"}
+                          </span>
+                        ))}
                     </div>
 
                     {/* Features List */}
@@ -202,9 +280,12 @@ const LocationWithExpect = () => {
                     </ul>
 
                     {/* CTA Button */}
-                    <Link href="/data" className="text-sm sm:text-base font-semibold text-[#FFFFFF] bg-[#0D0BA8] px-6 py-3 rounded-full mt-2 hover:bg-[#e8f847] transition-colors duration-200">
+                    {/* <Link
+                      href="/data"
+                      className="text-sm lg:text-base font-semibold text-[#FFFFFF] bg-[#0D0BA8] px-6 py-3 rounded-full mt-2 hover:bg-[#2A32FF] transition-colors duration-200"
+                    >
                       {neighborhood.cta}
-                    </Link>
+                    </Link> */}
                   </div>
                 </RevealOnScroll>
               </AnimatedCard>

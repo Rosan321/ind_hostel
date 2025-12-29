@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import ShuffleInOnScroll from "../animations/SuffleInOnScroll";
 import RevealOnScroll from "../animations/RevealOnScroll";
 
-const Hero = ({ name, location }) => {
+const Hero = ({ name, location, verify, paramsObj }) => {
   const pathname = usePathname();
   const isStay = pathname.startsWith("/stay");
 
@@ -49,9 +49,9 @@ const Hero = ({ name, location }) => {
           {pathname === "/location" && (
             <>
               <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4" />
-              <Link href="/data" className="hover:text-white transition">
-                Explore
-              </Link>
+              {/* <Link href="/data" className="hover:text-white transition"> */}
+                Location
+              {/* </Link> */}
             </>
           )}
 
@@ -59,9 +59,9 @@ const Hero = ({ name, location }) => {
           {isStay && (
             <>
               <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4" />
-              <Link href="/location" className="hover:text-white transition">
+              <span className="hover:text-white transition">
                 {location ? location : "Mumbai"}
-              </Link>
+              </span>
               <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4" />
               <span className="text-[#B0B3C6] font-medium">{stayName}</span>
             </>
@@ -75,7 +75,8 @@ const Hero = ({ name, location }) => {
               {/* Headings */}
               <h1 className="text-2xl sm:text-[40px] lg:5xl font-bold text-center">
                 {pathname === "/location" &&
-                  "Find Hostels, PGs & Hotels Rooms in Mumbai"}
+                  `Find ${paramsObj?.type || "stays"} in ${paramsObj?.city || "your city"}`
+}
                 {pathname === "/about" &&
                   "We make city stays simple for students, professionals & travelers"}
                 {isStay && stayName}
@@ -94,9 +95,9 @@ const Hero = ({ name, location }) => {
               </p>
 
               {pathname === "/about" && (
-                <p className="bg-[#0D0BA8] text-white px-6 py-3 rounded-full font-semibold mt-2 sm:mt-0">
+                <Link href="/data" className="bg-[#0D0BA8] text-white px-6 py-3 rounded-full font-semibold mt-2 sm:mt-0">
                   Explore Stays
-                </p>
+                </Link>
               )}
             </section>
           </RevealOnScroll>

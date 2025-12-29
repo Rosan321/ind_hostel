@@ -17,7 +17,7 @@ export default function SettingsPage() {
 
       <ProfileSection />
       <SecuritySection />
-      <NotificationSection />
+      {/* <NotificationSection /> */}
       <AccountSection />
     </div>
   );

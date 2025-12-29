@@ -1,79 +1,36 @@
 "use client";
 
 import BookingPage from "@/components/dashboard/dashboard-bookings/BookingPage";
-import BookingFilters from "@/components/dashboard/dashboard-bookings/BookingFilters";
-import { useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import RevealOnScroll from "@/components/animations/RevealOnScroll";
 import ShuffleInOnScroll from "@/components/animations/SuffleInOnScroll";
+import axiosInstance from "@/lib/axiosInstance";
+import { API_ENDPOINTS } from "@/lib/api/api";
+import Pagination from "@/components/Pagination";
 
 export default function BookingsPage() {
-  const [bookingType, setBookingType] = useState("All");
-  const [status, setStatus] = useState("All");
-  const [sortBy, setSortBy] = useState("recent");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [bookings, setBookings] = useState([]);
+  const [totalPages, setTotalPages] = useState(1);
 
-  const bookings = [
-    {
-      id: 1,
-      title: "UrbanNest Hostel – Pune",
-      type: "Hostel",
-      status: "Active",
-      checkIn: "Nov 5, 2025",
-      checkOut: "Nov 30, 2025",
-      price: "7,500",
-      per: "Month",
-      image: "/images/coxy.png",
-    },
-    {
-      id: 2,
-      title: "SunView PG – Mumbai",
-      type: "PG",
-      status: "Upcoming",
-      checkIn: "Dec 2, 2025",
-      checkOut: "Jan 2, 2026",
-      price: "8,200",
-      per: "Month",
-      image: "/images/g-leaf.png",
-    },
-    {
-      id: 3,
-      title: "BlueSky Hotel – Delhi",
-      type: "Hotel",
-      status: "Completed",
-      checkIn: "Oct 22, 2025",
-      checkOut: "Oct 25, 2025",
-      price: "3,600",
-      per: "Night",
-      image: "/images/g_leaf.png",
-    },
-  ];
+  useEffect(() => {
+    const getAllBookingDetails = async () => {
+      try {
+        const res = await axiosInstance.get(
+          `${API_ENDPOINTS.BOOKINGS.MY_BOOKING}?page=${currentPage}&limit=10`
+        );
 
-  const filteredBookings = useMemo(() => {
-    let data = [...bookings];
+        // console.log(res.data.data)
 
-    if (bookingType !== "All") {
-      data = data.filter((b) => b.type === bookingType);
-    }
+        setBookings(res.data.data);
+        setTotalPages(res.data.totalpages);
+      } catch (error) {
+        console.log("Error fetching bookings:", error);
+      }
+    };
 
-    if (status !== "All") {
-      data = data.filter((b) => b.status === status);
-    }
-
-    if (sortBy === "priceLow") {
-      data.sort(
-        (a, b) =>
-          Number(a.price.replace(",", "")) - Number(b.price.replace(",", ""))
-      );
-    }
-
-    if (sortBy === "priceHigh") {
-      data.sort(
-        (a, b) =>
-          Number(b.price.replace(",", "")) - Number(a.price.replace(",", ""))
-      );
-    }
-
-    return data;
-  }, [bookingType, status, sortBy]);
+    getAllBookingDetails();
+  }, [currentPage]);
 
   return (
     <section className="lg:pr-12 pb-8">
@@ -84,26 +41,21 @@ export default function BookingsPage() {
         </p>
       </RevealOnScroll>
 
-      {/* Filters */}
-      <RevealOnScroll delay={0.2}>
-        <BookingFilters
-          bookingType={bookingType}
-          setBookingType={setBookingType}
-          status={status}
-          setStatus={setStatus}
-          sortBy={sortBy}
-          setSortBy={setSortBy}
-        />
-      </RevealOnScroll>
-
-      {/* Cards */}
+      {/* BOOKING CARDS */}
       <ShuffleInOnScroll delay={0.2}>
         <div className="mt-8 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-          {filteredBookings.map((item) => (
-            <BookingPage key={item.id} booking={item} />
+          {bookings.map((item) => (
+            <BookingPage key={item._id} booking={item} />
           ))}
         </div>
       </ShuffleInOnScroll>
+
+      {/* PAGINATION */}
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={setCurrentPage}
+      />
     </section>
   );
 }

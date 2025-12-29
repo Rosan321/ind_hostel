@@ -3,19 +3,26 @@
 import { ChevronDown, MapPin } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 
-const SearchFilter = () => {
+const SearchFilter = ({ filterNames = [], selected = "", onChange }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [selected, setSelected] = useState("All");
   const [search, setSearch] = useState("");
   const dropdownRef = useRef(null);
 
-  const options = ["All", "Hostel", "PG", "Hotels"];
+  const filteredOptions = filterNames.filter((option) =>
+    option.toLowerCase().includes(search.toLowerCase())
+  );
 
-  const handleSelect = (option) => {
-    setSelected(option);
+  const handleSelect = (value) => {
+    onChange(value);
+    setSearch("");
     setIsDropdownOpen(false);
   };
- 
+
+  const handleClear = () => {
+    onChange("");
+    setSearch("");
+  };
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -28,54 +35,68 @@ const SearchFilter = () => {
   }, []);
 
   return (
-    <div
-      ref={dropdownRef}
-      className="relative w-full sm:max-w-sm md:max-w-md lg:max-w-xs mb-4"
-    >
-      {/* Input + Button */}
-      <div className="flex items-center border border-gray-300 rounded-md overflow-hidden bg-white">
+    <div ref={dropdownRef} className="relative w-full mb-4">
+      <div className="flex items-center border border-gray-300 rounded-md bg-white">
         <span className="pl-3 text-[#666666]">
           <MapPin size={16} />
         </span>
+
         <input
           type="text"
-          value={selected && selected !== "All" ? `${selected}` : search}
+          value={isDropdownOpen ? search : selected}
           onChange={(e) => {
             setSearch(e.target.value);
-            setSelected("");
+            setIsDropdownOpen(true);
           }}
-          placeholder="Search..."
-          className="flex-1 px-3 py-2 focus:outline-none text-gray-800 text-sm sm:text-base"
+          placeholder="Search location..."
+          className="w-full px-3 py-2 focus:outline-none text-gray-800 lg:text-sm text-base"
+          onFocus={() => setIsDropdownOpen(true)}
         />
+
+        {selected && (
+          <button
+            onClick={handleClear}
+            className="px-2 text-gray-500 hover:text-gray-700"
+          >
+            ✕
+          </button>
+        )}
+
         <button
+          type="button"
           onClick={() => setIsDropdownOpen((prev) => !prev)}
-          className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-700 cursor-pointer"
+          className="flex items-center px-3 py-2 border-l text-gray-700 cursor-pointer"
         >
           <ChevronDown
             size={16}
-            className={`transition-transform duration-200 ${
-              isDropdownOpen ? "rotate-180" : "rotate-0"
+            className={`transition-transform ${
+              isDropdownOpen ? "rotate-180" : ""
             }`}
           />
         </button>
       </div>
 
-      {/* Dropdown Menu */}
       {isDropdownOpen && (
-        <div className="absolute left-0 top-full mt-1 w-full bg-white border border-gray-200 rounded-md shadow-md z-20">
-          {options.map((option) => (
-            <button
-              key={option}
-              onClick={() => handleSelect(option)}
-              className={`block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 ${
-                selected === option
-                  ? "bg-gray-50 text-[#00BFA6]"
-                  : "text-gray-700"
-              }`}
-            >
-              {option}
-            </button>
-          ))}
+        <div className="absolute left-0 top-full w-full bg-white border border-gray-200 rounded-md shadow-md z-20 max-h-60 overflow-y-auto">
+          {filteredOptions.length > 0 ? (
+            filteredOptions.map((option) => (
+              <button
+                key={option}
+                onClick={() => handleSelect(option)}
+                className={`block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer ${
+                  selected === option
+                    ? "bg-blue-50 text-blue-600 font-medium"
+                    : "text-[#0D0BA8]"
+                }`}
+              >
+                {option.charAt(0).toUpperCase() + option.slice(1)}
+              </button>
+            ))
+          ) : (
+            <div className="px-4 py-2 text-sm text-gray-500">
+              No locations found
+            </div>
+          )}
         </div>
       )}
     </div>

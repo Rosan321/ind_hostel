@@ -2,8 +2,13 @@
 
 import { ArrowRight, Link2 } from "lucide-react";
 import RevealOnScroll from "./animations/RevealOnScroll";
+import Link from "next/link";
 
-export default function LocationSection() {
+export default function LocationSection({ data }) {
+  // console.log(data);
+  const capitalize = (text = "") =>
+  text.charAt(0).toUpperCase() + text.slice(1);
+
   return (
     <div className="bg-white rounded-3xl p-4 sm:p-6 shadow mt-6">
       <RevealOnScroll delay={0.2}>
@@ -11,10 +16,10 @@ export default function LocationSection() {
           Find Us Easily
         </h3>
 
-        <p className="text-[#666666] text-base mb-6">
+        {/* <p className="text-[#666666] text-base mb-6">
           We're located in the heart of the city — close to public transport,
           eateries, and shopping streets
-        </p>
+        </p> */}
       </RevealOnScroll>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -37,12 +42,26 @@ export default function LocationSection() {
             <h4 className="font-bold text-xl text-[#1A1A1A] mb-4">
               Our Location
             </h4>
-            <p className="text-[#666666] text-base">
-              UrbanNest PG, Linking Road, Bandra West, Mumbai - 400050
-            </p>
+            <section>
+              {/* 1st row: Address */}
+              {data?.address && (
+                <p className="text-[#666666] text-base">
+                  {capitalize(data.address)}
+                </p>
+              )}
+
+              {/* 2nd row: Area, City */}
+              {(data?.area || data?.city) && (
+                <p className="text-[#666666] text-base">
+                  {[capitalize(data?.area), capitalize(data?.city)]
+                    .filter(Boolean)
+                    .join(", ")}
+                </p>
+              )}
+            </section>
           </RevealOnScroll>
 
-          <RevealOnScroll delay={0.2}>
+          {/* <RevealOnScroll delay={0.2}>
             <h4 className="font-bold text-xl text-[#1A1A1A] mb-3">
               Nearby Essentials
             </h4>
@@ -62,33 +81,37 @@ export default function LocationSection() {
                 </div>
               ))}
             </div>
-          </RevealOnScroll>
+          </RevealOnScroll> */}
 
           <RevealOnScroll delay={0.2}>
-            <button
+            <Link
+              href={`${data?.locationurl}`}
+              target="_blank"
+              rel="noopener noreferrer"
               className="
-    bg-[#0D0BA8] 
-    hover:bg-[#2A32FF]
-    text-[#FFF]
-    py-3 
-    px-5 
-    rounded-full 
-    font-medium 
-    transition-colors 
-    flex 
-    items-center 
-    justify-center 
-    gap-2 
-    cursor-pointer
-    mx-auto
-    lg:mx-0
-  "
+                w-fit
+                mx-auto
+                inline-flex
+                items-center
+                justify-center
+                gap-2
+                bg-[#0D0BA8]
+                hover:bg-[#2A32FF]
+                text-[#FFF]
+                py-3
+                px-5
+                rounded-full
+                font-medium
+                transition-colors
+                cursor-pointer
+              "
             >
               <Link2 size={20} style={{ transform: "rotate(-45deg)" }} />
               <span>View on Google Maps</span>
               <ArrowRight size={18} />
-            </button>
+            </Link>
           </RevealOnScroll>
+
         </div>
       </div>
     </div>

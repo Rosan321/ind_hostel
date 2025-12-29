@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import RevealOnScroll from "./animations/RevealOnScroll";
+import Link from "next/link";
 
 export default function JoinCommunity() {
   return (
@@ -63,9 +64,9 @@ export default function JoinCommunity() {
               </ul>
 
               <div className="mt-8 sm:mt-10">
-                <button className="bg-[#0D0BA8] hover:bg-[#2A32FF] transition text-white font-semibold px-8 sm:px-10 py-3 sm:py-4 rounded-full text-sm sm:text-base w-full md:w-auto">
+                <Link href="/login" className="bg-[#0D0BA8] hover:bg-[#2A32FF] transition text-white font-semibold px-8 sm:px-10 py-3 sm:py-4 rounded-full text-sm sm:text-base w-full md:w-auto">
                   Join Now
-                </button>
+                </Link>
               </div>
             </div>
           </RevealOnScroll>

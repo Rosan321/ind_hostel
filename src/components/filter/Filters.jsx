@@ -9,10 +9,43 @@ import AmentiesFilter from "./AmentiesFilter";
 import RatingFilter from "./RatingFilter";
 import ShuffleInOnScroll from "../animations/SuffleInOnScroll";
 
-export default function Filters({ isOpen = false, onClose }) {
+export default function Filters({
+  filterNames,
+  isOpen,
+  onClose,
+  appliedFilters,
+  onFilterChange,
+  onResetFilters,
+  type,
+}) {
+  // console.log(type);
+
+  const handleLocationChange = (location) => {
+    onFilterChange("location", location);
+  };
+
+  const handlePriceChange = (priceRange) => {
+    onFilterChange("priceRange", priceRange);
+  };
+
+  const handleStayTypeChange = (stayTypes) => {
+    onFilterChange("stayType", stayTypes);
+  };
+
+  const handleRoomTypeChange = (roomTypes) => {
+    onFilterChange("roomType", roomTypes);
+  };
+
+  const handleAmenitiesChange = (amenities) => {
+    onFilterChange("amenities", amenities);
+  };
+
+  const handleRatingChange = (rating) => {
+    onFilterChange("rating", rating);
+  };
+
   return (
     <>
-      {/* Mobile Overlay */}
       {isOpen && (
         <div
           className="fixed inset-0 bg-black/70 bg-opacity-50 z-40 lg:hidden"
@@ -20,7 +53,6 @@ export default function Filters({ isOpen = false, onClose }) {
         />
       )}
 
-      {/* Filters Sidebar */}
       <aside
         className={`${
           isOpen ? "translate-x-0" : "translate-x-full lg:translate-x-0"
@@ -31,42 +63,49 @@ export default function Filters({ isOpen = false, onClose }) {
   lg:static lg:h-auto lg:w-1/4 lg:z-auto lg:transform-none`}
       >
         <ShuffleInOnScroll delay={0} className="space-y-6">
-          {/* Header with Close Button for Mobile */}
-          <section className="flex items-center justify-between text-[#1A1A1A] mb-4">
+          <section className="flex items-center justify-between text-[#1A1A1A] mb-4 sticky top-0 bg-white pt-2 z-10">
             <div className="flex items-center gap-4">
-              {/* SlidersHorizontal visible below lg */}
               <SlidersHorizontal className="block lg:hidden" size={20} />
-
-              {/* Funnel visible lg and above */}
               <Funnel className="hidden lg:block" size={20} />
-
               <h3 className="font-bold text-2xl">Filters</h3>
             </div>
             <button
-              onClick={onClose}
-              className="lg:hidden p-1 hover:bg-gray-100 rounded"
+              onClick={onResetFilters}
+              className="text-sm text-[#0D0BA8] hover:underline cursor-pointer"
             >
-              <X size={24} />
+              Reset all
             </button>
           </section>
-
-          {/* Filter */}
-          <SearchFilter />
-
-          {/* Price Range */}
-          <PriceFilter />
-
-          {/* Stay Type */}
-          <StayType />
-
-          {/* Room Type */}
-          <RoomType />
-
-          {/* Amenities */}
-          <AmentiesFilter />
-
-          {/* Rating */}
-          <RatingFilter />
+          <SearchFilter
+            filterNames={filterNames?.location}
+            selected={appliedFilters.location}
+            onChange={handleLocationChange}
+          />
+          <PriceFilter
+            filterNames={filterNames}
+            value={appliedFilters.priceRange}
+            onChange={handlePriceChange}
+          />
+          <StayType
+            filterNames={filterNames?.staytypes}
+            selected={appliedFilters.stayType}
+            onChange={handleStayTypeChange}
+            type={type}
+          />
+          <RoomType
+            filterNames={filterNames?.room_types}
+            selected={appliedFilters.roomType}
+            onChange={handleRoomTypeChange}
+          />
+          <AmentiesFilter
+            filterNames={filterNames?.amenities}
+            selected={appliedFilters.amenities}
+            onChange={handleAmenitiesChange}
+          />
+          <RatingFilter
+            selected={appliedFilters.rating}
+            onChange={handleRatingChange}
+          />
         </ShuffleInOnScroll>
       </aside>
     </>

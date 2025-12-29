@@ -1,6 +1,35 @@
+"use client";
+
 import RevealOnScroll from "@/components/animations/RevealOnScroll";
+import axiosInstance from "@/lib/axiosInstance";
+import { API_ENDPOINTS } from "@/lib/api/api";
+import { useState } from "react";
+import { toast } from "react-toastify";
 
 export default function AccountSection() {
+  const [loading, setLoading] = useState(false);
+
+  const handleDeactivateAccount = async () => {
+    try {
+      setLoading(true);
+
+      const res = await axiosInstance.put(
+        API_ENDPOINTS.USER.DEACTIVE_ACCOUNT
+      );
+
+      toast.success(res.data.message);
+      console.log("Deactivate Response:", res.data);
+
+    } catch (error) {
+      console.error("Deactivate error:", error);
+      toast.error(
+        error?.response?.data?.message || "Failed to deactivate account"
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="bg-white p-6 rounded-2xl shadow mb-8 w-full">
       <RevealOnScroll delay={0.3}>
@@ -10,19 +39,17 @@ export default function AccountSection() {
         </p>
 
         <div className="space-y-4 flex flex-col w-full sm:w-1/2 xl:w-1/4">
-
-          <button className="px-6 py-3 border border-[#0D0BA8] text-base font-semibold text-[#0D0BA8] rounded-full hover:bg-[#0D0BA8] hover:text-white cursor-pointer">
-            Logout of all devices
+          <button
+            onClick={handleDeactivateAccount}
+            disabled={loading}
+            className={`px-6 py-3 rounded-full text-white transition-colors
+              ${loading
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-[#0D0BA8] hover:bg-blue-900 cursor-pointer"
+              }`}
+          >
+            {loading ? "Deactivating..." : "Deactivate Account"}
           </button>
-
-          <button className="px-6 py-3 bg-[#0D0BA8] text-white rounded-full hover:bg-blue-900 cursor-pointer">
-            Deactivate account
-          </button>
-
-          <button className="text-[#0D0BA8] text-sm underline cursor-pointer">
-            Delete account permanently
-          </button>
-
         </div>
       </RevealOnScroll>
     </div>

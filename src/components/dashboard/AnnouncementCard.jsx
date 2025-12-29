@@ -1,4 +1,4 @@
-import { Bell, UtensilsCrossed, Wifi, BrushCleaning } from "lucide-react";
+import { UtensilsCrossed, Wifi, BrushCleaning } from "lucide-react";
 
 export default function AnnouncementsCard() {
   return (
@@ -11,7 +11,7 @@ export default function AnnouncementsCard() {
         <li className="flex items-center gap-4"><Wifi className="w-4 h-4 text-[#44475A]" /> Free Wi-Fi maintenance tonight (11 PM – 1 AM)</li>
         <li className="flex items-center gap-4"><UtensilsCrossed className="w-4 h-4 text-[#44475A]" /> New meal options available this week</li>
       </ul>
-      <button className="mt-4 bg-[#0D0BA8] text-white w-2/3 mx-auto py-2 rounded-full hover:bg-[#1715b1] cursor-pointer">
+      <button className="mt-4 bg-[#0D0BA8] text-white w-2/3 mx-auto px-4 py-2 rounded-full hover:bg-[#1715b1] cursor-pointer">
         View All Announcements
       </button>
     </div>

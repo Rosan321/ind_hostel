@@ -6,8 +6,65 @@ import { facebook, insta, linkedin, twitter } from "@/lib/utils/svgS";
 import Link from "next/link";
 import RevealOnScroll from "@/components/animations/RevealOnScroll";
 import ShuffleInOnScroll from "@/components/animations/SuffleInOnScroll";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { contactUS } from "@/lib/store/actions/otherActions";
+import { toast } from "react-toastify";
 
 export default function Contact() {
+  const [formData, setFormData] = useState({
+    fullname: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
+  });
+  const dispatch = useDispatch();
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const validateForm = () => {
+    if (!formData.phone.trim()) {
+      toast.error("Phone number is required");
+      return false;
+    }
+    if (!/^[0-9]{10}$/.test(formData.phone)) {
+      toast.error("Enter a valid 10-digit phone number");
+      return false;
+    }
+
+    if (!formData.message.trim() || formData.message.length < 10) {
+      toast.error("Message should be at least 10 characters long");
+      return false;
+    }
+
+    return true;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!validateForm()) return;
+
+    try {
+      const res = await dispatch(contactUS(formData)).unwrap();
+      toast.success(res?.message || "Message sent successfully!");
+
+      setFormData({
+        fullname: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+      });
+    } catch (error) {
+      const msg = error?.message || "Failed to send message. Try again.";
+      toast.error(msg);
+    }
+  };
+
   return (
     <>
       {/* Header */}
@@ -38,26 +95,34 @@ export default function Contact() {
       <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 px-4 sm:px-8 lg:px-20 bg-gray-100 py-10 lg:py-24">
         {/* Form Box */}
         <div className="flex-1 bg-white p-4 sm:p-6 lg:p-8 rounded-xl shadow-md h-auto lg:h-[540px]">
-          <form className="space-y-4 sm:space-y-6">
+          <form className="space-y-4 sm:space-y-6" onSubmit={handleSubmit}>
             <RevealOnScroll delay={0.3}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Full Name *
+                  <label className="block text-sm text-[#1A1A1A]">
+                    Full Name <span className="text-red-600">*</span>
                   </label>
                   <input
+                    name="fullname"
+                    value={formData.fullname}
+                    onChange={handleChange}
                     type="text"
                     placeholder="Enter your name"
+                    required
                     className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200 focus:border-transparent transition-all text-sm sm:text-base"
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Email Address *
+                  <label className="block text-sm text-[#1A1A1A]">
+                    Email Address <span className="text-red-600">*</span>
                   </label>
                   <input
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
                     type="email"
                     placeholder="you@example.com"
+                    required
                     className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200 focus:border-transparent transition-all text-sm sm:text-base"
                   />
                 </div>
@@ -67,22 +132,30 @@ export default function Contact() {
             <RevealOnScroll delay={0.3}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Mobile Number *
+                  <label className="block text-sm text-[#1A1A1A]">
+                    Mobile Number <span className="text-red-600">*</span>
                   </label>
                   <input
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
                     type="text"
                     placeholder="Enter Mobile number"
+                    required
                     className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200 focus:border-transparent transition-all text-sm sm:text-base"
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Subject *
+                  <label className="block text-sm text-[#1A1A1A]">
+                    Subject <span className="text-red-600">*</span>
                   </label>
                   <input
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
                     type="text"
                     placeholder="Booking query / Feedback"
+                    required
                     className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200 focus:border-transparent transition-all text-sm sm:text-base"
                   />
                 </div>
@@ -91,12 +164,16 @@ export default function Contact() {
 
             <RevealOnScroll delay={0.3}>
               <div className="space-y-2">
-                <label className="block text-sm font-medium text-gray-700">
-                  Your Message *
+                <label className="block text-sm text-[#1A1A1A]">
+                  Your Message <span className="text-red-600">*</span>
                 </label>
                 <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
                   rows="3"
                   placeholder="Write your message here..."
+                  required
                   className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200 focus:border-transparent transition-all resize-none text-sm sm:text-base"
                 />
               </div>
@@ -104,9 +181,9 @@ export default function Contact() {
 
             <button
               type="submit"
-              className="btn-wiper-bg bg-[#f3ff3d] hover:bg-[#e9f728] text-black font-semibold rounded-full w-full sm:w-auto mx-auto block transition-colors text-sm sm:text-base cursor-pointer"
+              className="btn-wiper-bg bg-[#f3ff3d] hover:bg-[#e9f728] rounded-full w-full sm:w-auto mx-auto block transition-colors text-sm sm:text-base font-semibold cursor-pointer"
             >
-              <span className="btn-wiper-bg-content flex items-center justify-center gap-2 font-medium px-6 sm:px-8 py-2 sm:py-3">
+              <span className="btn-wiper-bg-content flex items-center justify-center gap-2 px-6 sm:px-8 py-2 sm:py-3">
                 Send Message
               </span>
             </button>
@@ -194,9 +271,8 @@ export default function Contact() {
               { href: "https://www.x.com/", icon: twitter },
               { href: "https://www.youtube.com/", icon: linkedin },
             ].map((social, index) => (
-              <span className="p-2 bg-[#0D0BA8] rounded-full">
+              <span key={index} className="p-2 bg-[#0D0BA8] rounded-full">
                 <a
-                  key={index}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"

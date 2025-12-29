@@ -1,25 +1,66 @@
-import RevealOnScroll from "../animations/RevealOnScroll";
+"use client";
 
-const StayType = () => {
+import RevealOnScroll from "../animations/RevealOnScroll";
+import { useEffect, useState } from "react";
+
+const STATIC_STAY_TYPES = ["pgs", "hotels", "hostels"];
+
+const StayType = ({ selected = [], onChange, type }) => {
+  const [selectedTypes, setSelectedTypes] = useState([]);
+
+  useEffect(() => {
+    if (type && STATIC_STAY_TYPES.includes(type)) {
+      setSelectedTypes([type]);
+    } else {
+      setSelectedTypes(selected);
+    }
+  }, [type, selected]);
+
+  const handleCheckboxChange = (staytype, isChecked) => {
+    let newSelected;
+
+    if (isChecked) {
+      newSelected = [...selectedTypes, staytype];
+    } else {
+      newSelected = selectedTypes.filter((t) => t !== staytype);
+    }
+
+    setSelectedTypes(newSelected);
+    onChange?.(newSelected);
+  };
+
   return (
-    <>
-      <RevealOnScroll delay={0.2}>
-        <div className="space-y-1">
-          <h4 className="font-bold mb-2 text-[#222222] text-lg">Stay Type</h4>
-          {["Hostel", "PG", "Hotel"].map((type) => (
-            <div key={type} className="flex items-center space-x-2">
-              <input type="checkbox" id={type} className="accent-[#44475A]" />
+    <RevealOnScroll delay={0.2}>
+      <div className="space-y-1">
+        <h4 className="font-bold mb-2 text-[#222222] text-lg">Stay Type</h4>
+
+        {STATIC_STAY_TYPES.map((staytype) => {
+          const isDisabled = Boolean(type); // 🔒 lock all when type exists
+
+          return (
+            <div key={staytype} className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                id={`staytype-${staytype}`}
+                className="accent-[#44475A] cursor-not-allowed"
+                checked={selectedTypes.includes(staytype)}
+                disabled={isDisabled}
+                onChange={(e) =>
+                  handleCheckboxChange(staytype, e.target.checked)
+                }
+              />
+
               <label
-                htmlFor={type}
-                className="text-[#1A1A1A] text-sm font-medium"
+                htmlFor={`staytype-${staytype}`}
+                className={`text-sm font-medium cursor-not-allowed opacity-60`}
               >
-                {type}
+                {staytype.charAt(0).toUpperCase() + staytype.slice(1)}
               </label>
             </div>
-          ))}
-        </div>
-      </RevealOnScroll>
-    </>
+          );
+        })}
+      </div>
+    </RevealOnScroll>
   );
 };
 

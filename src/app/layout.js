@@ -7,6 +7,9 @@ import {
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import StoreProvider from "@/StoreProvider";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,9 +46,20 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} ${openSans.variable} font-sans antialiased`}
       >
-        <Header />
-        <main className="pt-22">{children}</main>
-        <Footer />
+        <StoreProvider>
+          <Header />
+          <main className="pt-22">{children}</main>
+          <Footer />
+          <ToastContainer
+            position="top-center"
+            autoClose={2500}
+            newestOnTop={false}
+            closeOnClick
+            pauseOnFocusLoss={false}
+            draggable
+            theme="dark"
+          />
+        </StoreProvider>
       </body>
     </html>
   );

@@ -1,104 +1,42 @@
-export const cityHostels = {
-  Mumbai: [
+export const previousMessages = [
     {
-      id: 1,
-      name: "Sunrise Hostel",
-      price: "₹12,000/month",
-      amenities: ["WiFi", "AC"],
-      rating: 4.5,
-      distance: "2.5 km from city center",
-      image: "/images/mum.png",
+      from: "You",
+      text: "Hi, my booking payment failed but the amount was deducted.",
+      time: "10:35 AM",
     },
     {
-      id: 2,
-      name: "Urban Nest",
-      price: "₹10,000/month",
-      amenities: ["Meals", "Study Lounge"],
-      rating: 4.3,
-      distance: "1.8 km from city center",
-      image: "/images/mum.png",
+      from: "Admin",
+      text: "We’ve received your query — refund will be processed in 24 hrs",
+      time: "11:10 AM",
     },
     {
-      id: 3,
-      name: "Seaside Stay",
-      price: "₹14,500/month",
-      amenities: ["Sea View", "WiFi"],
-      rating: 4.7,
-      distance: "3.2 km from beach",
-      image: "/images/mum.png",
+      from: "You",
+      text: "Thanks for the quick help!",
+      time: "11:12 AM",
+    },
+  ];
+
+export  const tabs = [
+    {
+      id: "booking",
+      label: "Booking Issue",
+      desc: "Problems with booking confirmation or changes",
     },
     {
-      id: 4,
-      name: "Seaside Stay",
-      price: "₹14,500/month",
-      amenities: ["Sea View", "WiFi"],
-      rating: 4.7,
-      distance: "3.2 km from beach",
-      image: "/images/mum.png",
-    },
-  ],
-  Hyderabad: [
-    {
-      id: 1,
-      name: "Tech Park Hostel",
-      price: "₹9,500/month",
-      amenities: ["WiFi", "AC", "Gym"],
-      rating: 4.4,
-      distance: "1.2 km from IT Park",
-      image: "/images/mum.png",
+      id: "payment",
+      label: "Payment Help",
+      desc: "Transaction, refund, or billing queries",
     },
     {
-      id: 2,
-      name: "City Center Stay",
-      price: "₹11,000/month",
-      amenities: ["WiFi", "Meals", "Laundry"],
-      rating: 4.2,
-      distance: "0.5 km from city center",
-      image: "/images/mum.png",
+      id: "room",
+      label: "Room Issue",
+      desc: "Report maintenance or cleanliness issues",
     },
-  ],
-  Pune: [
     {
-      id: 1,
-      name: "College Hub Hostel",
-      price: "₹8,500/month",
-      amenities: ["WiFi", "Study Room"],
-      rating: 4.1,
-      distance: "1.0 km from university",
-      image: "/images/mum.png",
+      id: "general",
+      label: "General Question",
+      desc: "Ask about facilities, rules, or new stays",
     },
-  ],
-  Goa: [
-    {
-      id: 1,
-      name: "Beachside Hostel",
-      price: "₹15,000/month",
-      amenities: ["WiFi", "Pool", "Beach View"],
-      rating: 4.8,
-      distance: "0.2 km from beach",
-      image: "/images/mum.png",
-    },
-  ],
-  Jaipur: [
-    {
-      id: 1,
-      name: "Heritage Stay",
-      price: "₹9,000/month",
-      amenities: ["WiFi", "AC", "Traditional"],
-      rating: 4.3,
-      distance: "1.5 km from city palace",
-      image: "/images/mum.png",
-    },
-  ],
-  Delhi: [
-    {
-      id: 1,
-      name: "Metro Connect Hostel",
-      price: "₹11,000/month",
-      amenities: ["WiFi", "AC", "Metro Access"],
-      rating: 4.0,
-      distance: "0.3 km from metro station",
-      image: "/images/mum.png",
-    },
-  ],
-};
+  ];
+
+  

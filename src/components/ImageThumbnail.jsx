@@ -3,11 +3,15 @@
 import { CircleCheck, Star } from "lucide-react";
 import AnimatedCard from "./animations/AnimatedCard";
 
-const ImageThumbnail = ({ images = [], mainImage }) => {
-  const otherImages = images.slice(1); // remaining images
+const ImageThumbnail = ({ data }) => {
+  const mainImage = data?.images_url?.[0] ?? null;
+  const otherImages = data?.images_url?.length > 1 ? data?.images_url.slice(1) : [];
+
+
+  // console.log(data)
 
   return (
-    <div className="w-full flex flex-col md:flex-row gap-4">
+    <div className="w-full flex flex-col md:flex-row gap-4 lg:gap-8">
       {/* Main large image */}
       <div className="relative w-full md:flex-1 max-w-full rounded-lg overflow-hidden shadow-lg">
         {mainImage ? (
@@ -15,7 +19,7 @@ const ImageThumbnail = ({ images = [], mainImage }) => {
             <img
               src={mainImage}
               alt="main"
-              className="object-cover w-full h-[300px] sm:h-[420px] md:h-[594px]"
+              className="object-cover w-full h-[300px] sm:h-[396px] lg:h-[608px]"
             />
           </AnimatedCard>
         ) : (
@@ -33,7 +37,7 @@ const ImageThumbnail = ({ images = [], mainImage }) => {
         "
         >
           <CircleCheck size={14} className="sm:w-4 sm:h-4" />
-          <p className="font-medium">Verified Stay</p>
+          <p className="font-medium">{data?.isverified && "Verified Stay"}</p>
         </section>
 
         {/* RATING BADGE */}
@@ -45,31 +49,31 @@ const ImageThumbnail = ({ images = [], mainImage }) => {
         "
         >
           <Star fill="#FFF" size={14} className="sm:w-4 sm:h-4" />
-          <p className="font-medium text-[#FFF]">4.8 / 5 (210 Reviews)</p>
+          <p className="font-medium text-[#FFF]">{data?.avgRating?.toFixed(1)} / 5 ({data?.totalRatings} Reviews)</p>
         </section>
 
         {/* PRICE BADGE */}
         <section
           className="
-          flex items-baseline gap-1 absolute right-2 sm:right-4 bottom-2 sm:bottom-4
+          flex items-baseline absolute right-2 sm:right-4 bottom-2 sm:bottom-4
           bg-white px-2 sm:px-3 py-1 sm:py-2 rounded-lg shadow
         "
         >
           <h3 className="text-base sm:text-xl lg:text-2xl font-bold">
-            From ₹2,999 /
+            {data?.room_id?.[0]?.pricing_id?.pricing?.[0]?.price}/
           </h3>
           <p className="text-[10px] sm:text-sm text-[#666666] font-medium">
-            night
+            {data?.room_id?.[0]?.pricing_id?.pricing?.[0]?.price_type}
           </p>
         </section>
       </div>
 
       {/* Thumbnails */}
       {otherImages.length > 0 && (
-        <div className="flex flex-col w-full md:w-[35%] space-y-4">
+        <div className="flex flex-col w-full md:w-[35%] space-y-4 lg:space-y-8">
           {/* First Image Full Width */}
           <AnimatedCard>
-            <div className="w-full h-48 sm:h-64 md:h-96 rounded-lg overflow-hidden">
+            <div className="w-full h-48 sm:h-62 lg:h-96 rounded-lg overflow-hidden">
               <img
                 src={otherImages[0]}
                 alt="main-image"
@@ -81,10 +85,10 @@ const ImageThumbnail = ({ images = [], mainImage }) => {
           {/* Next 2 Images Side by Side */}
           {otherImages.length > 1 && (
             <div className="grid grid-cols-2 gap-4">
-              {otherImages.slice(1).map((img, i) => (
+              {otherImages.slice(1, 2).map((img, i) => (
                 <AnimatedCard key={i}>
                   <div
-                    className="rounded-lg overflow-hidden h-32 sm:h-40 md:h-48 shadow-sm"
+                    className="rounded-lg overflow-hidden h-32 sm:h-32 lg:h-48 shadow-sm"
                   >
                     <img
                       src={img}
