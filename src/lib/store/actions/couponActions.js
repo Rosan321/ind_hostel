@@ -10,7 +10,7 @@ export const applyCoupon = createAsyncThunk(
       const response = await axiosInstance.post(API_ENDPOINTS.COUPON.COUPON_APPLY, coupon);
       return response.data;
     } catch (error) {
-      console.error('❌ applyCoupon error:', error);
+      // console.error('❌ applyCoupon error:', error);
       return rejectWithValue(error.response?.data || 'Error');
     }
   }
@@ -23,7 +23,7 @@ export const getAllCoupon = createAsyncThunk(
       const response = await axiosInstance.get(API_ENDPOINTS.COUPON.COUPON_ALL);
       return response.data;
     } catch (error) {
-      console.error('❌ createBooking error:', error);
+      // console.error('❌ createBooking error:', error);
       return rejectWithValue(error.response?.data || 'Error');
     }
   }

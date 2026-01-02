@@ -74,10 +74,10 @@ const PriceFilter = ({
       <RevealOnScroll delay={0.2}>
         <label className="font-bold text-[#222222] text-lg">Budget Range</label>
         <div className="relative mt-2 py-2">
-          <div
+          {/* <div
             className="h-1.5 bg-[#44475A] rounded-full absolute top-1/2 left-0 transform -translate-y-1/2 z-0"
             style={{ width: "100%" }}
-          ></div>
+          ></div> */}
           <div
             className="h-1.5 bg-[#44475A] rounded-full absolute top-1/2 left-0 transform -translate-y-1/2"
             style={{ width: `calc(${percentage}% + 0px)` }}

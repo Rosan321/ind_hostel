@@ -9,12 +9,12 @@ const AboutUs = () => {
   return (
     <div className="pb-12 lg:pb-0 lg:py-18 xl:py-12 xl:pb-24 px-4 sm:px-8 lg:px-20 bg-gray-100">
       <section className="relative">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-18 xl:gap-4 items-center justify-center mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12 lg:gap-18 xl:gap-4 items-center justify-center mx-auto">
           {/* Left Side - Content */}
           <div className="space-y-6 py-8 lg:py-12 max-w-7xl">
             {/* Heading Section */}
             <RevealOnScroll delay={0}>
-              <div className="space-y-4">
+              <div className="space-y-4 pb-6 lg:pb-12">
                 <h2 className="text-base lg:text-lg font-semibold text-[#44475A] tracking-wide">
                   ABOUT US
                 </h2>

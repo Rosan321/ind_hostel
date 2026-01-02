@@ -60,7 +60,7 @@ const Hero = ({ name, location, verify, paramsObj }) => {
             <>
               <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4" />
               <span className="hover:text-white transition">
-                {location ? location : "Mumbai"}
+                {location ? location : ""}
               </span>
               <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4" />
               <span className="text-[#B0B3C6] font-medium">{stayName}</span>
@@ -71,7 +71,7 @@ const Hero = ({ name, location, verify, paramsObj }) => {
         {/* ✔ Main Text Section */}
         <div className="flex flex-col lg:flex-row items-center gap-4 lg:gap-8 mt-6 sm:mt-0 text-center lg:text-left">
           <RevealOnScroll delay={0.4}>
-            <section className="max-w-[700px] flex flex-col justify-center items-center sm:gap-4 lg:gap-8">
+            <section className="max-w-[700px] flex flex-col justify-center items-center sm:gap-4 lg:gap-0">
               {/* Headings */}
               <h1 className="text-2xl sm:text-[40px] lg:5xl font-bold text-center">
                 {pathname === "/location" &&
@@ -79,7 +79,12 @@ const Hero = ({ name, location, verify, paramsObj }) => {
 }
                 {pathname === "/about" &&
                   "We make city stays simple for students, professionals & travelers"}
-                {isStay && stayName}
+                {isStay && (
+                  <div className="flex items-center">
+                    <p>{name ? name.charAt(0).toUpperCase() + name.slice(1) : "Name"},</p>
+                    <p>{location ? location.charAt(0).toUpperCase() + location.slice(1) : "Name"}</p>
+                  </div>
+                )}
               </h1>
 
               {/* Subtext */}
@@ -94,11 +99,11 @@ const Hero = ({ name, location, verify, paramsObj }) => {
                   "Affordable, safe & modern living spaces for students and professionals"}
               </p>
 
-              {pathname === "/about" && (
+              {/* {pathname === "/about" && (
                 <Link href="/data" className="bg-[#0D0BA8] text-white px-6 py-3 rounded-full font-semibold mt-2 sm:mt-0">
                   Explore Stays
                 </Link>
-              )}
+              )} */}
             </section>
           </RevealOnScroll>
 

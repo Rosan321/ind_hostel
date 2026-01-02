@@ -38,6 +38,11 @@ const openSans = Open_Sans({
 export const metadata = {
   title: "Ind Hostel",
   description: "Hotel Booking App",
+  icons: {
+    icon: "/logoF.png",
+    shortcut: "/logoF.png",
+    apple: "/logoF.png"
+  },
 };
 
 export default function RootLayout({ children }) {

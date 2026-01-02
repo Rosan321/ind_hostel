@@ -4,7 +4,7 @@ import RevealOnScroll from "@/components/animations/RevealOnScroll";
 import ShuffleInOnScroll from "@/components/animations/SuffleInOnScroll";
 import { API_ENDPOINTS } from "@/lib/api/api";
 import axiosInstance from "@/lib/axiosInstance";
-import { previousMessages, tabs } from "@/lib/utils/cityHostels";
+import { tabs } from "@/lib/utils/cityHostels";
 import { formattedDate } from "@/lib/utils/fromattedDate";
 import { Upload } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -17,7 +17,6 @@ export default function HelpPage() {
   const [msg, setMsg] = useState("");
   const [file, setFile] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
   const [messagesAll, setMessagesAll] = useState(null);
 
   // Get the active tab label
@@ -82,7 +81,7 @@ export default function HelpPage() {
       setActiveTab("");
       setBookingId("");
     } catch (error) {
-      console.error("Error sending message:", error);
+      // console.error("Error sending message:", error);
       toast.error(error.response.data.message);
     } finally {
       setIsLoading(false);
@@ -93,10 +92,10 @@ export default function HelpPage() {
     const fetchAllMessages = async () => {
       try {
         const res = await axiosInstance.get(API_ENDPOINTS.HELP.GET_HELP);
-        console.log(res.data.data);
+        // console.log(res.data.data);
         setMessagesAll(res.data.data);
       } catch (error) {
-        console.error("Failed to fetch messages:", error);
+        // console.error("Failed to fetch messages:", error);
         toast.error(error.response.data.message);
       }
     };

@@ -34,7 +34,7 @@ const StayData = () => {
         setData(res.data.data);
         setRelated(res.data.relatedAccommodations || []);
       } catch (err) {
-        console.error("Accommodation API error:", err);
+        // console.error("Accommodation API error:", err);
         setError(true);
       } finally {
         setLoading(false);
@@ -71,17 +71,17 @@ const StayData = () => {
       <section className="py-10 px-4 sm:px-6 md:px-10 lg:px-20 mt-8 lg:mt-0">
         <div className="mx-auto space-y-12">
           <ImageThumbnail
-            images={data.allImages}
-            mainImage={data.images_url}
+            images={data?.allImages}
+            mainImage={data?.images_url}
             data={data}
           />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
             {/* LEFT */}
-            <article className="lg:col-span-7 xl:col-span-8 bg-white rounded-2xl p-4 sm:p-6 shadow-sm border">
-              <h1 className="text-2xl font-bold">{data.property_name}</h1>
+            <section className="lg:col-span-7 xl:col-span-8 bg-white rounded-2xl p-4 sm:p-6 shadow-sm border border-gray-200">
+              <h1 className="text-2xl font-bold">{data?.property_name ? data?.property_name.charAt(0).toUpperCase() + data?.property_name.slice(1) : "Property Name"}</h1>
               <p className="text-sm text-gray-600 mb-4">
-                {data.location?.city}
+                {data?.location?.city ? data?.location?.city.charAt(0).toUpperCase() + data?.location?.city.slice(1) : "City"}
               </p>
 
               <div className="flex flex-wrap gap-2 mb-6">
@@ -96,13 +96,13 @@ const StayData = () => {
                 ))}
               </div>
 
-              <p className="mb-6">{data.property_description}</p>
+              <p className="mb-6">{data?.property_description}</p>
               <PropertiesData data={data} />
-            </article>
+            </section>
 
             {/* RIGHT */}
-            <section className="lg:col-span-5 xl:col-span-4 bg-white rounded-2xl p-6 border">
-              <h2 className="text-xl font-bold mb-4">Amenities & Facilities</h2>
+            <section className="lg:col-span-5 xl:col-span-4 bg-white rounded-2xl p-4 sm:p-6 border border-gray-200">
+              <h2 className="text-2xl font-bold mb-4">Amenities & Facilities</h2>
 
               <div className="grid grid-cols-2 gap-3">
                 {data?.amenities?.map((item, i) => (

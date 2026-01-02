@@ -2,16 +2,16 @@
 
 import AuthGuard from "@/components/AuthGuard";
 import DashboardSidebar from "@/components/dashboard/DashboardSidebar";
-import { getProfileById } from "@/lib/store/actions/profileActions";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+// import { getProfileById } from "@/lib/store/actions/profileActions";
+// import { useEffect } from "react";
+// import { useDispatch } from "react-redux";
 
 export default function DashboardLayout({ children }) {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getProfileById());
-  }, [])
+  // useEffect(() => {
+  //   dispatch(getProfileById());
+  // }, [])
 
   return (
     <main className="flex flex-col lg:flex-row min-h-screen bg-gray-100">

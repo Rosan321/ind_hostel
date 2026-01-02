@@ -183,7 +183,7 @@ export default function Contact() {
               type="submit"
               className="btn-wiper-bg bg-[#f3ff3d] hover:bg-[#e9f728] rounded-full w-full sm:w-auto mx-auto block transition-colors text-sm sm:text-base font-semibold cursor-pointer"
             >
-              <span className="btn-wiper-bg-content flex items-center justify-center gap-2 px-6 sm:px-8 py-2 sm:py-3">
+              <span className="btn-wiper-bg-content flex items-center justify-center gap-2 px-6 sm:px-8">
                 Send Message
               </span>
             </button>
@@ -195,7 +195,7 @@ export default function Contact() {
           {/* Contact Information Badge */}
           <div className="absolute flex flex-col justify-center -top-3 sm:-top-4 lg:-top-6 left-10">
             <ShuffleInOnScroll delay={0.2}>
-              <div className="relative text-[#FFFFFF] font-semibold text-center w-56 sm:w-64 lg:w-56 xl:w-72 py-2 sm:py-2 lg:py-2 rounded-t-xl">
+              <div className="relative text-[#FFFFFF] font-semibold text-center w-56 sm:w-64 lg:w-56 xl:w-72 py-2 rounded-t-xl">
                 <span className="relative z-[3] text-lg sm:text-xl lg:text-2xl font-semibold">
                   Contact Information
                 </span>

@@ -81,7 +81,7 @@ export const getAllFilteredData = createAsyncThunk(
       // console.log('Filter response:', response.data);
       return response.data;
     } catch (error) {
-      console.error("❌ Filter data error:", error);
+      // console.error("❌ Filter data error:", error);
       return rejectWithValue(
         error.response?.data || "Error fetching filtered data"
       );

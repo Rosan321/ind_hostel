@@ -21,22 +21,22 @@ const WhyChooseUs = () => {
           {/* Left Side - Image/Stats */}
           <div className="space-y-6">
             <RevealOnScroll delay={0}>
-            <div className="space-y-4">
-              <h2 className="text-base lg:text-lg font-semibold text-[#44475A]">
-                WHY CHOOSE US?
-              </h2>
+              <div className="space-y-4">
+                <h2 className="text-base lg:text-lg font-semibold text-[#44475A]">
+                  WHY CHOOSE US?
+                </h2>
 
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-6">
-                Why We're the Best Choice for Your Stay
-              </h3>
+                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-6">
+                  Why We're the Best Choice for Your Stay
+                </h3>
 
-              <p className="text-base text-white leading-relaxed">
-                Whether you're a student, working professional, or traveler, our
-                platform brings together hostels, PGs, and hotels in one place.
-                Compare, choose, and book your stay instantly — with full
-                transparency, affordable rates, and 24/7 support.
-              </p>
-            </div>
+                <p className="text-base text-white leading-relaxed">
+                  Whether you're a student, working professional, or traveler,
+                  our platform brings together hostels, PGs, and hotels in one
+                  place. Compare, choose, and book your stay instantly — with
+                  full transparency, affordable rates, and 24/7 support.
+                </p>
+              </div>
             </RevealOnScroll>
 
             {/* Features List */}
@@ -54,29 +54,24 @@ const WhyChooseUs = () => {
             </RevealOnScroll>
 
             <RevealOnScroll delay={0.3}>
-            <hr className="text-white" />
+              <hr className="text-white" />
 
-            {/* Note Box */}
-            {/* <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-4"> */}
-            <p className="text-xs md:text-sm flex items-center gap-2 font-base text-white mt-6 sm">
-              <CircleCheck className="w-4 h-4 text-white" /> These features
-              ensure comfort, safety, and convenience
-            </p>
+              {/* Note Box */}
+              {/* <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-4"> */}
+              <p className="text-xs md:text-sm flex items-center gap-2 font-base text-white mt-6 sm">
+                <CircleCheck className="w-4 h-4 text-white" /> These features
+                ensure comfort, safety, and convenience
+              </p>
             </RevealOnScroll>
-            {/* </div> */}
-
-            {/* Explore Now Button */}
-            {/* <button className="bg-[#F1FF51] hover:bg-[#dde953] text-[#1A1A1A] px-8 py-3 rounded-full font-semibold text-lg transition-colors duration-300 shadow-lg hover:shadow-xl mt-6 cursor-pointer">
-              Explore Now
-            </button> */}
             <RevealOnScroll delay={0.45}>
-            <SwiperButton
-              title="Explore Now"
-              className="w-44 h-13 flex items-center justify-center font-semibold md:text-lg text-[#1A1A1A] xl:mt-24"
-              rt={"/about"}
-            />
+              <SwiperButton
+                title="Explore Now"
+                className="w-44 h-13 flex items-center justify-center font-semibold md:text-lg text-[#1A1A1A] xl:mt-24"
+                rt={"/about"}
+              />
             </RevealOnScroll>
           </div>
+          {/* right side data */}
           <div>
             <RevealOnScroll delay={0.5}>
               <div className="flex justify-between gap-20 relative">

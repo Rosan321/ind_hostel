@@ -9,7 +9,7 @@ export const contactUS = createAsyncThunk(
       const response = await axiosInstance.post(API_ENDPOINTS.CONTACT.CONTACT, data);
       return response.data;
     } catch (error) {
-      console.error('❌ createBooking error:', error);
+      // console.error('❌ createBooking error:', error);
       return rejectWithValue(error.response?.data || 'Error');
     }
   }
@@ -22,7 +22,7 @@ export const getAllNotification = createAsyncThunk(
       const response = await axiosInstance.post(API_ENDPOINTS.NOTIFICATION.NOTIFICATION);
       return response.data;
     } catch (error) {
-      console.error('❌ createBooking error:', error);
+      // console.error('❌ createBooking error:', error);
       return rejectWithValue(error.response?.data || 'Error');
     }
   }
@@ -35,7 +35,7 @@ export const getNotificationById = createAsyncThunk(
       const response = await axiosInstance.post(API_ENDPOINTS.NOTIFICATION.NOTIFICATION, notificationid);
       return response.data;
     } catch (error) {
-      console.error('❌ createBooking error:', error);
+      // console.error('❌ createBooking error:', error);
       return rejectWithValue(error.response?.data || 'Error');
     }
   }

@@ -10,7 +10,7 @@ export const createReview = createAsyncThunk(
       const response = await axiosInstance.post(`${API_ENDPOINTS.REVIEWS.REVIEWS}/${id}`, data);
       return response.data;
     } catch (error) {
-      console.error('❌ createBooking error:', error);
+      // console.error('❌ createBooking error:', error);
       return rejectWithValue(error.response?.data || 'Error');
     }
   }
@@ -23,7 +23,7 @@ export const updateReview = createAsyncThunk(
       const response = await axiosInstance.patch(`${API_ENDPOINTS.REVIEWS.REVIEWS}/${id}`, data);
       return response.data;
     } catch (error) {
-      console.error('❌ createBooking error:', error);
+      // console.error('❌ createBooking error:', error);
       return rejectWithValue(error.response?.data || 'Error');
     }
   }
@@ -38,7 +38,7 @@ export const getAllReviewsById = createAsyncThunk(
       );
       return response.data;
     } catch (error) {
-      console.error('❌ getAllReviewsById error:', error);
+      // console.error('❌ getAllReviewsById error:', error);
       return rejectWithValue(error.response?.data || 'Error');
     }
   }
@@ -51,7 +51,7 @@ export const getAllReviews = createAsyncThunk(
       const response = await axiosInstance.get(API_ENDPOINTS.REVIEWS.REVIEWS_ALL);
       return response.data;
     } catch (error) {
-      console.error('❌ createBooking error:', error);
+      // console.error('❌ createBooking error:', error);
       return rejectWithValue(error.response?.data || 'Error');
     }
   }

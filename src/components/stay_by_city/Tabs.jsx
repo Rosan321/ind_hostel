@@ -99,8 +99,8 @@ export function Tabs({
           </div>
 
         {/* ---- Subtitle ---- */}
-        <p className="text-[#666666] text-sm mt-4">
-          Tap or swipe a neighborhood, or use filters to find the best matches
+        <p className="text-[#666666] text-sm mt-2">
+          Tap or swipe a neighborhood to visit other accomodations
         </p>
       </section>
 

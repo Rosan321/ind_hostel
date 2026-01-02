@@ -3,7 +3,6 @@
 import { Star } from "lucide-react";
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
-import RevealOnScroll from "../animations/RevealOnScroll";
 import AnimatedCard from "../animations/AnimatedCard";
 
 const CarouselCard = ({ item }) => {
@@ -16,7 +15,7 @@ const CarouselCard = ({ item }) => {
     if (!item?.pricingdata || !Array.isArray(item.pricingdata)) return "N/A";
 
     let lowestPrice = Infinity;
-    item.pricingdata.forEach((pricing) => {
+    item?.pricingdata?.forEach((pricing) => {
       if (pricing?.pricing && Array.isArray(pricing.pricing)) {
         pricing.pricing.forEach((priceItem) => {
           if (priceItem.price < lowestPrice) {
@@ -110,7 +109,7 @@ const CarouselCard = ({ item }) => {
   const roomTypesText = getRoomTypesCount();
 
   return (
-    <div className="border-b border-gray-200 pb-4 flex flex-col sm:flex-row gap-4 last:border-b-0">
+    <div className="border-b border-gray-200 pb-4 last:pb-0 flex flex-col sm:flex-row gap-4 last:border-b-0">
       <AnimatedCard
         delay={0.2}
         className="flex flex-col sm:flex-row gap-4 w-full"
@@ -215,11 +214,9 @@ const CarouselCard = ({ item }) => {
           )}
 
           <div className="flex items-center justify-between py-3 mt-1">
-            <div>
-              <h6 className="text-[#44475A] font-semibold text-base">
-                {priceText}
-              </h6>
-            </div>
+            <h6 className="text-[#44475A] font-semibold text-base">
+              {priceText}
+            </h6>
 
             <div className="flex items-center gap-1">
               {item?.rating !== null && (

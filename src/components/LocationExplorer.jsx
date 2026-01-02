@@ -136,7 +136,7 @@ const LocationExplorer = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 xl:gap-12 items-start">
             {/* Left - City Image */}
             <ShuffleInOnScroll intensity={70} delay={0.1}>
-              <div className="rounded-2xl overflow-hidden w-full h-64 sm:h-96 lg:h-[420px] xl:h-[540px] transform transition duration-300 hover:scale-102">
+              <div className="rounded-2xl overflow-hidden w-full h-64 sm:h-[520px] lg:h-[420px] xl:h-[540px] transform transition duration-300 hover:scale-102">
                 <Image
                   src={
                     cities.find((c) => c.name === selectedCity)?.image ||
@@ -152,7 +152,7 @@ const LocationExplorer = () => {
 
             {/* Right - Top Hostels */}
             <div className="rounded-2xl">
-              <h3 className="text-2xl sm:text-2xl lg:text-4xl font-bold text-gray-800 mb-6">
+              <h3 className="text-2xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-800 mb-4 xl:mb-6">
                 {loading ? (
                   <SpinnerLoader />
                 ) : (
@@ -174,9 +174,9 @@ const LocationExplorer = () => {
                       delay={0.15 * index}
                       intensity={50}
                     >
-                      <div className="flex lg:gap-4 gap-6 items-start transform transition duration-300 hover:scale-102">
+                      <div className="flex gap-4 items-start transform transition duration-300 hover:scale-102 space-y-4">
                         {/* Hostel Image */}
-                        <div className="relative w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 flex-shrink-0">
+                        <div className="relative w-28 h-28 lg:w-28 lg:h-28 flex-shrink-0">
                           <Image
                             src={
                               hostel.images_url?.[0] || 
@@ -194,17 +194,17 @@ const LocationExplorer = () => {
                         <div className="flex-1 min-w-0">
                           {/* Hostel Name */}
                           <h4 className="text-base lg:text-lg font-semibold text-gray-800 truncate">
-                            {hostel.property_name || "Unnamed Hostel"}
+                            {hostel.property_name ? hostel.property_name.charAt(0).toUpperCase() + hostel.property_name.slice(1) : "Unnamed Hostel"}
                           </h4>
                           
                           {/* Price */}
-                          <p className="text-base lg:text-lg font-bold text-[#2A32FF] my-2">
+                          <p className="text-base lg:text-lg font-bold text-[#2A32FF] xl:my-2">
                             {getLowestPrice(hostel.pricingData)}
                           </p>
                           
                           {/* Amenities - Show up to 3 */}
                           {hostel.amenities && hostel.amenities.length > 0 && (
-                            <div className="flex flex-wrap gap-2 mb-2 lg:mb-4">
+                            <div className="flex flex-wrap gap-2 my-1 xl:mb-4">
                               {hostel.amenities.slice(0, 3).map((amenity, idx) => (
                                 <span
                                   key={idx}
@@ -218,7 +218,7 @@ const LocationExplorer = () => {
                           
                           {/* Verified Badge */}
                           {hostel.isverified && (
-                            <div className="inline-flex items-center mt-1 px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">
+                            <div className="inline-flex items-center px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">
                               <span className="w-2 h-2 bg-green-500 rounded-full mr-1"></span>
                               Verified
                             </div>

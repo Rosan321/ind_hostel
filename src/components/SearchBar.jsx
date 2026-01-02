@@ -453,7 +453,7 @@ export default function SearchBar({ initialParams = {} }) {
 
               {/* Location */}
               <div className="flex items-center bg-white text-black px-6 rounded-full h-12 flex-2 gap-3">
-                <MapPin size={20} />
+                <MapPin size={24} />
                 <input
                   type="text"
                   placeholder="Enter City or Area"
@@ -465,7 +465,7 @@ export default function SearchBar({ initialParams = {} }) {
 
               {/* Check-in */}
               <div className="flex items-center bg-white text-black px-6 rounded-full h-12 flex-1 gap-3">
-                <CalendarDays size={20} />
+                <CalendarDays size={32} />
                 <DatePicker
                   selected={checkInDate}
                   onChange={handleCheckInChange}
@@ -480,7 +480,7 @@ export default function SearchBar({ initialParams = {} }) {
 
               {/* Check-out */}
               <div className="flex items-center bg-white text-black px-6 rounded-full h-12 flex-1 gap-3">
-                <CalendarDays size={20} />
+                <CalendarDays size={32} />
                 <DatePicker
                   selected={checkOutDate}
                   onChange={(d) => setCheckOutDate(d)}

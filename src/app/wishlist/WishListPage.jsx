@@ -21,10 +21,10 @@ const WishListPage = () => {
     try {
       setLoading(true);
       const res = await axiosInstance.get(API_ENDPOINTS.WISHLIST.WISHLIST_ALL);
-      console.log("Fetched wishlist:", res.data.data.wishlist);
+      // console.log("Fetched wishlist:", res.data.data.wishlist);
       setWishList(res.data.data.wishlist || []);
     } catch (error) {
-      console.error("Error fetching wishlist:", error);
+      // console.error("Error fetching wishlist:", error);
       setWishList([]);
     } finally {
       setLoading(false);
@@ -50,7 +50,7 @@ const WishListPage = () => {
         icon: "💔",
       });
     } catch (error) {
-      console.error("Error deleting from wishlist:", error);
+      // console.error("Error deleting from wishlist:", error);
       toast.error("Failed to remove from wishlist");
     } finally {
       setDeletingId(null);

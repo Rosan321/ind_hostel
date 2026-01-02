@@ -10,7 +10,7 @@ export const createBooking = createAsyncThunk(
       const response = await axiosInstance.post(`${API_ENDPOINTS.BOOKING.BOOKING}/${data.accoid}/${data.roomid}`);
       return response.data;
     } catch (error) {
-      console.error('❌ createBooking error:', error);
+      // console.error('❌ createBooking error:', error);
       return rejectWithValue(error.response?.data || 'Error');
     }
   }
@@ -23,7 +23,7 @@ export const getBookingById = createAsyncThunk(
       const response = await axiosInstance.get(API_ENDPOINTS.BOOKING.BOOKING, id);
       return response.data;
     } catch (error) {
-      console.error('❌ createBooking error:', error);
+      // console.error('❌ createBooking error:', error);
       return rejectWithValue(error.response?.data || 'Error');
     }
   }

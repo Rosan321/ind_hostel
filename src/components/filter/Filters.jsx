@@ -20,30 +20,6 @@ export default function Filters({
 }) {
   // console.log(type);
 
-  const handleLocationChange = (location) => {
-    onFilterChange("location", location);
-  };
-
-  const handlePriceChange = (priceRange) => {
-    onFilterChange("priceRange", priceRange);
-  };
-
-  const handleStayTypeChange = (stayTypes) => {
-    onFilterChange("stayType", stayTypes);
-  };
-
-  const handleRoomTypeChange = (roomTypes) => {
-    onFilterChange("roomType", roomTypes);
-  };
-
-  const handleAmenitiesChange = (amenities) => {
-    onFilterChange("amenities", amenities);
-  };
-
-  const handleRatingChange = (rating) => {
-    onFilterChange("rating", rating);
-  };
-
   return (
     <>
       {isOpen && (
@@ -54,57 +30,77 @@ export default function Filters({
       )}
 
       <aside
-        className={`${
-          isOpen ? "translate-x-0" : "translate-x-full lg:translate-x-0"
-        } ${!isOpen ? "lg:block hidden" : "block"} 
-  bg-white rounded-l-xl lg:rounded-xl shadow p-5 space-y-6 
-  transform transition-transform duration-500 ease-in-out z-50
-  fixed top-0 right-0 h-full w-4/5 max-w-sm md:w-3/4 
-  lg:static lg:h-auto lg:w-1/4 lg:z-auto lg:transform-none`}
+        className={`
+          fixed top-0 right-0 z-50 h-full
+          w-4/5 max-w-sm md:w-3/4
+          bg-white rounded-l-xl shadow
+          transform transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]
+          ${isOpen ? "translate-x-0" : "translate-x-full"}
+          overflow-y-auto lg:overflow-visible no-scrollbar
+          lg:static lg:translate-x-0 lg:h-auto lg:w-1/4 lg:rounded-xl lg:z-auto
+        `}
       >
-        <ShuffleInOnScroll delay={0} className="space-y-6">
-          <section className="flex items-center justify-between text-[#1A1A1A] mb-4 sticky top-0 bg-white pt-2 z-10">
-            <div className="flex items-center gap-4">
+        <ShuffleInOnScroll delay={0} className="space-y-5 p-5">
+          {/* HEADER */}
+          <section className="flex items-center justify-between sticky top-0 bg-white z-10 pb-4">
+            <div className="flex items-center gap-3">
               <SlidersHorizontal className="block lg:hidden" size={20} />
               <Funnel className="hidden lg:block" size={20} />
               <h3 className="font-bold text-2xl">Filters</h3>
             </div>
+
+            {/* RESET */}
             <button
               onClick={onResetFilters}
-              className="text-sm text-[#0D0BA8] hover:underline cursor-pointer"
+              className="text-sm text-[#0D0BA8] hover:underline text-right w-full"
             >
               Reset all
             </button>
           </section>
+
+          {/* FILTERS */}
           <SearchFilter
             filterNames={filterNames?.location}
             selected={appliedFilters.location}
-            onChange={handleLocationChange}
+            onChange={(v) => onFilterChange("location", v)}
           />
+
           <PriceFilter
             filterNames={filterNames}
             value={appliedFilters.priceRange}
-            onChange={handlePriceChange}
+            onChange={(v) => onFilterChange("priceRange", v)}
           />
+
+          <hr className="text-gray-300" />
+
           <StayType
             filterNames={filterNames?.staytypes}
             selected={appliedFilters.stayType}
-            onChange={handleStayTypeChange}
+            onChange={(v) => onFilterChange("stayType", v)}
             type={type}
           />
+
+          <hr className="text-gray-300" />
+
           <RoomType
             filterNames={filterNames?.room_types}
             selected={appliedFilters.roomType}
-            onChange={handleRoomTypeChange}
+            onChange={(v) => onFilterChange("roomType", v)}
           />
+
+          <hr className="text-gray-300" />
+
           <AmentiesFilter
             filterNames={filterNames?.amenities}
             selected={appliedFilters.amenities}
-            onChange={handleAmenitiesChange}
+            onChange={(v) => onFilterChange("amenities", v)}
           />
+
+          <hr className="text-gray-300" />
+
           <RatingFilter
             selected={appliedFilters.rating}
-            onChange={handleRatingChange}
+            onChange={(v) => onFilterChange("rating", v)}
           />
         </ShuffleInOnScroll>
       </aside>

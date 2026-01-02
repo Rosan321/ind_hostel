@@ -11,7 +11,7 @@ export const addToWishlist = createAsyncThunk(
       });
       return response.data;
     } catch (error) {
-      console.error('❌ createWishlist error:', error);
+      // console.error('❌ createWishlist error:', error);
       return rejectWithValue(error.response?.data || 'Error');
     }
   }
@@ -24,7 +24,7 @@ export const getWishlist = createAsyncThunk(
       const response = await axiosInstance.get(API_ENDPOINTS.WISHLIST.WISHLIST_ALL);
       return response.data;
     } catch (error) {
-      console.error('❌ getWishlist error:', error);
+      // console.error('❌ getWishlist error:', error);
       return rejectWithValue(error.response?.data || 'Error');
     }
   }
@@ -36,7 +36,7 @@ export const deleteWishlist = createAsyncThunk(
       const response = await axiosInstance.delete(API_ENDPOINTS.WISHLIST.WISHLIST_DELETE, wishlistid);
       return response.data;
     } catch (error) {
-      console.error('❌ deleteWishlist error:', error);
+      // console.error('❌ deleteWishlist error:', error);
       return rejectWithValue(error.response?.data || 'Error');
     }
   }

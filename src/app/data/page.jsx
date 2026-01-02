@@ -1,228 +1,3 @@
-// This code returns everything fine but not reset the filters when sortby selected
-
-// "use client";
-
-// import { useEffect, useState, useCallback } from "react";
-// import { useSearchParams } from "next/navigation";
-// import { useDispatch, useSelector } from "react-redux";
-
-// import ShuffleInOnScroll from "@/components/animations/SuffleInOnScroll";
-// import Filters from "@/components/filter/Filters";
-// import SearchBar from "@/components/SearchBar";
-// import StayGrid from "@/components/StayGrid";
-
-// import { ArrowDownWideNarrow, SlidersHorizontal } from "lucide-react";
-
-// import { getAllFilteredData } from "@/lib/store/actions/filterActions";
-// import { getSortData } from "@/lib/store/actions/accomodationActions";
-// import { setCurrentPage } from "@/lib/store/reducers/filterSlice";
-
-// export default function HostelListingPage() {
-//   const dispatch = useDispatch();
-//   const searchParams = useSearchParams();
-
-//   const type = searchParams.get("type");
-//   const category = searchParams.get("category");
-
-//   const {
-//     filterData = {},
-//     currentPage = 1,
-//     totalPages = 1,
-//     loading,
-//   } = useSelector((state) => state.filterData);
-
-//   /* ---------------- UI STATE ---------------- */
-//   const [filtersOpen, setFiltersOpen] = useState(false);
-//   const [sortBy, setSortBy] = useState("default");
-//   const [appliedFilters, setAppliedFilters] = useState({
-//     location: "",
-//     stayType: [],
-//     roomType: [],
-//     amenities: [],
-//     priceRange: { min: 0, max: 10000 },
-//     rating: null,
-//   });
-
-//   /* ---------------- FILTER API ---------------- */
-//   const fetchAccomodations = useCallback(() => {
-//     if (!type || !category) return;
-
-//     const params = {
-//       category_name: category,
-//       page: currentPage,
-//       limit: 10,
-//       location: appliedFilters.location,
-//       stayType: appliedFilters.stayType,
-//       roomType: appliedFilters.roomType,
-//       amenities: appliedFilters.amenities,
-//       priceRange: appliedFilters.priceRange,
-//       rating: appliedFilters.rating,
-//     };
-
-//     dispatch(getAllFilteredData(params));
-//   }, [type, category, currentPage, appliedFilters, dispatch]);
-
-//   /* 🔥 FILTER EFFECT (NO SORT HERE) */
-//   useEffect(() => {
-//     fetchAccomodations();
-//   }, [fetchAccomodations]);
-
-//   /* ---------------- HANDLERS ---------------- */
-//   const handleFilterChange = (filterType, value) => {
-//     setAppliedFilters((prev) => ({
-//       ...prev,
-//       [filterType]: value,
-//     }));
-//     dispatch(setCurrentPage(1));
-//     setSortBy("default");
-//   };
-
-//   const handleSortChange = (e) => {
-//     const value = e.target.value;
-//     setSortBy(value);
-//     dispatch(setCurrentPage(1));
-
-//     // 🔁 Default sorting → back to filter API
-//     if (value === "default") {
-//       fetchAccomodations();
-//       return;
-//     }
-
-//     if (!category) return;
-
-//     dispatch(
-//       getSortData({
-//         category,
-//         hightolow: value === "hightolow",
-//         lowtohigh: value === "lowtohigh",
-//       })
-//     );
-//   };
-
-//   const handleResetFilters = () => {
-//     setAppliedFilters({
-//       location: "",
-//       stayType: [],
-//       roomType: [],
-//       amenities: [],
-//       priceRange: { min: 0, max: 10000 },
-//       rating: null,
-//     });
-//     setSortBy("default");
-//     dispatch(setCurrentPage(1));
-//   };
-
-//   /* ---------------- HELPERS ---------------- */
-//   const formatCategory = (cat) =>
-//     cat
-//       ?.replace(/([A-Z])/g, " $1")
-//       .replace(/\+/g, " ")
-//       .replace(/\s+/g, " ")
-//       .trim();
-
-//   const activeFilterCount = [
-//     appliedFilters.location,
-//     ...appliedFilters.stayType,
-//     ...appliedFilters.roomType,
-//     ...appliedFilters.amenities,
-//     appliedFilters.rating,
-//   ].filter(Boolean).length;
-
-//   /* ---------------- UI ---------------- */
-//   return (
-//     <div className="bg-gray-100 px-4 sm:px-8 lg:px-20">
-//       <SearchBar />
-
-//       <div className="flex flex-col lg:flex-row gap-6 pt-6 lg:pt-12 pb-12 lg:pb-24">
-//         {/* Filters */}
-//         <Filters
-//           isOpen={filtersOpen}
-//           onClose={() => setFiltersOpen(false)}
-//           filterNames={filterData?.filters}
-//           appliedFilters={appliedFilters}
-//           onFilterChange={handleFilterChange}
-//           onResetFilters={handleResetFilters}
-//           type={type}
-//         />
-
-//         {/* Content */}
-//         <div className="flex-1">
-//           <ShuffleInOnScroll delay={0.2}>
-//             <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
-//               {/* Mobile Filters */}
-//               <div className="lg:hidden flex items-center gap-2">
-//                 <button
-//                   onClick={() => setFiltersOpen(true)}
-//                   className="border rounded-lg px-4 py-2 flex items-center gap-2 font-bold"
-//                 >
-//                   <SlidersHorizontal size={18} />
-//                   Filters
-//                   {activeFilterCount > 0 && (
-//                     <span className="ml-2 bg-blue-600 text-white text-xs px-2 rounded-full">
-//                       {activeFilterCount}
-//                     </span>
-//                   )}
-//                 </button>
-
-//                 {activeFilterCount > 0 && (
-//                   <button
-//                     onClick={handleResetFilters}
-//                     className="text-sm text-blue-600"
-//                   >
-//                     Clear all
-//                   </button>
-//                 )}
-//               </div>
-
-//               {/* Heading */}
-//               <div>
-//                 <h2 className="text-lg font-semibold text-gray-800">
-//                   Showing results for{" "}
-//                   <span className="text-blue-600 capitalize">
-//                     {type} - {formatCategory(category)}
-//                   </span>
-//                 </h2>
-//                 <p className="text-sm text-gray-500">
-//                   {filterData?.pagination?.count || 0} properties found
-//                 </p>
-//               </div>
-
-//               {/* Sort */}
-//               <div className="flex items-center gap-3">
-//                 <ArrowDownWideNarrow />
-//                 <select
-//                   className="border rounded-lg px-3 py-2 text-sm bg-white"
-//                   value={sortBy}
-//                   onChange={handleSortChange}
-//                 >
-//                   <option value="default">Default Sorting</option>
-//                   <option value="lowtohigh">Price: Low to High</option>
-//                   <option value="hightolow">Price: High to Low</option>
-//                 </select>
-//               </div>
-//             </div>
-//           </ShuffleInOnScroll>
-
-//           <ShuffleInOnScroll delay={0.4}>
-//             <StayGrid
-//               stays={filterData?.data || []}
-//               currentPage={currentPage}
-//               totalPages={totalPages}
-//               loading={loading}
-//               totalItems={filterData?.total}
-//             />
-//           </ShuffleInOnScroll>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-
-//////////////////////////////////////////////////////////////////////////////////////
-
-// This works awesome but initally calling 3 time the filter api 
-
 "use client";
 
 import { useEffect, useState, useCallback, useRef, Suspense } from "react";
@@ -234,7 +9,7 @@ import Filters from "@/components/filter/Filters";
 import SearchBar from "@/components/SearchBar";
 import StayGrid from "@/components/StayGrid";
 
-import { ArrowDownWideNarrow, SlidersHorizontal } from "lucide-react";
+import { ArrowDownWideNarrow, ChevronDown, SlidersHorizontal } from "lucide-react";
 
 import { getAllFilteredData } from "@/lib/store/actions/filterActions";
 import { getSortData } from "@/lib/store/actions/accomodationActions";
@@ -243,6 +18,24 @@ import { setCurrentPage } from "@/lib/store/reducers/filterSlice";
 function HostelListingContent() {
   const dispatch = useDispatch();
   const searchParams = useSearchParams();
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const options = [
+    { label: "Default Sorting", value: "default" },
+    { label: "Price: Low to High", value: "lowtohigh" },
+    { label: "Price: High to Low", value: "hightolow" },
+  ];
 
   const type = searchParams.get("type");
   const category = searchParams.get("category");
@@ -478,18 +271,43 @@ function HostelListingContent() {
               </div>
 
               {/* Sort */}
-              <div className="flex items-center gap-3">
-                <ArrowDownWideNarrow />
-                <select
-                  className="border rounded-lg px-3 py-2 text-sm bg-white"
-                  value={sortBy}
-                  onChange={handleSortChange}
-                >
-                  <option value="default">Default Sorting</option>
-                  <option value="lowtohigh">Price: Low to High</option>
-                  <option value="hightolow">Price: High to Low</option>
-                </select>
-              </div>
+                  <div ref={ref} className="relative flex items-center gap-3">
+      <ArrowDownWideNarrow />
+
+      {/* BUTTON */}
+      <button
+        onClick={() => setOpen(!open)}
+        className="border rounded-lg px-4 py-2 text-sm bg-white flex items-center justify-between gap-2 min-w-[200px] cursor-pointer"
+      >
+        {options.find((o) => o.value === sortBy)?.label}
+        <ChevronDown 
+          size={16}
+          className={`transition-transform duration-300 ${
+            open ? "rotate-180" : "rotate-0"
+          }`}
+        />
+      </button>
+
+      {/* DROPDOWN */}
+      {open && (
+        <div className="absolute top-full mt-2 w-full bg-white rounded-xl shadow-lg border z-50 overflow-hidden">
+          {options.map((opt) => (
+            <button
+              key={opt.value}
+              onClick={() => {
+                onChange(opt.value);
+                setOpen(false);
+              }}
+              className={`w-full text-left px-4 py-2 text-sm hover:bg-[#0D0BA8] hover:text-white cursor-pointer
+                ${sortBy === opt.value ? "bg-gray-50 font-medium" : ""}
+              `}
+            >
+              {opt.label}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
             </div>
           </ShuffleInOnScroll>
 

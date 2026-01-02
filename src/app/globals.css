@@ -95,8 +95,8 @@ h1, h2, h3, h4, h5, h6 {
   height: 0%;
   background-color: #2A32FF;
   border-radius: 9999px;
-  transition: height 0.7s ease-in-out;
-  transition-delay: 0.1s;
+  transition: height 0.3s ease-in-out;
+  /* transition-delay: 0.1s; */
   z-index: 2;
 }
 

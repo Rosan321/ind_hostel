@@ -25,7 +25,7 @@ const logoutUser = (storeInstance) => {
     try {
       window.sessionStorage.clear();
     } catch (e) {
-      console.error('Failed to clear sessionStorage:', e);
+      // console.error('Failed to clear sessionStorage:', e);
     }
     storeInstance.dispatch(logout());
     window.location.href = '/pages/login';
@@ -47,7 +47,7 @@ export const configureAxiosInterceptors = (storeInstance) => {
           }
         }
       } catch (e) {
-        console.error('Failed to read token from sessionStorage:', e);
+        // console.error('Failed to read token from sessionStorage:', e);
       }
       return config;
     },

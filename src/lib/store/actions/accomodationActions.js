@@ -83,7 +83,7 @@ export const getFilterNames = createAsyncThunk(
       const response = await axiosInstance.get(API_ENDPOINTS.FILTER_NAMES.FILTER_NAMES);
       return response.data;
     } catch (error) {
-      console.error('❌ createBooking error:', error);
+      // console.error('❌ createBooking error:', error);
       return rejectWithValue(error.response?.data || 'Error');
     }
   }
@@ -97,7 +97,7 @@ export const getAllAccomodationStayType = createAsyncThunk(
       // console.log(response.data)
       return response.data;
     } catch (error) {
-      console.error('❌ createBooking error:', error);
+      // console.error('❌ createBooking error:', error);
       return rejectWithValue(error.response?.data || 'Error');
     }
   }
@@ -113,7 +113,7 @@ export const getSortData = createAsyncThunk(
       // console.log(response.data)
       return response.data;
     } catch (error) {
-      console.error('❌ createBooking error:', error);
+      // console.error('❌ createBooking error:', error);
       return rejectWithValue(error.response?.data || 'Error');
     }
   }
