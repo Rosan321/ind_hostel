@@ -21,8 +21,8 @@ export default function Home() {
       <HeroSection />
       <LocationExplorer />
       <FeaturedProperties />
-      <AboutUs />
-      <WhyChooseUs />
+      {/* <AboutUs />
+      <WhyChooseUs /> */}
     </>
   );
 }

@@ -79,7 +79,7 @@ const FeaturedProperties = () => {
             Featured Properties
           </h2>
           <p className="text-lg text-gray-600 mt-2">
-            Hand-picked Hostels, PGs, and Hotels verified for comfort and safety
+            Trending hostels in your location
           </p>
         </div>
       </ShuffleInOnScroll>

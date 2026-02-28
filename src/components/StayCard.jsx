@@ -13,7 +13,7 @@ import {
 } from "@/lib/store/actions/wishlistActions";
 import { toast } from "react-toastify";
 
-export default function StayCard({ stay, rawData, similar }) {
+export default function StayCard({ stay, rawData, similar, cardBg = "bg-white" }) {
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
 
@@ -107,9 +107,8 @@ export default function StayCard({ stay, rawData, similar }) {
     if (data?.location?.address || data?.location?.city) {
       const address = data.location.address || "";
       const city = data.location.city || "";
-      return `${address.charAt(0).toUpperCase() + address.slice(1)}, ${
-        city.charAt(0).toUpperCase() + city.slice(1)
-      }`;
+      return `${address.charAt(0).toUpperCase() + address.slice(1)}, ${city.charAt(0).toUpperCase() + city.slice(1)
+        }`;
     }
     return data?.location || "Location not specified";
   };
@@ -142,7 +141,7 @@ export default function StayCard({ stay, rawData, similar }) {
   const priceInfo = getPriceInfo();
 
   return (
-    <div className="relative bg-white shadow rounded-2xl overflow-hidden flex flex-col w-full sm:max-w-md lg:max-w-lg hover:shadow-xl transition-shadow duration-300 group">
+    <div className={`relative ${cardBg} shadow-sm rounded-2xl overflow-hidden flex flex-col w-full sm:max-w-md lg:max-w-lg hover:shadow-md transition-all duration-300 group`}>
       {/* Badge and Price Container */}
       <div className="absolute top-3 left-0 right-0 flex justify-between items-center z-10">
         {/* Price on LEFT */}
@@ -155,9 +154,8 @@ export default function StayCard({ stay, rawData, similar }) {
         <button
           onClick={handleWishlistToggle}
           disabled={isLoading}
-          className={`absolute top-2 right-0 flex items-center justify-center group mr-2 sm:mr-3 p-2 rounded-full cursor-pointer transition-all duration-300 ${
-            isInWishlist ? "bg-rose-50 shadow-lg" : "bg-white shadow-xl"
-          } ${isLoading ? "opacity-70 cursor-not-allowed" : "hover:scale-110"}`}
+          className={`absolute top-2 right-0 flex items-center justify-center group mr-2 sm:mr-3 p-2 rounded-full cursor-pointer transition-all duration-300 ${isInWishlist ? "bg-rose-50 shadow-lg" : "bg-white shadow-xl"
+            } ${isLoading ? "opacity-70 cursor-not-allowed" : "hover:scale-110"}`}
           aria-label={isInWishlist ? "Remove from wishlist" : "Add to wishlist"}
         >
           {isLoading ? (
@@ -166,11 +164,10 @@ export default function StayCard({ stay, rawData, similar }) {
             <Heart
               size={28}
               strokeWidth={2}
-              className={`transition-all duration-300 ${
-                isInWishlist
+              className={`transition-all duration-300 ${isInWishlist
                   ? "fill-rose-500 text-rose-500 stroke-rose-500"
                   : "text-gray-400 stroke-gray-400 group-hover:text-rose-400 group-hover:stroke-rose-400"
-              } w-5 h-5 sm:w-5 sm:h-5`}
+                } w-5 h-5 sm:w-5 sm:h-5`}
             />
           )}
         </button>
@@ -206,7 +203,7 @@ export default function StayCard({ stay, rawData, similar }) {
             <h3 className="font-bold text-[#1A1A1A] text-base sm:text-lg line-clamp-1">
               {data?.property_name
                 ? data?.property_name.charAt(0).toUpperCase() +
-                  data?.property_name.slice(1)
+                data?.property_name.slice(1)
                 : "Stay Name"}
             </h3>
 

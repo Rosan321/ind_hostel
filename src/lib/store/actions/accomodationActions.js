@@ -11,7 +11,7 @@ export const getAllAccomodation = createAsyncThunk(
         Object.entries(params).filter(([_, value]) => value != null && value !== "")
       );
 
-    //   console.log(queryParams)
+      //   console.log(queryParams)
 
       const response = await axiosInstance.get(
         API_ENDPOINTS.ACCOMMODATION.ACCOMMODATION,
@@ -105,7 +105,7 @@ export const getAllAccomodationStayType = createAsyncThunk(
 
 export const getSortData = createAsyncThunk(
   'accomodation/Sorttype',
-  async (data={}, { rejectWithValue }) => {
+  async (data = {}, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.get(API_ENDPOINTS.ACCOMMODATION.ACCOMMODATION_SORT,
         { params: data }
@@ -115,6 +115,48 @@ export const getSortData = createAsyncThunk(
     } catch (error) {
       // console.error('❌ createBooking error:', error);
       return rejectWithValue(error.response?.data || 'Error');
+    }
+  }
+);
+export const getFilteredAccomodationByArea = createAsyncThunk(
+  "accomodation/getFilteredAccomodationByArea",
+  async (filters = {}, { rejectWithValue }) => {
+    try {
+      const params = {
+        page: filters.page || 1,
+        limit: filters.limit || 12,
+        category: filters.category,
+        location: filters.location,
+        rating: filters.rating,
+        checkIn: filters.checkIn,
+        checkOut: filters.checkOut,
+        price: filters.price,
+      };
+
+      // Handle arrays: category as comma-separated, others as JSON strings
+      if (filters.category && Array.isArray(filters.category) && filters.category.length > 0) {
+        params.category = filters.category.join(",");
+      }
+      if (filters.roomtype && filters.roomtype.length > 0) {
+        params.roomtype = JSON.stringify(filters.roomtype);
+      }
+      if (filters.amenities && filters.amenities.length > 0) {
+        params.amenities = JSON.stringify(filters.amenities);
+      }
+
+      // Remove undefined/empty values
+      const queryParams = Object.fromEntries(
+        Object.entries(params).filter(([_, value]) => value != null && value !== "")
+      );
+
+      const response = await axiosInstance.get(
+        API_ENDPOINTS.ACCOMMODATION.ACCOMMODATION_LOCATION_FILTER,
+        { params: queryParams }
+      );
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data || "Error fetching filtered data");
     }
   }
 );

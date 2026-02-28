@@ -7,6 +7,7 @@ import StayType from "./StayType";
 import RoomType from "./RoomType";
 import AmentiesFilter from "./AmentiesFilter";
 import RatingFilter from "./RatingFilter";
+import CategoryFilter from "./CategoryFilter";
 import ShuffleInOnScroll from "../animations/SuffleInOnScroll";
 
 export default function Filters({
@@ -17,6 +18,7 @@ export default function Filters({
   onFilterChange,
   onResetFilters,
   type,
+  hiddenFilters = [],
 }) {
   // console.log(type);
 
@@ -37,7 +39,7 @@ export default function Filters({
           transform transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]
           ${isOpen ? "translate-x-0" : "translate-x-full"}
           overflow-y-auto lg:overflow-visible no-scrollbar
-          lg:static lg:translate-x-0 lg:h-auto lg:w-1/4 lg:rounded-xl lg:z-auto
+          lg:static lg:translate-x-0 lg:h-auto lg:w-1/4 xl:w-1/5 lg:rounded-xl lg:z-auto
         `}
       >
         <ShuffleInOnScroll delay={0} className="space-y-5 p-5">
@@ -58,29 +60,43 @@ export default function Filters({
             </button>
           </section>
 
-          {/* FILTERS */}
-          <SearchFilter
-            filterNames={filterNames?.location}
-            selected={appliedFilters.location}
-            onChange={(v) => onFilterChange("location", v)}
-          />
+          {!hiddenFilters.includes("location") && (
+            <SearchFilter
+              filterNames={filterNames?.location}
+              selected={appliedFilters.location}
+              onChange={(v) => onFilterChange("location", v)}
+            />
+          )}
 
-          <PriceFilter
-            filterNames={filterNames}
-            value={appliedFilters.priceRange}
-            onChange={(v) => onFilterChange("priceRange", v)}
+          {!hiddenFilters.includes("price") && (
+            <PriceFilter
+              filterNames={filterNames}
+              value={appliedFilters.priceRange}
+              onChange={(v) => onFilterChange("priceRange", v)}
+            />
+          )}
+
+          <hr className="text-gray-300" />
+
+          <CategoryFilter
+            categories={filterNames?.category}
+            selected={appliedFilters.categories || []}
+            onChange={(v) => onFilterChange("categories", v)}
           />
 
           <hr className="text-gray-300" />
 
-          <StayType
-            filterNames={filterNames?.staytypes}
-            selected={appliedFilters.stayType}
-            onChange={(v) => onFilterChange("stayType", v)}
-            type={type}
-          />
-
-          <hr className="text-gray-300" />
+          {!hiddenFilters.includes("stayType") && (
+            <>
+              <StayType
+                filterNames={filterNames?.staytypes}
+                selected={appliedFilters.stayType}
+                onChange={(v) => onFilterChange("stayType", v)}
+                type={type}
+              />
+              <hr className="text-gray-300" />
+            </>
+          )}
 
           <RoomType
             filterNames={filterNames?.room_types}

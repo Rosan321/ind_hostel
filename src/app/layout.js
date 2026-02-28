@@ -37,7 +37,7 @@ const openSans = Open_Sans({
 
 export const metadata = {
   title: "Ind Hostel",
-  description: "Hotel Booking App",
+  description: "Hostel Booking App",
   icons: {
     icon: "/logoF.png",
     shortcut: "/logoF.png",

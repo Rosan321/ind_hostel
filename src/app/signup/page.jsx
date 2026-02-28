@@ -129,38 +129,42 @@ export default function SignUp() {
 
   return (
     <section className="py-8 sm:py-12 lg:py-16 px-4 lg:px-20">
-      <h1 className="text-center text-2xl sm:text-3xl lg:text-4xl font-bold">
+      {/* <h1 className="text-center text-2xl sm:text-3xl lg:text-4xl font-bold">
         Create an Account
       </h1>
       <p className="text-center text-[#666666] mt-2 text-sm md:text-base max-w-md mx-auto px-4">
         Join IndHostel to book stays, manage favorites, and more
-      </p>
+      </p> */}
 
-      <div className="max-w-7xl mx-auto mt-8 sm:mt-12 bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl grid grid-cols-1 lg:grid-cols-2 overflow-hidden">
+      <div className="max-w-7xl mx-auto mt-8 sm:mt-12 
+                bg-white rounded-xl sm:rounded-2xl 
+                shadow-2xl ring-1 ring-black/5
+                grid grid-cols-1 lg:grid-cols-2 
+                overflow-hidden">
         {/* LEFT IMAGE */}
         <div className="relative h-[300px] sm:h-[350px] lg:h-auto w-full">
           <Image
-            src="/images/auth.png"
+            src="/images/signup.png"
             alt="banner"
             fill
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-black/40 flex flex-col justify-center px-6 sm:px-8 lg:px-10">
-            <h2 className="text-white text-xl sm:text-2xl lg:text-3xl font-bold leading-tight">
-              Find Your Perfect Stay with IndHostel
+          <div className="absolute inset-0 bg-black/60 flex flex-col pt-28 px-6 sm:px-8 lg:px-10 text-center">
+            <h2 className="text-white text-xl sm:text-2xl lg:text-4xl font-bold leading-tight">
+              Create an Account
             </h2>
             <p className="text-white/90 mt-3 sm:mt-4 text-sm sm:text-base lg:text-lg">
-              PGs, Hostels, and Hostels — Book verified stays instantly
+              Explore hostels and Find your perfect stay with Indhostel
             </p>
           </div>
         </div>
 
         {/* RIGHT FORM */}
         <div className="p-4 sm:p-8 md:p-10">
-          <h2 className="text-2xl sm:text-3xl font-semibold text-center mb-6 sm:mb-8">
+          {/* <h2 className="text-2xl sm:text-3xl font-semibold text-center mb-6 sm:mb-8">
             Create an Account
-          </h2>
+          </h2> */}
 
           {error && (
             <p className="text-center text-red-600 text-sm mb-4">{error}</p>

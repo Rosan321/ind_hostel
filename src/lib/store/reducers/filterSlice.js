@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getAllFilteredData } from "../actions/filterActions";
-import { getSortData } from "../actions/accomodationActions";
+import { getSortData, getFilteredAccomodationByArea } from "../actions/accomodationActions";
 
 const filterSlice = createSlice({
   name: "filter",
@@ -74,6 +74,27 @@ const filterSlice = createSlice({
         };
       })
       .addCase(getSortData.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      /* ================= LOCATION FILTER API ================= */
+      .addCase(getFilteredAccomodationByArea.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getFilteredAccomodationByArea.fulfilled, (state, action) => {
+        state.loading = false;
+        state.filterData = action.payload;
+
+        const totalItems = action.payload?.totalaccommodations || 0;
+        const limit = action.payload?.pagination?.limit || 10;
+
+        state.totalItems = totalItems;
+        state.totalPages = Math.ceil(totalItems / limit) || 1;
+        state.currentPage = action.payload?.pagination?.page || 1;
+      })
+      .addCase(getFilteredAccomodationByArea.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

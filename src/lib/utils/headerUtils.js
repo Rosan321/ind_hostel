@@ -54,20 +54,45 @@ export const DropdownMenu = ({
   );
 };
 
-export const NavLink = ({ path, label, isActive, onClick }) => (
-  <Link
-    href={path}
-    onClick={onClick}
-    className={`relative xl:text-lg px-4 lg:px-0 xl:px-4 font-semibold pb-2
-      after:absolute after:left-0 after:bottom-0 after:h-[2px]
-      after:bg-[#0D0BA8]
-      after:transition-all after:duration-300
-      ${isActive ? "after:w-full" : "after:w-0 hover:after:w-full"}
-    `}
-  >
-    {label}
-  </Link>
-);
+// export const NavLink = ({ path, label, isActive, onClick }) => (
+//   <Link
+//     href={path}
+//     onClick={onClick}
+//     className={`relative xl:text-lg px-4 lg:px-0 xl:px-4 font-semibold pb-2
+//       after:absolute after:left-0 after:bottom-0 after:h-[2px]
+//       after:bg-[#0D0BA8]
+//       after:transition-all after:duration-300
+//       ${isActive ? "after:w-full" : "after:w-0 hover:after:w-full"}
+//     `}
+//   >
+//     {label}
+//   </Link>
+// );
+
+export const NavLink = ({ path, label, isActive, onClick }) => {
+  const isExternalLink = path?.startsWith("http");
+
+  const linkClasses = `relative xl:text-lg px-4 lg:px-0 xl:px-4 font-semibold pb-2
+    after:absolute after:left-0 after:bottom-0 after:h-[2px]
+    after:bg-[#0D0BA8]
+    after:transition-all after:duration-300
+    ${isActive ? "after:w-full" : "after:w-0 hover:after:w-full"}
+  `;
+
+  if (isExternalLink) {
+    return (
+      <a href={path} onClick={onClick} className={linkClasses}>
+        {label}
+      </a>
+    );
+  }
+
+  return (
+    <Link href={path} onClick={onClick} className={linkClasses}>
+      {label}
+    </Link>
+  );
+};
 
 export const AuthButton = ({ href, label, variant = "primary", onClick }) => {
   const baseClasses =

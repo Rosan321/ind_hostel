@@ -258,7 +258,7 @@ const TypesOfRoom = ({ id, data }) => {
         {/* Header */}
         <div className="mb-8">
           <h2 className="text-2xl font-bold text-gray-800 mb-2">
-            Types of Rooms Available
+            Type of Rooms Available
           </h2>
           <div className="w-12 h-1 bg-[#0D0BA8] rounded-full"></div>
         </div>
@@ -267,14 +267,8 @@ const TypesOfRoom = ({ id, data }) => {
         <div className="space-y-6">
           {roomsData.map((room) => (
             <AnimatedCard key={room.id}>
-              <div
-                className={`p-6 rounded-2xl border-2 flex flex-col lg:flex-row justify-between lg:items-center gap-2 lg:gap-4 ${
-                  room.priceDetails.type === "per month"
-                    ? "bg-white border-gray-200"
-                    : "bg-white border-gray-100"
-                }`}
-              >
-                <RevealOnScroll delay={0.2}>
+              <div className="p-6 rounded-2xl border-2 border-gray-200 bg-white flex flex-col lg:flex-row justify-between lg:items-start gap-6 lg:gap-8">
+                <RevealOnScroll delay={0.2} className="flex-1">
                   <div className="flex flex-col sm:flex-row gap-4 lg:gap-6">
                     {/* Image Slider */}
                     <div className="flex-shrink-0">
@@ -308,7 +302,7 @@ const TypesOfRoom = ({ id, data }) => {
                         </div>
                       </div>
 
-                      {/* ✅ Room-Specific Amenities Using Helper Functions */}
+                      {/* Room-Specific Amenities */}
                       {room.amenities && room.amenities.length > 0 ? (
                         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3">
                           {room.amenities.slice(0, 8).map((amenity, index) => (
@@ -368,27 +362,29 @@ const TypesOfRoom = ({ id, data }) => {
                   </div>
                 </RevealOnScroll>
 
-                {/* Price Section */}
+                {/* Price Section - Fixed Layout */}
                 <RevealOnScroll delay={0.1}>
-                  <div className="flex flex-col sm:flex-row lg:flex-col justify-between items-center lg:items-start mt-2">
-                    <h4 className="text-lg md:text-xl font-bold text-gray-800">
-                      {room.price}
-                    </h4>
-                    <p className="text-xs md:text-sm text-gray-500">
-                      {room.includes}
-                    </p>
-                    {room.priceDetails.taxIncluded && (
-                      <p className="text-xs text-green-600 mt-1">
-                        + ₹{room.priceDetails.taxAmount} tax
+                  <div className="flex flex-col sm:flex-row lg:flex-col items-start justify-start min-w-[200px] lg:min-w-[220px]">
+                    <div className="w-full flex flex-col items-center justify-between gap-2 sm:mb-4">
+                      <h4 className="text-lg md:text-xl font-bold text-gray-800">
+                        {room.price}
+                      </h4>
+                      <p className="text-xs md:text-sm text-gray-500 mt-1">
+                        {room.includes}
                       </p>
-                    )}
+                      {room.priceDetails.taxIncluded && (
+                        <p className="text-xs text-green-600 mt-1">
+                          + ₹{room.priceDetails.taxAmount} tax
+                        </p>
+                      )}
+                    </div>
 
                     {/* Buttons */}
-                    <div className="lg:mt-4 flex flex-col sm:flex-row lg:flex-col gap-3">
+                    <div className="mt-4 flex justify-center w-full">
                       {room.roomsAvailable > 0 ? (
                         <button
                           onClick={() => handleViewDetails(room.id)}
-                          className="flex-1 bg-[#0D0BA8] hover:bg-[#2A32FF] text-white text-sm md:text-base font-semibold py-2 px-4 xl:py-3 xl:px-4 rounded-full transition-colors cursor-pointer"
+                          className="bg-[#0D0BA8] hover:bg-[#2A32FF] text-white text-sm md:text-base font-semibold py-2 px-6 xl:py-3 xl:px-8 rounded-full transition-colors cursor-pointer whitespace-nowrap"
                         >
                           View Details
                         </button>
@@ -396,7 +392,7 @@ const TypesOfRoom = ({ id, data }) => {
                         <button
                           onClick={() => handleViewDetails(room.id)}
                           disabled
-                          className="flex-1 bg-gray-400 text-white text-sm md:text-base font-semibold py-2 xl:py-3 px-4 rounded-full transition-colors cursor-not-allowed"
+                          className="bg-gray-400 text-white text-sm md:text-base font-semibold py-2 px-6 xl:py-3 xl:px-8 rounded-full transition-colors cursor-not-allowed whitespace-nowrap"
                         >
                           Not available
                         </button>

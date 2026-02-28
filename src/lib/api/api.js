@@ -24,6 +24,11 @@ export const API_ENDPOINTS = {
     ACCOMMODATION_SEARCH: "auth/accommodation/search",
     ACCOMMODATION_NEIGHBOR: "auth/accommodation/neighborhoods",
     ACCOMMODATION_SORT: "auth/accommodation/sortaccommodation",
+    ACCOMMODATION_FEATURES: "auth/accommodation/featureaccommodations",
+    ACCOMMODATION_DEALSINCITY: "auth/accommodation/dealsincity",
+    ACCOMMODATION_RECENTLY_VIEWS: "auth/accommodation/recentlyviews",
+    ACCOMMODATION_USER_LIKED: "auth/accommodation/user-liked-accommodation",
+    ACCOMMODATION_LOCATION_FILTER: "auth/accommodation/getfilter-accomidations-by-area",
   },
   FILTER_NAMES: {
     FILTER_NAMES: "auth/accommodation/filternames",

@@ -35,57 +35,57 @@ export default function SearchBar({ initialParams = {} }) {
   // Filter function for hostel checkout (monthly basis)
   const filterHostelDates = (date) => {
     if (!checkInDate) return false;
-    
+
     // Convert dates to start of day for accurate comparison
     const startOfCheckIn = new Date(checkInDate);
     startOfCheckIn.setHours(0, 0, 0, 0);
-    
+
     const startOfDate = new Date(date);
     startOfDate.setHours(0, 0, 0, 0);
-    
+
     // For hostels, allow only:
     // 1. Same day (different time) for short stays OR
     // 2. Exact months later (1 month, 2 months, 3 months, etc.)
-    const isSameDay = startOfDate.getDate() === startOfCheckIn.getDate() && 
-                      startOfDate.getMonth() === startOfCheckIn.getMonth() && 
-                      startOfDate.getFullYear() === startOfCheckIn.getFullYear();
-    
+    const isSameDay = startOfDate.getDate() === startOfCheckIn.getDate() &&
+      startOfDate.getMonth() === startOfCheckIn.getMonth() &&
+      startOfDate.getFullYear() === startOfCheckIn.getFullYear();
+
     if (isSameDay) {
       return date > checkInDate; // Allow same day checkout (different time)
     }
-    
+
     // Check if it's exact months later
     const checkInMonth = startOfCheckIn.getMonth();
     const checkInYear = startOfCheckIn.getFullYear();
     const dateMonth = startOfDate.getMonth();
     const dateYear = startOfDate.getFullYear();
-    
+
     const monthDiff = (dateYear - checkInYear) * 12 + (dateMonth - checkInMonth);
     const isSameDayOfMonth = startOfDate.getDate() === startOfCheckIn.getDate();
-    
+
     // Handle month-end edge cases
     const maxDaysInDateMonth = new Date(dateYear, dateMonth + 1, 0).getDate();
     const originalDay = startOfCheckIn.getDate();
-    const isLastDayOfMonth = originalDay > maxDaysInDateMonth && 
-                             startOfDate.getDate() === maxDaysInDateMonth;
-    
+    const isLastDayOfMonth = originalDay > maxDaysInDateMonth &&
+      startOfDate.getDate() === maxDaysInDateMonth;
+
     return monthDiff > 0 && (isSameDayOfMonth || isLastDayOfMonth);
   };
 
   // Filter function for PGs in weekly/monthly mode
   const filterPgDates = (date) => {
     if (!checkInDate || pgMode === "daily") return true;
-    
+
     // Convert dates to start of day for accurate comparison
     const startOfCheckIn = new Date(checkInDate);
     startOfCheckIn.setHours(0, 0, 0, 0);
-    
+
     const startOfDate = new Date(date);
     startOfDate.setHours(0, 0, 0, 0);
-    
+
     const timeDiff = startOfDate.getTime() - startOfCheckIn.getTime();
     const dayDiff = Math.floor(timeDiff / (1000 * 3600 * 24));
-    
+
     if (pgMode === "weekly") {
       // Allow only multiples of 7 days (1 week, 2 weeks, 3 weeks, etc.)
       return dayDiff > 0 && dayDiff % 7 === 0;
@@ -95,31 +95,31 @@ export default function SearchBar({ initialParams = {} }) {
       const checkInYear = startOfCheckIn.getFullYear();
       const dateMonth = startOfDate.getMonth();
       const dateYear = startOfDate.getFullYear();
-      
+
       const monthDiff = (dateYear - checkInYear) * 12 + (dateMonth - checkInMonth);
       const isSameDayOfMonth = startOfDate.getDate() === startOfCheckIn.getDate();
-      
+
       // Handle month-end edge cases
       const maxDaysInDateMonth = new Date(dateYear, dateMonth + 1, 0).getDate();
       const originalDay = startOfCheckIn.getDate();
-      const isLastDayOfMonth = originalDay > maxDaysInDateMonth && 
-                               startOfDate.getDate() === maxDaysInDateMonth;
-      
+      const isLastDayOfMonth = originalDay > maxDaysInDateMonth &&
+        startOfDate.getDate() === maxDaysInDateMonth;
+
       return monthDiff > 0 && (isSameDayOfMonth || isLastDayOfMonth);
     }
-    
+
     return true; // For daily mode
   };
 
   // Handle stay type change
   const handleStayTypeChange = (type) => {
     setStayType(type);
-    
+
     // Reset PG mode if not PGs
     if (type !== "pgs") {
       setPgMode("daily");
     }
-    
+
     // If switching to hostels and we have check-in date, set checkout to 1 month later
     if ((type === "hostels" || type === "pgs") && checkInDate) {
       const oneMonthLater = getExactMonthLater(checkInDate, 1);
@@ -154,8 +154,8 @@ export default function SearchBar({ initialParams = {} }) {
         stayType === "pgs"
           ? pgMode
           : stayType === "hostels"
-          ? "monthly"
-          : "daily",
+            ? "monthly"
+            : "daily",
       checkIn: formatDate(checkInDate),
       checkOut: formatDate(checkOutDate),
     };
@@ -179,21 +179,21 @@ export default function SearchBar({ initialParams = {} }) {
     if (!fromDate) return null;
     const result = new Date(fromDate);
     result.setMonth(result.getMonth() + months);
-    
+
     // Handle month-end edge cases
     const originalDay = fromDate.getDate();
     const maxDaysInResultMonth = new Date(result.getFullYear(), result.getMonth() + 1, 0).getDate();
     if (originalDay > maxDaysInResultMonth) {
       result.setDate(maxDaysInResultMonth);
     }
-    
+
     return result;
   };
 
   // Handle check-in date change
   const handleCheckInChange = (date) => {
     setCheckInDate(date);
-    
+
     if (stayType === "hostels") {
       // For hostels, automatically set checkout to 1 month later
       const oneMonthLater = getExactMonthLater(date, 1);
@@ -216,7 +216,7 @@ export default function SearchBar({ initialParams = {} }) {
   // Handle PG mode change
   const handlePgModeChange = (mode) => {
     setPgMode(mode);
-    
+
     // If we have check-in date, set appropriate checkout
     if (checkInDate) {
       if (mode === "weekly") {
@@ -236,10 +236,10 @@ export default function SearchBar({ initialParams = {} }) {
   // Get highlight dates for the calendar
   const getHighlightDates = () => {
     if (!checkInDate) return [];
-    
+
     const highlights = [];
     const maxPeriods = 12; // Show up to 12 periods
-    
+
     if (stayType === "hostels") {
       // Highlight monthly intervals for hostels (1 month, 2 months, 3 months, etc.)
       for (let i = 1; i <= maxPeriods; i++) {
@@ -260,7 +260,7 @@ export default function SearchBar({ initialParams = {} }) {
         if (monthDate) highlights.push(monthDate);
       }
     }
-    
+
     return highlights;
   };
 
@@ -289,7 +289,7 @@ export default function SearchBar({ initialParams = {} }) {
   return (
     <SlideUp delay={0}>
       <div className="relative z-10 text-white py-10 h-full gap-12 lg:gap-24 sm:px-6 lg:px-20 flex flex-col items-center justify-center text-center">
-        {isHomePage && (
+        {/* {isHomePage && (
           <div className="flex flex-col justify-center items-center gap-4">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold max-w-3xl leading-snug">
               Find Your Perfect Stay – Hostel, PG & Hotels in One Place
@@ -298,14 +298,12 @@ export default function SearchBar({ initialParams = {} }) {
               Book affordable stays with comfort and convenience across India
             </p>
           </div>
-        )}
+        )} */}
 
         <div className="bg-black/60 rounded-3xl xl:rounded-full py-8 xl:py-12 px-4 sm:px-8 xl:px-24 w-full">
           <div className="flex flex-col xl:flex-row items-center justify-between gap-4 sm:gap-6 md:gap-8 xl:gap-10 max-w-7xl mx-auto w-full">
-            {/* 📱 MOBILE + TABLET + LAPTOP (<XL) */}
             <div className="flex flex-col w-full xl:hidden gap-4 sm:gap-5 md:gap-6">
-              {/* Stay Type */}
-              <SlideUp delay={0.05}>
+              {/* <SlideUp delay={0.05}>
                 <div
                   className={`${
                     stayType === "pgs"
@@ -323,12 +321,11 @@ export default function SearchBar({ initialParams = {} }) {
                     <option value="hostels">Hostel</option>
                   </select>
                 </div>
-              </SlideUp>
+              </SlideUp> */}
 
               {/* ⭐ PG TYPE + MODE side by side full width */}
-              {stayType === "pgs" && (
+              {/* {stayType === "pgs" && (
                 <div className="flex gap-4 w-full">
-                  {/* Stay Type Dropdown */}
                   <div className="bg-white text-black px-4 py-3 rounded-full h-12 flex items-center w-full">
                     <select
                       value={stayType}
@@ -341,7 +338,6 @@ export default function SearchBar({ initialParams = {} }) {
                     </select>
                   </div>
 
-                  {/* PG Mode Dropdown */}
                   <div className="bg-white text-black px-4 py-3 rounded-full h-12 flex items-center w-full">
                     <select
                       value={pgMode}
@@ -354,7 +350,7 @@ export default function SearchBar({ initialParams = {} }) {
                     </select>
                   </div>
                 </div>
-              )}
+              )} */}
 
               {/* Location */}
               <SlideUp delay={0.1}>
@@ -423,8 +419,7 @@ export default function SearchBar({ initialParams = {} }) {
 
             {/* 🖥️ DESKTOP (XL AND ABOVE) */}
             <div className="hidden xl:flex gap-4 w-full items-center">
-              {/* Stay Type */}
-              <div className="bg-white text-black px-6 rounded-full h-12 flex items-center flex-1">
+              {/* <div className="bg-white text-black px-6 rounded-full h-12 flex items-center flex-1">
                 <select
                   value={stayType}
                   onChange={(e) => handleStayTypeChange(e.target.value)}
@@ -435,8 +430,6 @@ export default function SearchBar({ initialParams = {} }) {
                   <option value="hostels">Hostel</option>
                 </select>
               </div>
-
-              {/* PG MODE */}
               {stayType === "pgs" && (
                 <div className="bg-white text-black px-6 rounded-full h-12 flex items-center flex-1">
                   <select
@@ -449,7 +442,7 @@ export default function SearchBar({ initialParams = {} }) {
                     <option value="monthly">Monthly</option>
                   </select>
                 </div>
-              )}
+              )} */}
 
               {/* Location */}
               <div className="flex items-center bg-white text-black px-6 rounded-full h-12 flex-2 gap-3">

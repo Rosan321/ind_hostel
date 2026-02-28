@@ -207,13 +207,13 @@ const Login = () => {
           {/* LEFT SIDE IMAGE */}
           <div className="relative h-[300px] sm:h-[350px] lg:h-auto">
             <Image
-              src="/images/auth.png"
+              src="/images/login.png"
               alt="banner"
               fill
-              className="object-cover"
+              className="object-cover w-full h-full"
               priority
             />
-            <div className="absolute inset-0 bg-black/40 flex flex-col justify-center px-6 sm:px-8 lg:px-10">
+            <div className="absolute inset-0 bg-black/60 flex flex-col pt-32 px-6 sm:px-8 lg:px-10 text-center">
               <h2 className="text-white text-xl sm:text-2xl lg:text-3xl font-bold">
                 Find Your Perfect Stay with IndHostel
               </h2>
@@ -229,7 +229,7 @@ const Login = () => {
               Welcome Back!
             </h2>
             <p className="text-xs md:text-base text-center text-[#666] mb-6">
-              Log in to manage your bookings and explore new stays
+              Login to explore new stays and manage your booking
             </p>
 
             {/* LOGIN MODE SWITCH */}

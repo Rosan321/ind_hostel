@@ -63,40 +63,39 @@ export function Tabs({
 
   return (
     <div className="flex flex-col-reverse lg:flex-row w-full mt-8 lg:mt-10 gap-4">
-      <section className="w-full lg:w-9/12 xl:w-9/10">
+      <section className="w-full">
         {/* ---- Tabs Row ---- */}
-          <div
-            ref={scrollRef}
-            onMouseDown={handleMouseDown}
-            onMouseLeave={handleMouseLeave}
-            onMouseUp={handleMouseUp}
-            onMouseMove={handleMouseMove}
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
-            className="
+        <div
+          ref={scrollRef}
+          onMouseDown={handleMouseDown}
+          onMouseLeave={handleMouseLeave}
+          onMouseUp={handleMouseUp}
+          onMouseMove={handleMouseMove}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          className="
               flex gap-3 overflow-x-auto no-scrollbar py-2 cursor-grab select-none
               scrollbar-hide scroll-smooth
             "
-          >
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`
-                  flex-shrink-0 px-5 py-2.5 rounded-full border text-sm font-medium transition-all
-                  ${
-                    activeTab === tab.id
-                      ? "bg-[#44475A] text-white border-[#44475A]"
-                      : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
-                  }
+        >
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`
+                  flex-shrink-0 px-5 py-2.5 rounded-full border text-sm font-medium transition-all cursor-pointer
+                  ${activeTab === tab.id
+                  ? "bg-[#0D0BA8] text-white border-[#44475A]"
+                  : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
+                }
                 `}
-              >
-                {tab.label}{" "}
-                <span className="hidden sm:inline">({tab.count})</span>
-              </button>
-            ))}
-          </div>
+            >
+              {tab.label}{" "}
+              <span className="hidden sm:inline">({tab.count})</span>
+            </button>
+          ))}
+        </div>
 
         {/* ---- Subtitle ---- */}
         <p className="text-[#666666] text-sm mt-2">
@@ -106,7 +105,7 @@ export function Tabs({
 
       {/* ---- Filters ---- */}
       {/* <div className="w-full lg:w-[240px]"> */}
-        {/* <StayFilters
+      {/* <StayFilters
           priceFilter={priceFilter}
           setPriceFilter={setPriceFilter}
           stayType={stayType}

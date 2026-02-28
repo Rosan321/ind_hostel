@@ -22,7 +22,7 @@ export default function HeroSection() {
   }, [images.length]);
 
   return (
-    <section className="relative w-full h-[100vh] flex items-center justify-center overflow-hidden">
+    <section className="relative w-full h-80 sm:h-96 lg:h-[420px] flex items-center justify-center overflow-hidden">
       {/* Background Images */}
       <div className="absolute inset-0">
         {images.map((src, index) => (
